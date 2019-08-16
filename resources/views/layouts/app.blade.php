@@ -101,8 +101,8 @@
                     </div>
                 @endif
                 <div class="row">
-                    {{--<div class="col-md-4">
-                        --}}{{--<ul class="list-group">
+                    <div class="col-md-4">
+                        {{--<ul class="list-group">
                         <li class="list-group-item">
                             <a style="cursor: default;" data-toggle="collapse" href="#website" role="button"
                                aria-expanded="false" aria-controls="website">1) Website</a>
@@ -123,7 +123,7 @@
                             </li>
                         </div>
 
-                        </ul>--}}{{--
+                        </ul>--}}
                         <ul class="list-group  mt-3">
                             <li class="list-group-item">
                                 <a class="cursor: default;" data-toggle="collapse" href="#quiz" role="button"
@@ -140,9 +140,9 @@
                                 <li class="list-group-item">
                                     <a href="{{ route('question.index') }}">คำถามและตัวเลือก</a>
                                 </li>
-                                --}}{{--<li class="list-group-item">
+                                {{--<li class="list-group-item">
                                     <a href="{{ route('question.index_match') }}">2.3) Question & Matching Options</a>
-                                </li>--}}{{--
+                                </li>--}}
                                 <li class="list-group-item">
                                     <a href="{{ route('result.index') }}">ผลสอบ</a>
                                 </li>
@@ -175,8 +175,8 @@
                         </ul>
 
 
-                    </div>--}}
-                    <div class="col-md-12">
+                    </div>
+                    <div class="col-md-8">
                         @yield('content')
                     </div>
                 </div>
