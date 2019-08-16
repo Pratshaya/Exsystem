@@ -71,6 +71,24 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Room') }}</label>
+                                <div class="col-md-6">
+                                    <select class="custom-select {{ $errors->has('room_id') ? 'is-invalid' : '' }}"
+                                            id="input-role" name="room_id">
+                                        <option selected value="0">Choose...</option>
+                                        @foreach($rooms as $room)
+                                                <option value="{{$room->id}}">{{$room->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('room_id'))
+                                        <div class="invalid-feedback">
+                                            <strong>{{$errors->first('room_id')}}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
                             <hr>
                             <div class="mx-auto h5">General Information</div>
                             <div class="form-group row">
@@ -86,7 +104,9 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
+
                                 </div>
+
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

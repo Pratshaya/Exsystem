@@ -98,6 +98,8 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('questionnaire/{questionnaire}/publish_questionnaire/show', 'PublishQuestionnaireController@show')->name('publish_questionnaire.show');
     Route::put('questionnaire/{phase}/publish_questionnaire/public', 'PublishQuestionnaireController@public')->name('publish_questionnaire.public');
 
+//Room
+    Route::resource('room', 'RoomController');
 
     //Question Match
 //    Route::get('quiz/question_match/index', 'QuizController@index')->name('quiz.index');
