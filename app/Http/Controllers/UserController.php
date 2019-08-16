@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Role;
+use App\Room;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -29,13 +30,16 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('user.create')->with('roles', $roles);
+        $rooms = Room::all();
+        return view('user.create')
+            ->with('roles', $roles)
+            ->with('rooms', $rooms);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateUserRequest $request)
@@ -49,7 +53,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User $user
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -60,7 +64,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User $user
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -72,13 +76,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\User $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update($request->only('email','name'));
+        $user->update($request->only('email', 'name'));
         session()->flash('success', 'User Updated success.');
 
         return redirect('/user');
@@ -87,7 +91,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User $user
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    protected $fillable = ['quiz_id'];
+    protected $fillable = ['name', 'detail'];
 
     public function rooms_quizzes()
     {
