@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ResultQuestionnaire extends Model
 {
-    protected $fillable = ['questionnaire_id', 'user_id'];
+    protected $fillable = ['questionnaire_id', 'user_id', 'score'];
 
     public function result_phase_questionnaire()
     {
@@ -22,10 +22,12 @@ class ResultQuestionnaire extends Model
     {
         return $this->belongsTo(Questionnaire::class);
     }
+
     public function getCreatedDateAttribute()
     {
         return $this->created_at->format('d F Y');
     }
+
     public function result_measurement()
     {
         if ($this->questionnaire->type == 'P')
