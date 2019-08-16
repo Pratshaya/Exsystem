@@ -26,4 +26,18 @@ class ResultQuestionnaire extends Model
     {
         return $this->created_at->format('d F Y');
     }
+    public function result_measurement()
+    {
+        if ($this->questionnaire->type == 'P')
+            return '-';
+        $result = '';
+        $score = $this->score;
+        $measurements = $this->questionnaire->measurements_questionnaire;
+        foreach ($measurements as $measurement) {
+            if ($measurement->score_min <= $score && $score <= $measurement->score_max)
+                $result .= $measurement->result . ',';
+        }
+
+        return $result;
+    }
 }
