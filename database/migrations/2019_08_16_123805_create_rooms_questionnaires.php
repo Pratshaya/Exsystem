@@ -15,8 +15,8 @@ class CreateRoomsQuestionnaires extends Migration
     {
         Schema::create('rooms_questionnaires', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('questionnaires_id');
-            $table->integer('rooms_id');
+            $table->integer('questionnaire_id');
+            $table->integer('room_id');
             $table->timestamps();
         });
     }
