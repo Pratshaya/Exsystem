@@ -112,7 +112,7 @@ class RoomController extends Controller
     public function show_questionnaire_quiz(Room $room)
     {
         $quizzes = Quiz::all();
-        $questionnaires = Questionnaire::where('');
+        $questionnaires = Questionnaire::all();
         return view('room.quiz_questionnaire_show')
             ->with('quizzes', $quizzes)
             ->with('questionnaires', $questionnaires)

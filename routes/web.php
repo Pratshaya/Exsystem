@@ -113,12 +113,12 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('room/quiz_questionnaire/{room}/questionnaire/create', 'RoomQuizController@create')->name('room_quiz.create');
     Route::post('room/quiz_questionnaire/{room}/questionnaire/store', 'RoomQuizController@store')->name('room_quiz.store');
 
-    //Question Match
-//    Route::get('quiz/question_match/index', 'QuizController@index')->name('quiz.index');
-//    Route::post('quiz/question_match/store', 'QuizController@store')->name('quiz.store');
-//    Route::get('quiz/question_match/{quiz}/edit', 'QuizController@edit')->name('quiz.edit');
-//    Route::put('quiz/{quiz}/update', 'QuizController@update')->name('quiz.update');
-//    Route::delete('quiz/{quiz}/destroy', 'QuizController@destroy')->name('quiz.destroy');
+//Report
+    Route::get('report_room/index', 'ReportRoomController@index')->name('report_room.index');
+    Route::get('report_room/{room}/show', 'ReportRoomController@show')->name('report_room.show');
+    Route::get('report_room/{room}/{quiz}/chart_quiz', 'ReportRoomController@chart_quiz')->name('report_room.chart_quiz');
+    Route::get('report_room/{room}/{questionnaire}/chart_questionnaire', 'ReportRoomController@chart_questionnaire')->name('report_room.chart_questionnaire');
+
 
 });
 

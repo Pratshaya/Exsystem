@@ -103,25 +103,25 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="list-group">
-                        <li class="list-group-item">
-                            <a style="cursor: default;" data-toggle="collapse" href="#website" role="button"
-                               aria-expanded="false" aria-controls="website">1) Website</a>
-                        </li>
-                        <div class="collapse multi-collapse" id="website">
+                            <li class="list-group-item">
+                                <a style="cursor: default;" data-toggle="collapse" href="#website" role="button"
+                                   aria-expanded="false" aria-controls="website">1) Website</a>
+                            </li>
+                            <div class="collapse multi-collapse" id="website">
 
-                            <li class="list-group-item">
-                                <a href="{{route('slider.index')}}">1.1) Slider</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{route('tag.index')}}">1.2) Tag</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{route('post.index')}}">1.3) Post</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{route('user.index')}}">1.4) User</a>
-                            </li>
-                        </div>
+                                <li class="list-group-item">
+                                    <a href="{{route('slider.index')}}">1.1) Slider</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('tag.index')}}">1.2) Tag</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('post.index')}}">1.3) Post</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('user.index')}}">1.4) User</a>
+                                </li>
+                            </div>
 
                         </ul>
                         <ul class="list-group  mt-3">
@@ -171,7 +171,20 @@
                                 </li>
                             </div>
                         </ul>
-
+                        <ul class="list-group  mt-3">
+                            <li class="list-group-item">
+                                <a href="{{ route('room.index') }}">Room</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('quiz_questionnaire.index') }}">Room Question/Questionnaire</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('quiz_questionnaire.index') }}">วัดผล Question</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('report_room.index') }}">Report Room</a>
+                            </li>
+                        </ul>
 
                     </div>
                     <div class="col-md-12">

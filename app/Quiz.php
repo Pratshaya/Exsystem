@@ -51,6 +51,7 @@ class Quiz extends Model
     public function hasRoom($room)
     {
         $check = $this->room_quizzes()->where('room_id', $room->id)->count();
+
         if ($check > 0) {
             return true;
         }
@@ -65,11 +66,21 @@ class Quiz extends Model
         return false;
     }
 
+    //For User
     public function roomResult()
     {
         $result = Result::where('user_id', Auth::id())
             ->where('quiz_id', $this->id)
             ->where('room_id', Auth::user()->room_id)
+            ->first();
+        return $result;
+    }
+
+    //For Admin
+    public function room_result($room)
+    {
+        $result = ResultQuestionnaire::where('quiz_id', $this->id)
+            ->where('room_id', $room)
             ->first();
         return $result;
     }

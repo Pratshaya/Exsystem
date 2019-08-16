@@ -25,4 +25,13 @@ class Room extends Model
 
     }
 
+    public function result_questionnaires()
+    {
+        return $this->hasMany(ResultQuestionnaire::class);
+    }
+
+    public function result_quizzes()
+    {
+        return $this->hasMany(Result::class);
+    }
 }

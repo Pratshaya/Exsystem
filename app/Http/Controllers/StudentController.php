@@ -126,6 +126,7 @@ class StudentController extends Controller
             $option = Option::find($ch);
             $score += $option->score;
         }
+
         $result = Result::create([
             'user_id' => Auth::id(),
             'quiz_id' => $quiz->id,

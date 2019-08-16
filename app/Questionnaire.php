@@ -62,6 +62,7 @@ class Questionnaire extends Model
         return false;
     }
 
+    //For Return User
     public function roomResult()
     {
         $result = ResultQuestionnaire::where('user_id', Auth::id())
@@ -70,4 +71,14 @@ class Questionnaire extends Model
             ->first();
         return $result;
     }
+
+    //For Admin
+    public function room_result($room)
+    {
+        $result = ResultQuestionnaire::where('questionnaire_id', $this->id)
+            ->where('room_id', $room)
+            ->first();
+        return $result;
+    }
+
 }
