@@ -9,6 +9,7 @@
                                 href="{{route('phase_questionnaire.index')}}">{{$questionnaire->name }} </a> /
                         create measurement <span class="float-right"></div>
                     <div class="card-body">
+
                         @if($questionnaire->phase_questionnaires->isEmpty())
                             <table id="example" class="table table-bordered table-striped-column">
                                 <tr>
@@ -23,11 +24,11 @@
                                 </tr>
                             </table>
                         @else
-                            @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
+                            @if($questionnaire->type =='SP' || $questionnaire->type == "S")
                                 <table id="example" class="table table-bordered table-striped-column">
                                     <thead>
                                     <tr>
-                                        <th colspan="4" class="text-center">{{$phase_questionnaires->name}}</th>
+                                        <th colspan="4" class="text-center">คะแนนรวม</th>
                                     </tr>
                                     <tr>
                                         <th class="text-center">Score Min</th>
@@ -37,17 +38,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    @forelse($phase_questionnaires->measurements_phase_questionnaire as $measurement)
+                                    @forelse($questionnaire->measurements_questionnaire as $measurement)
                                         <tr>
                                             <td class="text-center">{{ $measurement->score_min }}</td>
                                             <td class="text-center">{{ $measurement->score_max }}</td>
                                             <td class="text-center">{{ $measurement->result }}</td>
                                             <td class="text-center" style="width: 150px;">
                                                 <a class="btn btn-info"
-                                                   href="{{route('measurement_phase_questionnaire.edit',$measurement->id)}}">Edit
+                                                   href="{{route('measurement_questionnaire.edit',$measurement->id)}}">Edit
                                                 </a>
-                                                <form action="{{route('measurement_phase_questionnaire.destroy', $measurement->id)}}"
+                                                <form action="{{route('measurement_questionnaire.destroy', $measurement->id)}}"
                                                       method="POST"
                                                       style="display: inline;">
                                                     @csrf
@@ -63,29 +63,84 @@
                                         </tr>
                                     @endforelse
                                     </tbody>
-
                                 </table>
-                            @endforeach
+                                <hr>
+                            @endif
+                            @if($questionnaire->type =='SP' || $questionnaire->type == 'P')
+                                @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
+                                    <table id="example" class="table table-bordered table-striped-column">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="4" class="text-center">{{$phase_questionnaires->name}}</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Score Min</th>
+                                            <th class="text-center">Score Max</th>
+                                            <th class="text-center">WHAT</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        @forelse($phase_questionnaires->measurements_phase_questionnaire as $measurement)
+                                            <tr>
+                                                <td class="text-center">{{ $measurement->score_min }}</td>
+                                                <td class="text-center">{{ $measurement->score_max }}</td>
+                                                <td class="text-center">{{ $measurement->result }}</td>
+                                                <td class="text-center" style="width: 150px;">
+                                                    <a class="btn btn-info"
+                                                       href="{{route('measurement_phase_questionnaire.edit',$measurement->id)}}">Edit
+                                                    </a>
+                                                    <form action="{{route('measurement_phase_questionnaire.destroy', $measurement->id)}}"
+                                                          method="POST"
+                                                          style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-info btn-delete">Delete
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Not Found</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+
+                                    </table>
+                                @endforeach
+                            @endif
                         @endif
                     </div>
                 </div>
                 <hr>
                 @if(!$questionnaire->phase_questionnaires->isEmpty())
-
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">Create Measurement</div>
                             <div class="card-body">
-                                <form action="{{ route('measurement_phase_questionnaire.store') }}" method="POST">
+                                <form action="{{ route('measurement_phase_questionnaire.store',$questionnaire->id) }}"
+                                      method="POST">
                                     @csrf
                                     <div class="input-group">
-                                        <select name="phase_questionnaire_id" class="form-control">
-                                            <option value="0">Select Category</option>
-                                            @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
-                                                <option value="{{ $phase_questionnaires->id }}">{{ $phase_questionnaires->name }}</option>
-                                            @endforeach
-                                        </select>
-
+                                        @if($questionnaire->type=='P')
+                                            <select name="phase_questionnaire_id" class="form-control">
+                                                <option value="0">Select Category</option>
+                                                @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
+                                                    <option value="{{ $phase_questionnaires->id }}">{{ $phase_questionnaires->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                        @if($questionnaire->type=='SP')
+                                            <select name="phase_questionnaire_id" class="form-control">
+                                                <option value="-1">Select Category</option>
+                                                <option value="0">ผลรวม</option>
+                                                @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
+                                                    <option value="{{ $phase_questionnaires->id }}">{{ $phase_questionnaires->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
                                         <input type="number" class="form-control text-center" placeholder="Score Min"
                                                name="score_min"
                                                value="{{ old('score_min') }}" required>

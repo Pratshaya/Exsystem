@@ -13,9 +13,10 @@
 
                             <table class="table table-bordered table-sm text-center">
                                 <tr>
-                                    <th>Number</th>
+                                    <th>Index</th>
                                     <th>Name</th>
                                     <th>Score</th>
+                                    <th>Number</th>
                                     <th>Date</th>
                                     <th>Answer</th>
                                 </tr>
@@ -24,6 +25,7 @@
                                         <th>{{ $loop->iteration }}</th>
                                         <th>{{ $quiz->quiz->name }}</th>
                                         <th>{{ $quiz->score }}</th>
+                                        <th>{{ $quiz->num }}</th>
                                         <th>{{ $quiz->created_date }}</th>
                                         <th><a href="{{route('student.result_quiz',$quiz)}}">Result</a></th>
                                     </tr>

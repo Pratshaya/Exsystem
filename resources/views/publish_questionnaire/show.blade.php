@@ -40,62 +40,197 @@
                                     </td>
                                 </tr>
                             @else
-                                @foreach($questionnaire->phase_questionnaires as $phase)
-                                    <tr>
-                                        <td class="text-center">{{$phase->name}}</td>
-                                        <td class="text-center">
-                                            @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() )
-                                                <ul>
-
-                                                    <li>Can't Public</li>
-                                                    @if($phase->option_phase_questionnaires->isEmpty())
-                                                        <li>Options Not Found</li>
-                                                    @endif
-                                                    @if($phase->question_phase_questionnaires->isEmpty())
-                                                        <li>Phase Not Found</li>
-                                                    @endif
-                                                    @if($phase->question_phase_questionnaires->isEmpty())
-                                                        <li>Question Not Found</li>
-                                                    @endif
-                                                    @if($phase->measurements_phase_questionnaire->isEmpty())
-                                                        <li>Measurements Not Found</li>
-                                                    @endif
-                                                </ul>
-                                            @else
-                                                @if(!$phase->public)
-                                                    You can public!
+                                @if($questionnaire->type == 'S')
+                                    @foreach($questionnaire->phase_questionnaires as $phase)
+                                        <tr>
+                                            <td class="text-center">{{$phase->name}}</td>
+                                            <td class="text-center">
+                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$questionnaire->measurements_questionnaire->isEmpty() )
+                                                    <ul>
+                                                        <li>Can't Public</li>
+                                                        @if($phase->option_phase_questionnaires->isEmpty())
+                                                            <li>Options Not Found</li>
+                                                        @endif
+                                                        @if($phase->question_phase_questionnaires->isEmpty())
+                                                            <li>Phase Not Found</li>
+                                                        @endif
+                                                        @if($phase->question_phase_questionnaires->isEmpty())
+                                                            <li>Question Not Found</li>
+                                                        @endif
+                                                        @if($questionnaire->measurements_questionnaire->isEmpty())
+                                                            <li>Measurements Not Found</li>
+                                                        @endif
+                                                    </ul>
                                                 @else
-                                                    Published!
-                                                @endif
-                                            @endif
-                                        </td>
-                                        <td class="text-center">No</td>
-                                        <td class="text-center">
-                                            @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
-                                                <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
-                                                   class="btn btn-info">Create Phase</a>
-                                            @elseif($phase->measurements_phase_questionnaire->isEmpty() )
-                                                <a href="{{route('measurement_phase_questionnaire.show',$phase->questionnaire)}}"
-                                                   class="btn btn-info">Create Measurements</a>
-                                            @else
-                                                <form action="{{route('publish_questionnaire.public',$phase)}}"
-                                                      method="POST">
-                                                    @method('PUT')
-                                                    @csrf
                                                     @if(!$phase->public)
-                                                        <button class="btn btn-info"
-                                                                type="submit">Public
-                                                        </button>
+                                                        You can public!
                                                     @else
-                                                        <button class="btn btn-danger"
-                                                                type="submit">Cancel
-                                                        </button>
+                                                        Published!
                                                     @endif
-                                                </form>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if($phase->public)
+                                                    Yes
+                                                @else
+                                                    No
+                                                @endif</td>
+                                            <td class="text-center">
+                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
+                                                    <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
+                                                       class="btn btn-info">Create Phase</a>
+                                                @elseif($questionnaire->measurements_questionnaire->isEmpty() )
+                                                    <a href="{{route('measurement_phase_questionnaire.show',$questionnaire)}}"
+                                                       class="btn btn-info">Create Measurements</a>
+                                                @else
+                                                    <form action="{{route('publish_questionnaire.public',$phase)}}"
+                                                          method="POST">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        @if(!$phase->public)
+                                                            <button class="btn btn-info"
+                                                                    type="submit">Public
+                                                            </button>
+                                                        @else
+                                                            <button class="btn btn-danger"
+                                                                    type="submit">Cancel
+                                                            </button>
+                                                        @endif
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                @if( $questionnaire->type == 'P')
+                                    @foreach($questionnaire->phase_questionnaires as $phase)
+                                        <tr>
+                                            <td class="text-center">{{$phase->name}}</td>
+                                            <td class="text-center">
+                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() )
+                                                    <ul>
+                                                        <li>Can't Public</li>
+                                                        @if($phase->option_phase_questionnaires->isEmpty())
+                                                            <li>Options Not Found</li>
+                                                        @endif
+                                                        @if($phase->question_phase_questionnaires->isEmpty())
+                                                            <li>Phase Not Found</li>
+                                                        @endif
+                                                        @if($phase->question_phase_questionnaires->isEmpty())
+                                                            <li>Question Not Found</li>
+                                                        @endif
+                                                        @if($phase->measurements_phase_questionnaire->isEmpty())
+                                                            <li>Measurements Not Found</li>
+                                                        @endif
+                                                    </ul>
+                                                @else
+                                                    @if(!$phase->public)
+                                                        You can public!
+                                                    @else
+                                                        Published!
+                                                    @endif
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if($phase->public)
+                                                    Yes
+                                                @else
+                                                    No
+                                                @endif</td>
+                                            <td class="text-center">
+                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
+                                                    <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
+                                                       class="btn btn-info">Create Phase</a>
+                                                @elseif($phase->measurements_phase_questionnaire->isEmpty() )
+                                                    <a href="{{route('measurement_phase_questionnaire.show',$phase->questionnaire)}}"
+                                                       class="btn btn-info">Create Measurements</a>
+                                                @else
+                                                    <form action="{{route('publish_questionnaire.public',$phase)}}"
+                                                          method="POST">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        @if(!$phase->public)
+                                                            <button class="btn btn-info"
+                                                                    type="submit">Public
+                                                            </button>
+                                                        @else
+                                                            <button class="btn btn-danger"
+                                                                    type="submit">Cancel
+                                                            </button>
+                                                        @endif
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                @if( $questionnaire->type == 'SP')
+                                    @foreach($questionnaire->phase_questionnaires as $phase)
+                                        <tr>
+                                            <td class="text-center">{{$phase->name}}</td>
+                                            <td class="text-center">
+                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() ||$questionnaire->measurements_questionnaire->isEmpty() )
+                                                    <ul>
+                                                        <li>Can't Public</li>
+                                                        @if($phase->option_phase_questionnaires->isEmpty())
+                                                            <li>Options Not Found</li>
+                                                        @endif
+                                                        @if($phase->question_phase_questionnaires->isEmpty())
+                                                            <li>Phase Not Found</li>
+                                                        @endif
+                                                        @if($phase->question_phase_questionnaires->isEmpty())
+                                                            <li>Question Not Found</li>
+                                                        @endif
+                                                        @if($phase->measurements_phase_questionnaire->isEmpty() || $questionnaire->measurements_questionnaire->isEmpty())
+                                                            <li>Measurements Not Found</li>
+                                                        @endif
+                                                    </ul>
+                                                @else
+                                                    @if(!$phase->public)
+                                                        You can public!
+                                                    @else
+                                                        Published!
+                                                    @endif
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if($phase->public)
+                                                    Yes
+                                                @else
+                                                    No
+                                                @endif</td>
+                                            <td class="text-center">
+                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
+                                                    <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
+                                                       class="btn btn-info">Create Phase</a>
+                                                @elseif($phase->measurements_phase_questionnaire->isEmpty() )
+                                                    <a href="{{route('measurement_phase_questionnaire.show',$phase->questionnaire)}}"
+                                                       class="btn btn-info">Create Measurements</a>
+                                                @else
+                                                    @if($questionnaire->measurements_questionnaire->isEmpty())
+                                                        <a href="{{route('measurement_phase_questionnaire.show',$phase->questionnaire)}}"
+                                                           class="btn btn-info">Create Measurements SUM</a>
+                                                    @else
+                                                        <form action="{{route('publish_questionnaire.public',$phase)}}"
+                                                              method="POST">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            @if(!$phase->public)
+                                                                <button class="btn btn-info"
+                                                                        type="submit">Public
+                                                                </button>
+                                                            @else
+                                                                <button class="btn btn-danger"
+                                                                        type="submit">Cancel
+                                                                </button>
+                                                            @endif
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             @endif
                             </thead>
                             <tbody>

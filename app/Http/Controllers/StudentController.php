@@ -51,7 +51,7 @@ class StudentController extends Controller
 
     public function quizzes()
     {
-        $quizzes = Quiz::paginate(20);
+        $quizzes = Quiz::has('questions', '>=', 1)->paginate(20);
         $categories = Category::all();
         return view('student.quizzes')->with('quizzes', $quizzes)->with('categories', $categories);
     }
@@ -77,19 +77,18 @@ class StudentController extends Controller
             $request->answers = [];
         }
 
-        //Sum
-        /*
-        foreach ($request->answers as $answers) {
-            $option = OptionPhaseQuestionnaire::find($answers);
-            $score += $option->score;
+        $count = ResultQuestionnaire::where('questionnaire_id', $questionnaire->id)->where('user_id', Auth::id())->count();
+        $num = 1;
+        if ($count > 0) {
+            $num = $count + 1;
         }
-        */
-        //End Sum
+
         $result = ResultQuestionnaire::create([
             'user_id' => Auth::id(),
             'questionnaire_id' => $questionnaire->id,
+            'num' => $num
         ]);
-
+        $sum_result = 0;
         foreach ($request->answers as $phase => $answers) {
             $sum = 0;
             foreach ($answers as $question => $option) {
@@ -110,13 +109,13 @@ class StudentController extends Controller
                     'option_phase_questionnaire_id' => $option
                 ]);
             }
-
+            $sum_result += $sum;
 
         }
-
+        $result->update(['score' => $sum_result]);
 
         session()->flash('success', 'ทำแบบสอบถามสำเร็จแล้ว');
-        return redirect()->route('student.result_all');
+        return redirect()->route('student.result_all_questionnaire');
     }
 
     public function store(Request $request, Quiz $quiz)
@@ -129,11 +128,16 @@ class StudentController extends Controller
             $option = Option::find($ch);
             $score += $option->score;
         }
-
+        $count = Result::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->count();
+        $num = 1;
+        if ($count > 0) {
+            $num = $count + 1;
+        }
         $result = Result::create([
             'user_id' => Auth::id(),
             'quiz_id' => $quiz->id,
-            'score' => $score
+            'score' => $score,
+            'num' => $num
         ]);
 
         foreach ($quiz->questions as $question) {

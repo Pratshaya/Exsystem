@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MeasurementPhaseQuestionnaire;
+use App\MeasurementQuestionnaire;
 use App\PhaseQuestionnaire;
 use App\Questionnaire;
 use Illuminate\Http\Request;
@@ -35,21 +36,46 @@ class MeasurementController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Questionnaire $questionnaire)
     {
         if ($request->score_min >= $request->score_max) {
             session()->flash('error', 'Score Min can not more Score Max.');
         } else {
-            MeasurementPhaseQuestionnaire::create([
-                'result' => $request->result,
-                'score_min' => $request->score_min,
-                'score_max' => $request->score_max,
-                'phase_questionnaire_id' => $request->phase_questionnaire_id
-            ]);
-            session()->flash('success', 'MeasurementPhaseQuestionnaire Created success.');
+            if ($questionnaire->type == 'P') {
+                MeasurementPhaseQuestionnaire::create([
+                    'result' => $request->result,
+                    'score_min' => $request->score_min,
+                    'score_max' => $request->score_max,
+                    'phase_questionnaire_id' => $request->phase_questionnaire_id
+                ]);
+            } elseif ($questionnaire->type == 'S') {
+                MeasurementQuestionnaire::create([
+                    'result' => $request->result,
+                    'score_min' => $request->score_min,
+                    'score_max' => $request->score_max,
+                    'questionnaire_id' => $questionnaire->id
+                ]);
+            } elseif ($questionnaire->type == 'SP') {
+                if ($request->phase_questionnaire_id == 0) {
+                    //This For Measurement Sum
+                    MeasurementQuestionnaire::create([
+                        'result' => $request->result,
+                        'score_min' => $request->score_min,
+                        'score_max' => $request->score_max,
+                        'questionnaire_id' => $questionnaire->id
+                    ]);
+                } else {
+                    MeasurementPhaseQuestionnaire::create([
+                        'result' => $request->result,
+                        'score_min' => $request->score_min,
+                        'score_max' => $request->score_max,
+                        'phase_questionnaire_id' => $request->phase_questionnaire_id
+                    ]);
+                }
+            }
+            session()->flash('success', 'Measurement Questionnaire Created success.');
         }
-        $phase = PhaseQuestionnaire::find($request->phase_questionnaire_id);
-        return redirect()->route('measurement_phase_questionnaire.show', $phase->questionnaire->id);
+        return redirect()->route('measurement_phase_questionnaire.show', $questionnaire->id);
     }
 
     /**
@@ -60,7 +86,6 @@ class MeasurementController extends Controller
      */
     public function show(Questionnaire $questionnaire)
     {
-
         return view('measurement_phase_questionnaire.show')->with('questionnaire', $questionnaire);
     }
 
@@ -73,7 +98,7 @@ class MeasurementController extends Controller
     public function edit(MeasurementPhaseQuestionnaire $measurement)
     {
         $phase_questionnaires = $measurement->phase_questionnaire->questionnaire->phase_questionnaires;
-        return view('measurement_phase_questionnaire.edit')->with('measurement', $measurement)->with('phase_questionnaires',$phase_questionnaires);
+        return view('measurement_phase_questionnaire.edit')->with('measurement', $measurement)->with('phase_questionnaires', $phase_questionnaires);
     }
 
     /**
@@ -103,6 +128,24 @@ class MeasurementController extends Controller
         $measurement->delete();
         session()->flash('success', 'MeasurementPhaseQuestionnaire Deleted success.');
         return redirect()->route('measurement_phase_questionnaire.show', $phase->questionnaire->id);
+    }
 
+    public function edit_questionnaire(MeasurementQuestionnaire $measurement)
+    {
+        return view('measurement_questionnaire.edit')
+            ->with('measurement', $measurement);
+    }
+    public function update_questionnaire(Request $request, MeasurementQuestionnaire $measurement)
+    {
+        $measurement->update($request->all());
+        session()->flash('success', 'Measurement Questionnaire  update successfully');
+        return redirect()->route('measurement_phase_questionnaire.show', $measurement->questionnaire);
+    }
+    public function destroy_questionnaire(MeasurementQuestionnaire $measurement)
+    {
+        $questionnaire = $measurement->questionnaire;
+        $measurement->delete();
+        session()->flash('success', 'MeasurementPhaseQuestionnaire Deleted success.');
+        return redirect()->route('measurement_phase_questionnaire.show', $questionnaire->id);
     }
 }

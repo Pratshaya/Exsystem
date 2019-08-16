@@ -19,14 +19,17 @@
                                 <tr>
                                     <th class="text-center">{{ $questionnaire->name }}</th>
                                     <th class="text-center">
-                                        <a class="btn btn-secondary" href="{{ route('questionnaire.edit',$questionnaire->id) }}">Edit</a>
-                                        <button class="btn btn-danger" onClick="handleDelete({{ $questionnaire->id }})">Delete
+                                        <a class="btn btn-secondary"
+                                           href="{{ route('questionnaire.edit',$questionnaire->id) }}">Edit</a>
+                                        <button class="btn btn-danger" onClick="handleDelete({{ $questionnaire->id }})">
+                                            Delete
                                         </button>
 
                                         <div class="modal fade" id="deleteModal{{$questionnaire->id}}" tabindex="-1"
                                              role="dialog"
                                              aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <form action="{{ route('questionnaire.destroy', $questionnaire->id) }}" method="POST"
+                                            <form action="{{ route('questionnaire.destroy', $questionnaire->id) }}"
+                                                  method="POST"
                                                   id="deleteQuizForm">
                                                 @method('delete')
                                                 @csrf
@@ -42,7 +45,8 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p class="text-cetner">
-                                                                Are you sure you want to delete {{ $questionnaire->name }}
+                                                                Are you sure you want to
+                                                                delete {{ $questionnaire->name }}
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer">
@@ -72,10 +76,12 @@
                             <form action="{{ route('questionnaire.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Questionnaire Name" name="name" value="{{ old('name') }}" required>
+                                    <input type="text" class="form-control" placeholder="Questionnaire Name" name="name"
+                                           value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Questionnaire Detail" name="detail" value="{{ old('detail') }}" required>
+                                    <input type="text" class="form-control" placeholder="Questionnaire Detail"
+                                           name="detail" value="{{ old('detail') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <select name="category_id" class="form-control">
@@ -83,6 +89,14 @@
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name="type" class="form-control">
+                                        <option value="0">Select Type</option>
+                                        <option value="S">วัดผลเฉพาะคะแนนรวม</option>
+                                        <option value="P">วัดผลเฉพาะคะแนนแต่ละด้าน</option>
+                                        <option value="SP">วัดผลคะแนนรวมและคะแนนแต่ละด้าน</option>
                                     </select>
                                 </div>
                                 <div class="form-group text-center">

@@ -82,10 +82,17 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 //Measurement
     Route::get('questionnaire/phase/measurement/index', 'MeasurementController@index')->name('measurement_phase_questionnaire.index');
     Route::get('questionnaire/phase/measurement/{questionnaire}/show', 'MeasurementController@show')->name('measurement_phase_questionnaire.show');
-    Route::post('questionnaire/phase/measurement/store', 'MeasurementController@store')->name('measurement_phase_questionnaire.store');
+    Route::post('questionnaire/phase/measurement/{questionnaire}/store', 'MeasurementController@store')->name('measurement_phase_questionnaire.store');
+    //For Questionnaire
+    Route::delete('questionnaire/phase/measurement/{measurement}/destroy_questionnaire', 'MeasurementController@destroy_questionnaire')->name('measurement_questionnaire.destroy');
+    Route::get('questionnaire/phase/measurement/{measurement}/edit_questionnaire', 'MeasurementController@edit_questionnaire')->name('measurement_questionnaire.edit');
+    Route::put('questionnaire/phase/measurement/{measurement}/update_questionnaire', 'MeasurementController@update_questionnaire')->name('measurement_questionnaire.update');
+
+    //For Phase
     Route::delete('questionnaire/phase/measurement/{measurement}/destroy', 'MeasurementController@destroy')->name('measurement_phase_questionnaire.destroy');
     Route::get('questionnaire/phase/measurement/{measurement}/edit', 'MeasurementController@edit')->name('measurement_phase_questionnaire.edit');
     Route::put('questionnaire/phase/measurement/{measurement}/update', 'MeasurementController@update')->name('measurement_phase_questionnaire.update');
+
 
 //Public
     Route::get('questionnaire/{questionnaire}/publish_questionnaire/show', 'PublishQuestionnaireController@show')->name('publish_questionnaire.show');

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Questionnaire extends Model
 {
-    protected $fillable = ['name', 'detail', 'category_questionnaire_id',];
+    protected $fillable = ['name', 'detail', 'category_questionnaire_id', 'type'];
 
     public function category()
     {
-        return $this->belongsTo(CategoryQuestionnaire::class,'category_questionnaire_id');
+        return $this->belongsTo(CategoryQuestionnaire::class, 'category_questionnaire_id');
     }
 
     public function phase_questionnaires()
@@ -33,5 +33,8 @@ class Questionnaire extends Model
         return $sum;
     }
 
-
+    public function measurements_questionnaire()
+    {
+        return $this->hasMany(MeasurementQuestionnaire::class);
+    }
 }

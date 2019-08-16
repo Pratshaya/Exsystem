@@ -21,7 +21,6 @@ class PublishQuestionnaireController extends Controller
 
     public function public(PhaseQuestionnaire $phase)
     {
-
         $phase->update(['public' => !$phase->public]);
         return redirect()->route('publish_questionnaire.show', $phase->questionnaire);
     }

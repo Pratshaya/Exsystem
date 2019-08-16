@@ -44,7 +44,8 @@ class QuestionnaireController extends Controller
         Questionnaire::create([
             'name' => $request->name,
             'detail' => $request->detail,
-            'category_questionnaire_id' => $request->category_id
+            'category_questionnaire_id' => $request->category_id,
+            'type' => $request->type
         ]);
         session()->flash('success', 'Created Questionnaire success.');
 
