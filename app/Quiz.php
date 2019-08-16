@@ -36,4 +36,8 @@ class Quiz extends Model
             return "Choice";
         return "None";
     }
+    public function rooms_quizzes()
+    {
+        return $this->hasMany(RoomQuize::class);
+    }
 }
