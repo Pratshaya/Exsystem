@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <a  href="{{ route('student.result_all') }}" class="btn btn-primary" >กลับ</a>
+                            <a  href="{{ route('student.room') }}" class="btn btn-primary" >กลับ</a>
                         </div>
                 </div>
             </div>

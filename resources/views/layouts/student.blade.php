@@ -55,7 +55,7 @@
                             <a class="nav-link" href="{{ route('student.index') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('student.quizzes') }}">Room</a>
+                            <a class="nav-link" href="{{ route('student.room') }}">Room</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('student.quizzes') }}">Quiz</a>

@@ -113,7 +113,7 @@ class StudentController extends Controller
         $result->update(['score' => $sum_result]);
 
         session()->flash('success', 'ทำแบบสอบถามสำเร็จแล้ว');
-        return redirect()->route('student.result_all_questionnaire');
+        return redirect()->route('student.room');
     }
 
     public function store(Request $request, Quiz $quiz)
@@ -143,7 +143,7 @@ class StudentController extends Controller
             }
         }
         session()->flash('success', 'ทำข้อสอบสำเร็จแล้ว');
-        return redirect()->route('student.result_all');
+        return redirect()->route('student.room');
     }
 
     public function result_all()
@@ -202,6 +202,7 @@ class StudentController extends Controller
 
     public function room()
     {
+
         $room = Auth::user()->room;
         return view('student.room')->with('room', $room);
     }

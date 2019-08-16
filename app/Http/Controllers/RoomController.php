@@ -140,6 +140,11 @@ class RoomController extends Controller
         }
         session()->flash('success', 'Room created successfully');
 
-        return redirect()->route('quiz_questionnaire.show',$room->id);
+        return redirect()->route('quiz_questionnaire.show', $room->id);
+    }
+
+    public function student(Room $room)
+    {
+        return view('room.students')->with('users', $room->users);
     }
 }

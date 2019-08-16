@@ -100,9 +100,11 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 
 //Room
     Route::resource('room', 'RoomController');
+
 //Room Quiz & Questionnaire
     Route::get('room/quiz_questionnaire/index', 'RoomController@quiz_questionnaire')->name('quiz_questionnaire.index');
     Route::get('room/quiz_questionnaire/{room}/show', 'RoomController@show_questionnaire_quiz')->name('quiz_questionnaire.show');
+    Route::get('room/quiz_questionnaire/{room}/student', 'RoomController@student')->name('room.student');
     Route::post('room/quiz_questionnaire/{room}/store', 'RoomController@store_questionnaire_quiz')->name('quiz_questionnaire.store');
 // Room Quiz
     Route::get('room/quiz_questionnaire/{room}/quiz/create', 'RoomQuestionnaireController@create')->name('room_questionnaire.create');
