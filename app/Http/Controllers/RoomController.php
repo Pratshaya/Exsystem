@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Questionnaire;
+use App\Quiz;
 use App\Room;
+use App\RoomQuestionnaire;
+use App\RoomQuiz;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -97,5 +101,45 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         //
+    }
+
+    public function quiz_questionnaire()
+    {
+        $rooms = Room::paginate(10);
+        return view('room.quiz_questionnaire')->with('rooms', $rooms);
+    }
+
+    public function show_questionnaire_quiz(Room $room)
+    {
+        $quizzes = Quiz::all();
+        $questionnaires = Questionnaire::where('');
+        return view('room.quiz_questionnaire_show')
+            ->with('quizzes', $quizzes)
+            ->with('questionnaires', $questionnaires)
+            ->with('room', $room);
+    }
+
+    public function store_questionnaire_quiz(Request $request, Room $room)
+    {
+        if (!empty($request->questionnaires)) {
+            foreach ($request->questionnaires as $questionnaire) {
+                RoomQuestionnaire::create([
+                    'room_id' => $room->id,
+                    'questionnaire_id' => $questionnaire
+                ]);
+            }
+        }
+
+        if (!empty($request->quizzes)) {
+            foreach ($request->quizzes as $quiz) {
+                RoomQuiz::create([
+                    'room_id' => $room->id,
+                    'quiz_id' => $quiz
+                ]);
+            }
+        }
+        session()->flash('success', 'Room created successfully');
+
+        return redirect()->route('quiz_questionnaire.show',$room->id);
     }
 }

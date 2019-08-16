@@ -37,4 +37,18 @@ class Questionnaire extends Model
     {
         return $this->hasMany(MeasurementQuestionnaire::class);
     }
+
+    public function room_questionnaires()
+    {
+        return $this->hasMany(RoomQuestionnaire::class);
+    }
+
+    public function hasRoom($room)
+    {
+        $check = $this->room_questionnaires()->where('room_id', $room->id)->count();
+        if ($check > 0) {
+            return true;
+        }
+        return false;
+    }
 }

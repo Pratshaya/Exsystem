@@ -8,9 +8,13 @@ class Room extends Model
 {
     protected $fillable = ['name', 'detail'];
 
-    public function rooms_quizzes()
+    public function room_quizzes()
     {
         return $this->hasMany(RoomQuiz::class);
     }
 
+    public function room_questionnaires()
+    {
+        return $this->hasMany(RoomQuestionnaire::class);
+    }
 }

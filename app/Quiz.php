@@ -40,4 +40,17 @@ class Quiz extends Model
     {
         return $this->hasMany(RoomQuize::class);
     }
+    public function room_quizzes()
+    {
+        return $this->hasMany(RoomQuiz::class);
+    }
+
+    public function hasRoom($room)
+    {
+        $check = $this->room_quizzes()->where('room_id', $room->id)->count();
+        if ($check > 0) {
+            return true;
+        }
+        return false;
+    }
 }
