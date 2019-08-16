@@ -10,12 +10,12 @@
                 <div class="card">
                     <div class="card-header">Your score</div>
                     <div class="card-body">
-                        @foreach($results as $result)
+                        @forelse($results as $result)
                             <h4 class="text-center">ประเภท {{ $result[0]->questionnaire->category->name  }}</h4>
                             @foreach($result as $questionnaire)
                                 <table class="table table-bordered table-sm text-center">
                                     <tr>
-                                        <th colspan="5">Questionnaire ครั้งที่ {{ $loop->iteration }}</th>
+                                        <th colspan="5">{{$questionnaire->questionnaire->name}} ครั้งที่ {{ $questionnaire->num }}</th>
                                     </tr>
                                     <tr>
                                         <th>Phase</th>
@@ -38,10 +38,17 @@
                                             @endif
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <td class="text-center">รวม</td>
+                                        <td class="text-center">{{$questionnaire->score}}</td>
+                                        <td class="text-center">{{$questionnaire->result_measurement()}}</td>
+                                    </tr>
                                 </table>
                             @endforeach
                             <hr>
-                        @endforeach
+                        @empty
+                            <h4 class="text-center">ยังไม่มีการสอบ</h4>
+                        @endforelse
                     </div>
                 </div>
             </div>
