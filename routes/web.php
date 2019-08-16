@@ -24,6 +24,9 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 //Category
     Route::resource('category', 'CategoryController');
 
+//Department
+    Route::resource('department', 'DepartmentController');
+
 //Category Questionnaire
 
     Route::resource('category_questionnaire', 'CategoryQuestionnaireController');
