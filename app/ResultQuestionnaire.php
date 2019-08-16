@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ResultQuestionnaire extends Model
 {
-    protected $fillable = ['questionnaire_id', 'user_id', 'score'];
+    protected $fillable = ['questionnaire_id', 'user_id', 'score', 'room_id'];
 
     public function result_phase_questionnaire()
     {

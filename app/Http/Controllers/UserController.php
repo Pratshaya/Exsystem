@@ -103,4 +103,6 @@ class UserController extends Controller
         session()->flash('success', 'User Deleted success.');
         return redirect()->route('user.index');
     }
+
+    
 }

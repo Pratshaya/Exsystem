@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Room extends Model
 {
@@ -17,4 +18,11 @@ class Room extends Model
     {
         return $this->hasMany(RoomQuestionnaire::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+
+    }
+
 }

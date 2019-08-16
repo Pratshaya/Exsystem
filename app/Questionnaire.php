@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Questionnaire extends Model
 {
@@ -50,5 +51,23 @@ class Questionnaire extends Model
             return true;
         }
         return false;
+    }
+
+    public function hasTest()
+    {
+        $has = ResultQuestionnaire::where('user_id', Auth::id())
+            ->where('questionnaire_id', $this->id)->count();
+        if ($has > 0)
+            return true;
+        return false;
+    }
+
+    public function roomResult()
+    {
+        $result = ResultQuestionnaire::where('user_id', Auth::id())
+            ->where('questionnaire_id', $this->id)
+            ->where('room_id', Auth::user()->room_id)
+            ->first();
+        return $result;
     }
 }

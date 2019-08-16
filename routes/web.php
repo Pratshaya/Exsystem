@@ -124,6 +124,7 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 Route::group(['middleware' => ['auth']], function () {
     //Student
     Route::get('/student/result_all', 'StudentController@result_all')->name('student.result_all');
+    Route::get('/student/room', 'StudentController@room')->name('student.room');
     Route::get('/student/result_all_questionnaire', 'StudentController@result_all_questionnaire')->name('student.result_all_questionnaire');
     Route::get('/student/posts', 'StudentController@posts')->name('student.posts');
     Route::get('/student/quizzes', 'StudentController@quizzes')->name('student.quizzes');

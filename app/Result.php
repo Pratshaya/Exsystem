@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Result extends Model
 {
 
-    protected $fillable = ['quiz_id', 'user_id', 'score'];
+    protected $fillable = ['quiz_id', 'user_id', 'score', 'room_id'];
 
     public function result_details()
     {
@@ -23,6 +23,7 @@ class Result extends Model
     {
         return $this->belongsTo(Quiz::class);
     }
+
     public function getCreatedDateAttribute()
     {
         return $this->created_at->format('d F Y');
