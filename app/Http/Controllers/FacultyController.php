@@ -14,7 +14,8 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        $faculties = Faculty::paginate(10);
+        return view('faculty.index')->with('faculties', $faculties);
     }
 
     /**
@@ -35,7 +36,13 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Faculty::create([
+            'name' => $request->name
+        ]);
+
+        session()->flash('success', 'Faculty created successfully');
+
+        return redirect()->route('faculty.index');
     }
 
     /**
@@ -57,7 +64,7 @@ class FacultyController extends Controller
      */
     public function edit(Faculty $faculty)
     {
-        //
+        return view('faculty.edit')->with('faculty', $faculty);
     }
 
     /**
@@ -69,7 +76,13 @@ class FacultyController extends Controller
      */
     public function update(Request $request, Faculty $faculty)
     {
-        //
+        $faculty->update([
+            'name' => $request->name,
+        ]);
+
+        session()->flash('success', 'faculty update successfully');
+
+        return redirect()->route('faculty.index');
     }
 
     /**
@@ -80,6 +93,13 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
     {
-        //
+        if ($faculty->departments->isEmpty()) {
+            $faculty->delete();
+            session()->flash('success', 'Faculty deleted successfully.');
+
+        } else {
+            session()->flash('error', 'Faculty can not delete you must to delete all user.');
+        }
+        return redirect()->route('faculty.index');
     }
 }

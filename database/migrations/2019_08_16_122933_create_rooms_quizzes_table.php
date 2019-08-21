@@ -13,7 +13,7 @@ class CreateRoomsQuizzesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms_quizzes', function (Blueprint $table) {
+        Schema::create('room_quizzes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quiz_id');
             $table->integer('room_id');

@@ -18,6 +18,7 @@ use App\ResultDetailQuestionnaire;
 use App\ResultPhaseQuestionnaire;
 use App\ResultQuestionnaire;
 use App\Slider;
+use App\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,15 +79,12 @@ class StudentController extends Controller
         }
 
         $count = ResultQuestionnaire::where('questionnaire_id', $questionnaire->id)->where('user_id', Auth::id())->count();
-        $num = 1;
-        if ($count > 0) {
-            $num = $count + 1;
-        }
+
 
         $result = ResultQuestionnaire::create([
             'user_id' => Auth::id(),
             'questionnaire_id' => $questionnaire->id,
-            'num' => $num
+            'room_id' => Auth::user()->room_id
         ]);
         $sum_result = 0;
         foreach ($request->answers as $phase => $answers) {
@@ -115,7 +113,7 @@ class StudentController extends Controller
         $result->update(['score' => $sum_result]);
 
         session()->flash('success', 'ทำแบบสอบถามสำเร็จแล้ว');
-        return redirect()->route('student.result_all_questionnaire');
+        return redirect()->route('student.room');
     }
 
     public function store(Request $request, Quiz $quiz)
@@ -128,16 +126,12 @@ class StudentController extends Controller
             $option = Option::find($ch);
             $score += $option->score;
         }
-        $count = Result::where('quiz_id', $quiz->id)->where('user_id', Auth::id())->count();
-        $num = 1;
-        if ($count > 0) {
-            $num = $count + 1;
-        }
+
         $result = Result::create([
             'user_id' => Auth::id(),
             'quiz_id' => $quiz->id,
             'score' => $score,
-            'num' => $num
+            'room_id' => Auth::user()->room_id
         ]);
 
         foreach ($quiz->questions as $question) {
@@ -150,7 +144,7 @@ class StudentController extends Controller
             }
         }
         session()->flash('success', 'ทำข้อสอบสำเร็จแล้ว');
-        return redirect()->route('student.result_all');
+        return redirect()->route('student.room');
     }
 
     public function result_all()
@@ -207,4 +201,10 @@ class StudentController extends Controller
 
     }
 
+    public function room()
+    {
+
+        $room = Auth::user()->room;
+        return view('student.room')->with('room', $room);
+    }
 }

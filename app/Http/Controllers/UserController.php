@@ -8,6 +8,7 @@ use App\Role;
 use App\Room;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -44,7 +45,12 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $user = User::create($request->all());
+        $user = User::create([
+            'email' => $request->email,
+            'name' => $request->name,
+            'room_id' => $request->room_id,
+            'password' => Hash::make($request->password)
+        ]);
         $user->attachRole($request->role_id);
         session()->flash('success', 'User Created success.');
         return redirect()->route('user.index');
@@ -103,4 +109,6 @@ class UserController extends Controller
         session()->flash('success', 'User Deleted success.');
         return redirect()->route('user.index');
     }
+
+
 }

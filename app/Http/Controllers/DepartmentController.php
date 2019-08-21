@@ -93,7 +93,6 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        dd($department->users);
         if ($department->users->isEmpty()) {
             $department->delete();
             session()->flash('success', 'Department deleted successfully.');

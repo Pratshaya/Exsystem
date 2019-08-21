@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomsQuestionnaires extends Migration
+class AddColumnRoomIdToResultTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateRoomsQuestionnaires extends Migration
      */
     public function up()
     {
-        Schema::create('room_questionnaires', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('questionnaire_id');
+        Schema::table('results', function (Blueprint $table) {
             $table->integer('room_id');
-            $table->timestamps();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateRoomsQuestionnaires extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms_questionnaires');
+        Schema::table('result', function (Blueprint $table) {
+            //
+        });
     }
 }

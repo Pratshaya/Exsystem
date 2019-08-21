@@ -21,6 +21,7 @@
     <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background: rgb(1, 67, 128);">
 
         <div class="container">
+
             <a class="navbar-brand" href="{{ url('/student') }}">
                 <h5 class="p-1">Quiz</h5>
             </a>
@@ -52,6 +53,9 @@
                     @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('student.index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('student.room') }}">Room</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('student.quizzes') }}">Quiz</a>

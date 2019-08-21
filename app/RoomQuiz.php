@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RoomQuize extends Model
+class RoomQuiz extends Model
 {
     protected $fillable = ['quiz_id', 'room_id'];
-    public function quizzes()
+    public function quiz()
     {
         return $this->belongsTo(Quiz::class);
     }

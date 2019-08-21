@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Questionnaire extends Model
 {
@@ -37,4 +38,47 @@ class Questionnaire extends Model
     {
         return $this->hasMany(MeasurementQuestionnaire::class);
     }
+
+    public function room_questionnaires()
+    {
+        return $this->hasMany(RoomQuestionnaire::class);
+    }
+
+    public function hasRoom($room)
+    {
+        $check = $this->room_questionnaires()->where('room_id', $room->id)->count();
+        if ($check > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function hasTest()
+    {
+        $has = ResultQuestionnaire::where('user_id', Auth::id())
+            ->where('questionnaire_id', $this->id)->count();
+        if ($has > 0)
+            return true;
+        return false;
+    }
+
+    //For Return User
+    public function roomResult()
+    {
+        $result = ResultQuestionnaire::where('user_id', Auth::id())
+            ->where('questionnaire_id', $this->id)
+            ->where('room_id', Auth::user()->room_id)
+            ->first();
+        return $result;
+    }
+
+    //For Admin
+    public function room_result($room)
+    {
+        $result = ResultQuestionnaire::where('questionnaire_id', $this->id)
+            ->where('room_id', $room)
+            ->first();
+        return $result;
+    }
+
 }

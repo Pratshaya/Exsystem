@@ -14,7 +14,7 @@ class AddDepartmentsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('departments_id');
+            $table->integer('department_id');
         });
     }
 
