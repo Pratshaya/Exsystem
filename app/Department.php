@@ -12,4 +12,7 @@ class Department extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function faculties(){
+        return $this->belongsTo(Faculty::class);
+    }
 }

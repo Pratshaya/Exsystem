@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faculty extends Model
 {
-    protected $fillable = 'name';
+    protected $fillable = ['name','faculty_id'];
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
 
 }
