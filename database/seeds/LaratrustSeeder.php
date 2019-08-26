@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Room;
 
 class LaratrustSeeder extends Seeder
 {
@@ -18,6 +19,11 @@ class LaratrustSeeder extends Seeder
         $config = config('laratrust_seeder.role_structure');
         $userPermission = config('laratrust_seeder.permission_structure');
         $mapPermission = collect(config('laratrust_seeder.permissions_map'));
+
+        $room = Room::create([
+            'name' => 'ced58',
+            'detail' => 'computer education department'
+        ]);
 
         foreach ($config as $key => $modules) {
 
@@ -57,7 +63,8 @@ class LaratrustSeeder extends Seeder
             $user = \App\User::create([
                 'name' => ucwords(str_replace('_', ' ', $key)),
                 'email' => $key.'@app.com',
-                'password' => bcrypt('password')
+                'password' => bcrypt('password'),
+                'room_id' => $room->id
             ]);
 
             $user->attachRole($role);
@@ -76,6 +83,7 @@ class LaratrustSeeder extends Seeder
                         'email' => $key.'@app.com',
                         'password' => bcrypt('password'),
                         'remember_token' => str_random(10),
+                        'room_id' => $room->id
                     ]);
                     $permissions = [];
 
