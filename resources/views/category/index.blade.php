@@ -1,17 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container th">
         <div class="row justify-content-center">
+            <ul class="progressbar">
+                <li class="active">Step 1</li>
+                <li>Step 2</li>
+                <li>Step 3</li>
+                <li>Step 4</li>
+                <li>Step 5</li>
+            </ul>
             <div class="col-md-12">
+
                 <div class="card">
-                    <div class="card-header">Category</div>
+                    <div class="card-header">รายการกลุ่มของข้อสอบ</div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">ชื่อของกลุ่มข้อสอบ</th>
+                                <th class="text-center">การจัดการกลุ่มข้อสอบ</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -19,9 +27,9 @@
                                 <tr>
                                     <th class="text-center">{{ $category->name }}</th>
                                     <th class="text-center">
-                                        <a class="btn btn-secondary" href="{{ route('category.edit',$category->id) }}">Edit</a>
-                                        <button class="btn btn-danger" onClick="handleDelete({{ $category->id }})">
-                                            Delete
+                                        <a class="btn btn-primary th" href="{{ route('category.edit',$category->id) }}">แก้ไข</a>
+                                        <button class="btn btn-danger th" onClick="handleDelete({{ $category->id }})">
+                                            ลบ
                                         </button>
                                         <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1"
                                              role="dialog"
@@ -67,15 +75,15 @@
                 <hr>
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Create Category</div>
+                        <div class="card-header">สร้างกลุ่มของข้อสอบ</div>
                         <div class="card-body">
                             <form action="{{ route('category.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Category name" name="name" value="{{ old('name') }}" required>
+                                    <input type="text" class="form-control" placeholder="สร้างกลุ่มข้อสอบ" name="name" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button class="btn btn-primary">Create</button>
+                                    <button class="btn btn-primary th">สร้าง</button>
                                 </div>
                             </form>
                         </div>

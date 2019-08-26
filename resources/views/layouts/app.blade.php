@@ -67,6 +67,63 @@
     <!--[if lt IE 9]>
     <script src="{{ asset('js/respond.min.js') }}"></script>
     <![endif]-->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Athiti:400,600&display=swap&subset=thai');
+        .th {
+            font-family: "Athiti", sans-serif;
+
+        }
+        body{
+            font-family: "Athiti", sans-serif;
+        }
+        .progressbar {
+            counter-reset: step;
+        }
+        .progressbar li {
+            list-style-type: none;
+            float: left;
+            width: 20%;
+            position: relative;
+            text-align: center;
+        }
+        .progressbar li:before {
+            content: counter(step);
+            counter-increment: step;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid: #ddd;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .progressbar li:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+            top: 15px;
+            left: -50%;
+            z-index: -1;
+        }
+        .progressbar li:first-child:after{
+            content: none;
+        }
+        .progressbar li.active{
+            color: green;
+        }
+        .progressbar li.active:before{
+            border-color: green;
+        }
+        .progressbar li.active + li:after{
+            background-color: green;
+        }
+    </style>
+
     @yield('css')
 </head>
 <body>
@@ -147,14 +204,22 @@
                         <li><a href="courses.html">Courses</a></li>
                         <li><a href="teacher.html">Teacher</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
                         <li class="has-dropdown">
-                            <a href="blog.html">Blog</a>
+                            <a href="pricing.html" class="th">แบบสอบถาม</a>
                             <ul class="dropdown">
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">eCommerce</a></li>
-                                <li><a href="#">Branding</a></li>
-                                <li><a href="#">API</a></li>
+                                <li><a href="{{ route('category_questionnaire.index') }}">กลุ่มของแบบสอบถาม</a></li>
+                                <li><a href="{{ route('questionnaire.index') }}">รายการแบบสอบถาม</a></li>
+                                <li><a href="{{ route('phase_questionnaire.index') }}">จัดการแบบสอบถาม</a></li>
+                                <li><a href="{{ route('result.index') }}">ผลการสอบถาม</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="blog.html" class="th">ข้อสอบแบบตัวเลือก</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ route('category.index') }}">กลุ่มข้อสอบ</a></li>
+                                <li><a href="{{ route('quiz.index') }}">ข้อสอบแบบตัวเลือก</a></li>
+                                <li><a href="{{ route('question.index') }}">คำถามและตัวเลือก</a></li>
+                                <li><a href="{{ route('result.index') }}">ผลสอบ</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
@@ -223,8 +288,8 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-md-4">
-                    {{--<ul class="list-group">
+                {{--<div class="col-md-4">
+                    --}}{{--<ul class="list-group">
                     <li class="list-group-item">
                         <a style="cursor: default;" data-toggle="collapse" href="#website" role="button"
                            aria-expanded="false" aria-controls="website">1) Website</a>
@@ -245,7 +310,7 @@
                         </li>
                     </div>
 
-                    </ul>--}}
+                    </ul>--}}{{--
                     <ul class="list-group  mt-3">
                         <li class="list-group-item">
                             <a class="cursor: default;" data-toggle="collapse" href="#quiz" role="button"
@@ -262,9 +327,9 @@
                             <li class="list-group-item">
                                 <a href="{{ route('question.index') }}">คำถามและตัวเลือก</a>
                             </li>
-                            {{--<li class="list-group-item">
+                            --}}{{--<li class="list-group-item">
                                 <a href="{{ route('question.index_match') }}">2.3) Question & Matching Options</a>
-                            </li>--}}
+                            </li>--}}{{--
                             <li class="list-group-item">
                                 <a href="{{ route('result.index') }}">ผลสอบ</a>
                             </li>
@@ -297,7 +362,7 @@
                     </ul>
 
 
-                </div>
+                </div>--}}
                 <div class="col-md-8">
                     @yield('content')
                 </div>
