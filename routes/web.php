@@ -21,6 +21,7 @@ Route::view('/lay/index', 'index');
 Route::group(['middleware' => ['role:administrator|superadministrator']], function () {
 
 //User
+    Route::get('user/user_import','ImportStudentController@import')->name('user.import');
     Route::resource('/user', 'UserController');
 
 //Category
@@ -32,6 +33,19 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 //Category Questionnaire
 
     Route::resource('category_questionnaire', 'CategoryQuestionnaireController');
+
+//Step Questionnaire
+    Route::get('questionnaire/step_questionnaire/step_first', 'StepQuestionnaireController@stepFirst')->name('step_questionnaire.step_first');
+    Route::post('questionnaire/step_questionnaire/store_first', 'StepQuestionnaireController@storeFirst')->name('step_questionnaire.store_first');
+
+    Route::get('questionnaire/step_questionnaire/{questionnaire}/step_two', 'StepQuestionnaireController@stepTwo')->name('step_questionnaire.step_two');
+    Route::post('questionnaire/step_questionnaire/{questionnaire}/store_two', 'StepQuestionnaireController@storeTwo')->name('step_questionnaire.store_two');
+
+    Route::get('questionnaire/step_questionnaire/{questionnaire}/step_three', 'StepQuestionnaireController@stepThree')->name('step_questionnaire.step_three');
+    Route::post('questionnaire/step_questionnaire/{questionnaire}/store_three', 'StepQuestionnaireController@storeThree')->name('step_questionnaire.store_three');
+
+    Route::get('questionnaire/step_questionnaire/{questionnaire}/step_four', 'StepQuestionnaireController@stepFour')->name('step_questionnaire.step_four');
+    Route::post('questionnaire/step_questionnaire/{questionnaire}/store_four', 'StepQuestionnaireController@storeFour')->name('step_questionnaire.store_four');
 
 //Quiz
     Route::get('quiz/index', 'QuizController@index')->name('quiz.index');
@@ -145,4 +159,44 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/student/{result}/result_quiz', 'StudentController@result_quiz')->name('student.result_quiz');
     Route::get('/student/{result_questionnaire}/result_questionnaire', 'StudentController@result_questionnaire')->name('student.result_questionnaire');
 
+});Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('table-list', function () {
+		return view('pages.table_list');
+	})->name('table');
+
+	Route::get('typography', function () {
+		return view('pages.typography');
+	})->name('typography');
+
+	Route::get('icons', function () {
+		return view('pages.icons');
+	})->name('icons');
+
+	Route::get('map', function () {
+		return view('pages.map');
+	})->name('map');
+
+	Route::get('notifications', function () {
+		return view('pages.notifications');
+	})->name('notifications');
+
+	Route::get('rtl-support', function () {
+		return view('pages.language');
+	})->name('language');
+
+	Route::get('upgrade', function () {
+		return view('pages.upgrade');
+	})->name('upgrade');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('user', 'UserController', ['except' => ['show']]);
+	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
+

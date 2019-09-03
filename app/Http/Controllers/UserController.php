@@ -2,112 +2,88 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\CreateUserRequest;
-use App\Http\Requests\User\UpdateUserRequest;
-use App\Role;
 use App\Room;
 use App\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the users
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\User $model
+     * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(User $model)
     {
-        $users = User::paginate(10);
-        return view('user.index')->with('users', $users);
+        return view('users.index', ['users' => $model->paginate(15)]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
-        $roles = Role::all();
         $rooms = Room::all();
-        return view('user.create')
-            ->with('roles', $roles)
-            ->with('rooms', $rooms);
+        return view('users.create')->with('rooms', $rooms);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\UserRequest $request
+     * @param \App\User $model
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateUserRequest $request)
+    public function store(UserRequest $request, User $model)
     {
-        $user = User::create([
-            'email' => $request->email,
-            'name' => $request->name,
-            'room_id' => $request->room_id,
-            'password' => Hash::make($request->password)
-        ]);
-        $user->attachRole($request->role_id);
-        session()->flash('success', 'User Created success.');
-        return redirect()->route('user.index');
+        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+
+        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified user
      *
      * @param \App\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
-        return view('user.edit')->with('user', $user)->with('roles', $roles);
+        return view('users.edit', compact('user'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user in storage
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\UserRequest $request
      * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $user->update($request->only('email', 'name'));
-        session()->flash('success', 'User Updated success.');
+        $user->update(
+            $request->merge(['password' => Hash::make($request->get('password'))])
+                ->except([$request->get('password') ? '' : 'password']
+                ));
 
-        return redirect('/user');
+        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from storage
      *
      * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {
-        if ($user->results->isEmpty()) {
-            $user->results()->delete();
-        }
         $user->delete();
-        session()->flash('success', 'User Deleted success.');
-        return redirect()->route('user.index');
+
+        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
     }
 
 

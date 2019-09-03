@@ -1,22 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'category_q', 'titlePage' => __('กลุ่มของแบบสอบถาม')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                            <div class="container">
-                                <div class="row"><br />
-                                    <div class="col-md-12">
-                                        <div class="progress">
-                                            <div class="one primary-color"></div><div class="two primary-color"></div><div class="three no-color"></div>
-                                            <div class="progress-bar" style="width: 70%;"></div>
-                                        </div>
-                                        <hr />
-                                    </div>
-                                </div>
-                            </div>
-                <div class="card">
-                    <div class="card-header">Category</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการ</h4>
+                </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
@@ -76,9 +66,12 @@
                     </div>
                 </div>
                 <hr>
-                <div class="col-md-12">
+            <div class="content">
+                <div class="container-fluid">
                     <div class="card">
-                        <div class="card-header">Create Category</div>
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">สร้างแบบสอบถาม</h4>
+                        </div>
                         <div class="card-body">
                             <form action="{{ route('category_questionnaire.store') }}" method="POST">
                                 @csrf

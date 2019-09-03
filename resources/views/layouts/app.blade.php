@@ -1,425 +1,163 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Exsystem</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Website Template by freehtml5.co"/>
-    <meta name="keywords"
-          content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"/>
-    <meta name="author" content="freehtml5.co"/>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ __('Material Dashboard Laravel - Free Frontend Preset for Laravel') }}</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('material') }}/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="{{ asset('material') }}/img/favicon.png">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!--
-    //////////////////////////////////////////////////////
+        <style>
+            .form-control{
+                background: no-repeat center bottom, center calc(100% - 1px);
+                background-size: 0 100%, 100% 100%;
+                border: 0;
+                height: 36px;
+                transition: background 0s ease-out;
+                padding-left: 0;
+                padding-right: 0;
+                border-radius: 0;
+                font-size: 14px;
+            }
+        </style>
+        @yield('css')
+    </head>
+    <body class="{{ $class ?? '' }}">
+        @auth()
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            @include('layouts.page_templates.auth')
+        @endauth
+        @guest()
+            @include('layouts.page_templates.guest')
+        @endguest
 
-    FREE HTML5 TEMPLATE
-    DESIGNED & DEVELOPED by FreeHTML5.co
-
-    Website: 		http://freehtml5.co/
-    Email: 			info@freehtml5.co
-    Twitter: 		http://twitter.com/fh5co
-    Facebook: 		https://www.facebook.com/fh5co
-
-    //////////////////////////////////////////////////////
-     -->
-
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content=""/>
-    <meta name="twitter:image" content=""/>
-    <meta name="twitter:url" content=""/>
-    <meta name="twitter:card" content=""/>
-
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
-
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
-
-    <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
-
-    <!-- Pricing -->
-    <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-    <!-- Modernizr JS -->
-    <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="{{ asset('js/respond.min.js') }}"></script>
-    <![endif]-->
-
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Athiti:400,600&display=swap&subset=thai');
-        .th {
-            font-family: "Athiti", sans-serif;
-
-        }
-        body{
-            font-family: "Athiti", sans-serif;
-        }
-        .progressbar {
-            counter-reset: step;
-        }
-        .progressbar li {
-            list-style-type: none;
-            float: left;
-            width: 20%;
-            position: relative;
-            text-align: center;
-        }
-        .progressbar li:before {
-            content: counter(step);
-            counter-increment: step;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            border: 1px solid: #ddd;
-            display: block;
-            text-align: center;
-            margin: 0 auto 10px auto;
-            border-radius: 50%;
-            background-color: white;
-        }
-        .progressbar li:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background-color: #ddd;
-            top: 15px;
-            left: -50%;
-            z-index: -1;
-        }
-        .progressbar li:first-child:after{
-            content: none;
-        }
-        .progressbar li.active{
-            color: green;
-        }
-        .progressbar li.active:before{
-            border-color: green;
-        }
-        .progressbar li.active + li:after{
-            background-color: green;
-        }
-    </style>
-
-    @yield('css')
-</head>
-<body>
-{{--<div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background: rgb(1, 67, 128)">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <h5 class="p-1"> Quiz-Admin</h5>
+        {{--<div class="fixed-plugin">
+          <div class="dropdown show-dropdown">
+            <a href="#" data-toggle="dropdown">
+              <i class="fa fa-cog fa-2x"> </i>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <ul class="dropdown-menu">
+              <li class="header-title"> Sidebar Filters</li>
+              <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger active-color">
+                  <div class="badge-colors ml-auto mr-auto">
+                    <span class="badge filter badge-purple " data-color="purple"></span>
+                    <span class="badge filter badge-azure" data-color="azure"></span>
+                    <span class="badge filter badge-green" data-color="green"></span>
+                    <span class="badge filter badge-warning active" data-color="orange"></span>
+                    <span class="badge filter badge-danger" data-color="danger"></span>
+                    <span class="badge filter badge-rose" data-color="rose"></span>
+                  </div>
+                  <div class="clearfix"></div>
+                </a>
+              </li>
+              <li class="header-title">Images</li>
+              <li class="active">
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                  <img src="{{ asset('material') }}/img/sidebar-1.jpg" alt="">
+                </a>
+              </li>
+              <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                  <img src="{{ asset('material') }}/img/sidebar-2.jpg" alt="">
+                </a>
+              </li>
+              <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                  <img src="{{ asset('material') }}/img/sidebar-3.jpg" alt="">
+                </a>
+              </li>
+              <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                  <img src="{{ asset('material') }}/img/sidebar-4.jpg" alt="">
+                </a>
+              </li>
+              <li class="button-container">
+                <a href="https://www.creative-tim.com/product/material-dashboard-laravel" target="_blank" class="btn btn-primary btn-block">Free Download</a>
+              </li>
+              <!-- <li class="header-title">Want more components?</li>
+                  <li class="button-container">
+                      <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
+                        Get the pro version
+                      </a>
+                  </li> -->
+              <li class="button-container">
+                <a href="https://material-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block">
+                  View Documentation
+                </a>
+              </li>
+              <li class="button-container github-star">
+                <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard-laravel" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+              </li>
+              <li class="header-title">Thank you for 95 shares!</li>
+              <li class="button-container text-center">
+                <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
+                <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
+                <br>
+                <br>
+              </li>
+            </ul>
+          </div>
+        </div>--}}
+        <!--   Core JS Files   -->
+        <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
+        <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
+        <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
+        <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!-- Plugin for the momentJs  -->
+        <script src="{{ asset('material') }}/js/plugins/moment.min.js"></script>
+        <!--  Plugin for Sweet Alert -->
+        <script src="{{ asset('material') }}/js/plugins/sweetalert2.js"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="{{ asset('material') }}/js/plugins/jquery.validate.min.js"></script>
+        <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+        <script src="{{ asset('material') }}/js/plugins/jquery.bootstrap-wizard.js"></script>
+        <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+        <script src="{{ asset('material') }}/js/plugins/bootstrap-selectpicker.js"></script>
+        <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+        <script src="{{ asset('material') }}/js/plugins/bootstrap-datetimepicker.min.js"></script>
+        <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+        <script src="{{ asset('material') }}/js/plugins/jquery.dataTables.min.js"></script>
+        <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+        <script src="{{ asset('material') }}/js/plugins/bootstrap-tagsinput.js"></script>
+        <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="{{ asset('material') }}/js/plugins/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+        <script src="{{ asset('material') }}/js/plugins/fullcalendar.min.js"></script>
+        <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+        <script src="{{ asset('material') }}/js/plugins/jquery-jvectormap.js"></script>
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="{{ asset('material') }}/js/plugins/nouislider.min.js"></script>
+        <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <!-- Library for adding dinamically elements -->
+        <script src="{{ asset('material') }}/js/plugins/arrive.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script>
+        <!-- Chartist JS -->
+        <script src="{{ asset('material') }}/js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="{{ asset('material') }}/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="{{ asset('material') }}/demo/demo.js"></script>
+        <script src="{{ asset('material') }}/js/settings.js"></script>
+        @stack('js')
+        @yield('script')
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        @if(Auth::user()->hasRole(['administrator|superadministrator']))
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('student.index') }}">Home Student</a>
-                            </li>
-                        @endif
-                        <li class="nav-item dropdown">
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                </ul>
-            </div>
-        </div>
-    </nav>--}}
-<nav class="fh5co-nav" role="navigation">
-    <div class="top-menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-2">
-                    <div id="fh5co-logo"><a href="index.html"><i class="icon-study"></i>Educ<span>.</span></a></div>
-                </div>
-                <div class="col-xs-10 text-right menu-1">
-                    <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="courses.html">Courses</a></li>
-                        <li><a href="teacher.html">Teacher</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li class="has-dropdown">
-                            <a href="pricing.html" class="th">แบบสอบถาม</a>
-                            <ul class="dropdown">
-                                <li><a href="{{ route('category_questionnaire.index') }}">กลุ่มของแบบสอบถาม</a></li>
-                                <li><a href="{{ route('questionnaire.index') }}">รายการแบบสอบถาม</a></li>
-                                <li><a href="{{ route('phase_questionnaire.index') }}">จัดการแบบสอบถาม</a></li>
-                                <li><a href="{{ route('result.index') }}">ผลการสอบถาม</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="blog.html" class="th">ข้อสอบแบบตัวเลือก</a>
-                            <ul class="dropdown">
-                                <li><a href="{{ route('category.index') }}">กลุ่มข้อสอบ</a></li>
-                                <li><a href="{{ route('quiz.index') }}">ข้อสอบแบบตัวเลือก</a></li>
-                                <li><a href="{{ route('question.index') }}">คำถามและตัวเลือก</a></li>
-                                <li><a href="{{ route('result.index') }}">ผลสอบ</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            @if(Auth::user()->hasRole(['administrator|superadministrator']))
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('student.index') }}">Home Student</a>
-                                </li>
-                            @endif
-                            <li class="nav-item dropdown">
-
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            {{--</li>
-                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
-                                <li class="btn-cta"><a href="#"><span>Create a Course</span></a></li>--}}
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</nav>
-<main class="py-4">
-
-    @auth
-        <div class="container">
-            @include('partials.errors')
-
-            @if(session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
-            @if(session()->has('error'))
-                <div class="alert alert-danger">
-                    {{ session()->get('error') }}
-                </div>
-            @endif
-            <div class="row">
-                {{--<div class="col-md-4">
-                    --}}{{--<ul class="list-group">
-                    <li class="list-group-item">
-                        <a style="cursor: default;" data-toggle="collapse" href="#website" role="button"
-                           aria-expanded="false" aria-controls="website">1) Website</a>
-                    </li>
-                    <div class="collapse multi-collapse" id="website">
-
-                        <li class="list-group-item">
-                            <a href="{{route('slider.index')}}">1.1) Slider</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{route('tag.index')}}">1.2) Tag</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{route('post.index')}}">1.3) Post</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{route('user.index')}}">1.4) User</a>
-                        </li>
-                    </div>
-
-                    </ul>--}}{{--
-                    <ul class="list-group  mt-3">
-                        <li class="list-group-item">
-                            <a class="cursor: default;" data-toggle="collapse" href="#quiz" role="button"
-                               aria-expanded="false" aria-controls="quiz">ข้อสอบแบบตัวเลือก</a>
-                        </li>
-                        <div class="collapse multi-collapse" id="quiz">
-                            <li class="list-group-item">
-                                <a href="{{ route('category.index') }}">กลุ่มข้อสอบ</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('quiz.index') }}">ข้อสอบแบบตัวเลือก</a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <a href="{{ route('question.index') }}">คำถามและตัวเลือก</a>
-                            </li>
-                            --}}{{--<li class="list-group-item">
-                                <a href="{{ route('question.index_match') }}">2.3) Question & Matching Options</a>
-                            </li>--}}{{--
-                            <li class="list-group-item">
-                                <a href="{{ route('result.index') }}">ผลสอบ</a>
-                            </li>
-                        </div>
-                    </ul>
-                    <ul class="list-group  mt-3">
-                        <li class="list-group-item">
-                            <a class="cursor: default;" data-toggle="collapse" href="#questionnaire" role="button"
-                               aria-expanded="false" aria-controls="questionnaire">แบบสอบถาม</a>
-                        </li>
-                        <div class="collapse multi-collapse" id="questionnaire">
-                            <li class="list-group-item">
-                                <a href="{{ route('category_questionnaire.index') }}">กลุ่มของแบบสอบถาม</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('questionnaire.index') }}">รายการแบบสอบถาม</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('phase_questionnaire.index') }}">จัดการแบบสอบถาม</a>
-                            </li>
-                        <!--
-                            <li class="list-group-item">
-                                <a href="{{ route('question_phase_questionnaire.index') }}">3.4) Question </a>
-                            </li>
-                            -->
-                            <li class="list-group-item">
-                                <a href="{{ route('result.index') }}">ผลสำรวจ</a>
-                            </li>
-                        </div>
-                    </ul>
-
-
-                </div>--}}
-                <div class="col-md-8">
-                    @yield('content')
-                </div>
-            </div>
-
-        </div>
-
-    @else
-        @yield('content')
-    @endauth
-</main>
-</div>
-<!-- jQuery -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<!-- jQuery Easing -->
-<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
-<!-- Bootstrap -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<!-- Waypoints -->
-<script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
-<!-- Stellar Parallax -->
-<script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
-<!-- Carousel -->
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<!-- Flexslider -->
-<script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
-<!-- countTo -->
-<script src="{{ asset('js/jquery.countTo.js') }}"></script>
-<!-- Magnific Popup -->
-<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('js/magnific-popup-options.js') }}"></script>
-<!-- Count Down -->
-<script src="{{ asset('js/simplyCountdown.js') }}"></script>
-<!-- Main -->
-<script src="{{ asset('js/main.js') }}"></script>
-<script>
-    var d = new Date(new Date().getTime() + 1000 * 120 * 120 * 2000);
-
-    // default example
-    simplyCountdown('.simply-countdown-one', {
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate()
-    });
-
-    //jQuery example
-    $('#simply-countdown-losange').simplyCountdown({
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate(),
-        enableUtc: false
-    });
-</script>
-<script>
-
-</script>
-@yield('script')
-
-</body>
+    </body>
 </html>

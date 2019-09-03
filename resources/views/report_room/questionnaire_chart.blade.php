@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'room', 'titlePage' => __('room')])
 @section('css')
     {!! Charts::assets() !!}
 @endsection

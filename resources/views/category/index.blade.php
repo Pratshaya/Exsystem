@@ -1,19 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'category', 'titlePage' => __('กลุ่มวิชาของข้อสอบ')])
 
 @section('content')
-    <div class="container th">
-        <div class="row justify-content-center">
-            <ul class="progressbar">
-                <li class="active">Step 1</li>
-                <li>Step 2</li>
-                <li>Step 3</li>
-                <li>Step 4</li>
-                <li>Step 5</li>
-            </ul>
-            <div class="col-md-12">
-
+    <div class="content">
+        <div class="container-fluid">
                 <div class="card">
-                    <div class="card-header">รายการกลุ่มของข้อสอบ</div>
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">รายการ</h4>
+                    </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
@@ -73,9 +66,10 @@
                     </div>
                 </div>
                 <hr>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">สร้างกลุ่มของข้อสอบ</div>
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">สร้างกลุ่มวิชา</h4>
+                </div>
                         <div class="card-body">
                             <form action="{{ route('category.store') }}" method="POST">
                                 @csrf
