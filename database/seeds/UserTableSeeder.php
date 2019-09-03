@@ -16,6 +16,8 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'std_id' => rand(),
+            'card' => rand(),
         ]);
 
     }

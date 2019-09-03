@@ -32,6 +32,28 @@
                   </div>
                 </div>
                 <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Card') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('card') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('card') ? ' is-invalid' : '' }}" name="card" id="input-card" type="text" placeholder="{{ __('Card') }}" value="{{ old('card') }}" required="true" aria-required="true"/>
+                      @if ($errors->has('card'))
+                        <span id="name-error" class="error text-danger" for="input-card">{{ $errors->first('card') }}</span>
+                      @endif
+                    </div>U
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Student ID') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('student_id') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('student_id') ? ' is-invalid' : '' }}" name="student_id" id="input-student_id" type="text" placeholder="{{ __('Student ID') }}" value="{{ old('Student ID') }}" required="true" aria-required="true"/>
+                      @if ($errors->has('student_id'))
+                        <span id="name-error" class="error text-danger" for="input-student_id">{{ $errors->first('student_id') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -39,25 +61,6 @@
                       @if ($errors->has('email'))
                         <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                       @endif
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-password">{{ __(' Password') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" input type="password" name="password" id="input-password" placeholder="{{ __('Password') }}" value="" required />
-                      @if ($errors->has('password'))
-                        <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('password') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group">
-                      <input class="form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="{{ __('Confirm Password') }}" value="" required />
                     </div>
                   </div>
                 </div>

@@ -21,7 +21,8 @@ Route::view('/lay/index', 'index');
 Route::group(['middleware' => ['role:administrator|superadministrator']], function () {
 
 //User
-    Route::get('user/user_import','ImportStudentController@import')->name('user.import');
+    Route::get('user/user_import', 'ImportStudentController@import')->name('user.import');
+    Route::post('user/import_file', 'ImportStudentController@import_file')->name('user.import_file');
     Route::resource('/user', 'UserController');
 
 //Category
@@ -164,44 +165,45 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/student/{result}/result_quiz', 'StudentController@result_quiz')->name('student.result_quiz');
     Route::get('/student/{result_questionnaire}/result_questionnaire', 'StudentController@result_questionnaire')->name('student.result_questionnaire');
 
-});Auth::routes();
+});
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
+    Route::get('table-list', function () {
+        return view('pages.table_list');
+    })->name('table');
 
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
+    Route::get('typography', function () {
+        return view('pages.typography');
+    })->name('typography');
 
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
+    Route::get('icons', function () {
+        return view('pages.icons');
+    })->name('icons');
 
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
+    Route::get('map', function () {
+        return view('pages.map');
+    })->name('map');
 
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
+    Route::get('notifications', function () {
+        return view('pages.notifications');
+    })->name('notifications');
 
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
+    Route::get('rtl-support', function () {
+        return view('pages.language');
+    })->name('language');
 
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
+    Route::get('upgrade', function () {
+        return view('pages.upgrade');
+    })->name('upgrade');
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::resource('user', 'UserController', ['except' => ['show']]);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 

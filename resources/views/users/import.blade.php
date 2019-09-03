@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="content">
+        @include('partials.errors_import')
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">สร้างกลุ่มวิชา</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('category.store') }}" method="POST">
+                    <form action="{{ route('user.import_file') }}" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="role" class="">{{ __('Room') }}</label>
