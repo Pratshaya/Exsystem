@@ -1,4 +1,4 @@
-@extends('layouts.app',['activePage' => 'room', 'titlePage' => __('room')])
+@extends('layouts.app',['activePage' => 'room', 'titlePage' => __('ห้องสอบ')])
 
 @section('content')
     <div class="content">
@@ -11,14 +11,16 @@
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">ชื่อห้อง</th>
+                                <th class="text-center">รายละเอียด</th>
+                                <th class="text-center">ตัวเลือก</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($rooms as $room)
                                 <tr>
                                     <th class="text-center">{{ $room->name }}</th>
+                                    <th class="text-center">{{ $room->detail }}</th>
                                     <th class="text-center">
                                         <a class="btn btn-secondary" href="{{ route('room.edit',$room->id) }}">Edit</a>
                                         <button class="btn btn-danger" onClick="handleDelete({{ $room->id }})">

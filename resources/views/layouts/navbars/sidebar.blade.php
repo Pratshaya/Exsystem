@@ -59,16 +59,22 @@
           <p>{{ __('การจัดการห้องสอบ') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == '' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('map') }}">
+      <li class="nav-item{{ $activePage == 'quiz_q' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('quiz_questionnaire.index') }}">
+          <i class="material-icons">bubble_chart</i>
+          <p>{{ __('การจัดการข้อสอบ') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('user.index') }}">
           <i class="material-icons">location_ons</i>
             <p>{{ __('การจัดการผู้ใช้งาน') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('notifications') }}">
+      <li class="nav-item{{ $activePage == 'report_room' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('report_room.index') }}">
           <i class="material-icons">notifications</i>
-          <p>{{ __('Notifications') }}</p>
+          <p>{{ __('ผลการทดสอบ') }}</p>
         </a>
       </li>
 

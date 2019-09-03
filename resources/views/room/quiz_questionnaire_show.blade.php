@@ -1,11 +1,12 @@
-@extends('layouts.app',['activePage' => 'room', 'titlePage' => __('room')])
+@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('รายการข้อสอบที่มีภายในห้อง')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Category</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการข้อสอบในห้อง {{ $room->detail }}</h4>
+                </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
@@ -13,8 +14,8 @@
                                 <th colspan="2" class="text-center">แบบสอบถาม</th>
                             </tr>
                             <tr>
-                                <th class="text-center" style="width: 80%;">Name</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center" style="width: 80%;">ชื่อชุดข้อสอบ</th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             <tbody>

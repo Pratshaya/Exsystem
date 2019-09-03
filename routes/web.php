@@ -112,6 +112,11 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('questionnaire/phase/measurement/{measurement}/edit', 'MeasurementController@edit')->name('measurement_phase_questionnaire.edit');
     Route::put('questionnaire/phase/measurement/{measurement}/update', 'MeasurementController@update')->name('measurement_phase_questionnaire.update');
 
+    //For Quize
+    Route::delete('quize/measurement/{measurement}/destroy_quize', 'MeasurementQuizeController@destroy_quize')->name('measurement_quize.destroy');
+    Route::get('quize/measurement/{measurement}/edit_quize', 'MeasurementQuizeController@edit_quize')->name('measurement_quize.edit');
+    Route::put('quize/measurement/{measurement}/update_quize', 'MeasurementQuizeController@update_quize')->name('measurement_quize.update');
+
 
 //Public
     Route::get('questionnaire/{questionnaire}/publish_questionnaire/show', 'PublishQuestionnaireController@show')->name('publish_questionnaire.show');
