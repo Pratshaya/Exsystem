@@ -1,28 +1,29 @@
-@extends('layouts.app')
-
+@extends('layouts.app',['activePage' => 'quiz', 'titlePage' => __('ข้อสอบแบบตัวเลือก')])
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Quiz</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการข้อสอบที่มี</h4>
+                </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Type</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">ชื่อข้อสอบ</th>
+                                <th class="text-center">จัดการข้อสอบ</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($quizzes as $quiz)
                                 <tr>
                                     <th class="text-center">{{ $quiz->name }}</th>
-                                    <td class="text-center">{{ $quiz->type_quiz }}</td>
                                     <th class="text-center">
-                                        <a class="btn btn-secondary" href="{{ route('quiz.edit',$quiz->id) }}">Edit</a>
-                                        <button class="btn btn-danger" onClick="handleDelete({{ $quiz->id }})">Delete
+                                        <a class="btn btn-success btn-link" href="{{ route('quiz.edit',$quiz->id) }}">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <button class="btn btn-danger btn-link" onClick="handleDelete({{ $quiz->id }})">
+                                            <i class="material-icons">delete</i>
                                         </button>
 
                                         <div class="modal fade" id="deleteModal{{$quiz->id}}" tabindex="-1"
@@ -44,14 +45,14 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p class="text-cetner">
-                                                                Are you sure you want to delete {{ $quiz->name }}
+                                                               คุณต้องการลบ {{ $quiz->name }} หรือไม่
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">No, Go back
+                                                                    data-dismiss="modal">ไม่ต้องการ
                                                             </button>
-                                                            <button type="submit" class="btn btn-danger">Yes, Delete
+                                                            <button type="submit" class="btn btn-danger">ต้องการลบ
                                                             </button>
                                                         </div>
                                                     </div>
@@ -64,40 +65,39 @@
                             </tbody>
                         </table>
                         {{ $quizzes->links() }}
+                        <div class="text-center" >
+                            <a href="{{route('question.index')}}" class="btn btn-primary">ต่อไป</a>
+                        </div>
                     </div>
                 </div>
                 <hr>
-                <div class="col-md-12">
+            <div class="content">
+                <div class="container-fluid">
                     <div class="card">
-                        <div class="card-header">Create Quiz</div>
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">สร้างชื่อของข้อสอบ</h4>
+                        </div>
                         <div class="card-body">
                             <form action="{{ route('quiz.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Quiz Name" name="name"
+                                    <input type="text" class="form-control" placeholder="ชื่อข้อสอบ" name="name"
                                            value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Quiz Detail" name="detail"
+                                    <input type="text" class="form-control" placeholder="รายละเอียดข้อสอบ" name="detail"
                                            value="{{ old('detail') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <select name="type" class="form-control">
-                                        <option value="0">Select Type</option>
-                                        <option value="M">Matching</option>
-                                        <option value="C">Choice</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <select name="category_id" class="form-control">
-                                        <option value="0">Select Category</option>
+                                        <option value="0">โปรดเลือกวิชาของข้อสอบ</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button class="btn btn-primary">Create</button>
+                                    <button class="btn btn-primary">สร้าง</button>
                                 </div>
                             </form>
                         </div>

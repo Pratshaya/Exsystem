@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'questionnaire_mng', 'titlePage' => __('กลุ่มของแบบสอบถาม')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">การตรวจสอบและเผยแพร่</h4>
+                </div>
                     <div class="card-header">
                         <a href="{{route('phase_questionnaire.index')}}">{{$questionnaire->name }} </a>/
-                        Public
-                        <a href="{{route('phase_questionnaire.index')}}" class="btn btn-sm btn-secondary float-right">Back</a>
+                        การตรวจสอบและเผยแพร่
                     </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
@@ -217,11 +218,11 @@
                                                             @csrf
                                                             @if(!$phase->public)
                                                                 <button class="btn btn-info"
-                                                                        type="submit">Public
+                                                                        type="submit">เผยแพร่
                                                                 </button>
                                                             @else
                                                                 <button class="btn btn-danger"
-                                                                        type="submit">Cancel
+                                                                        type="submit">ยกเลิกการเผยแพร่
                                                                 </button>
                                                             @endif
                                                         </form>
@@ -236,6 +237,7 @@
                             <tbody>
                             </tbody>
                         </table>
+                        <center><a href="{{route('phase_questionnaire.index')}}" class="btn btn-primary">กลับสู่หน้าหลัก</a></center>
                     </div>
                 </div>
             </div>

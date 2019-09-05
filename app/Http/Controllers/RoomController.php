@@ -8,6 +8,7 @@ use App\Quiz;
 use App\Room;
 use App\RoomQuestionnaire;
 use App\RoomQuiz;
+use App\User;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -100,7 +101,13 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        if ($room->users->isEmpty()) {
+           $room->delete();
+            session()->flash('success', 'ลบห้องสอบแล้ว');
+        }else{
+            session()->flash('error', 'ไม่สามารถลบห้องสอบได้ เนื่องจากมีนักเรียนอยู่ในห้องนี้.');
+        }
+        return redirect()->route('room.index');
     }
 
     public function quiz_questionnaire()

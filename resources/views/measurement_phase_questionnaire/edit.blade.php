@@ -37,7 +37,7 @@
                             </div>
                             <br>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary">Update</button>
+                                <button class="btn btn-primary">บันทึก</button>
                             </div>
                         </form>
                     </div>

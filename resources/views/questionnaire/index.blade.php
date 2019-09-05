@@ -1,17 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'questionnaire', 'titlePage' => __('แบบสอบถาม')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Questionnaire</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการ</h4>
+                </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">ชื่อ</th>
+                                <th class="text-center">จัดการแบบสอบถาม</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -19,10 +20,12 @@
                                 <tr>
                                     <th class="text-center">{{ $questionnaire->name }}</th>
                                     <th class="text-center">
-                                        <a class="btn btn-secondary"
-                                           href="{{ route('questionnaire.edit',$questionnaire->id) }}">Edit</a>
-                                        <button class="btn btn-danger" onClick="handleDelete({{ $questionnaire->id }})">
-                                            Delete
+                                        <a class="btn btn-success btn-link"
+                                           href="{{ route('questionnaire.edit',$questionnaire->id) }}">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <button class="btn btn-danger btn-link" onClick="handleDelete({{ $questionnaire->id }})">
+                                            <i class="material-icons">delete</i>
                                         </button>
 
                                         <div class="modal fade" id="deleteModal{{$questionnaire->id}}" tabindex="-1"
@@ -36,8 +39,7 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel">Delete
-                                                                Category</h5>
+                                                            <h5 class="modal-title" id="deleteModalLabel">ลบแบบสอบถาม</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -45,15 +47,14 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p class="text-cetner">
-                                                                Are you sure you want to
-                                                                delete {{ $questionnaire->name }}
+                                                                คุณต้องการลบแบบสอบถาม {{ $questionnaire->name }} ใช่หรือไม่
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">No, Go back
+                                                                    data-dismiss="modal">ไม่ต้องการ
                                                             </button>
-                                                            <button type="submit" class="btn btn-danger">Yes, Delete
+                                                            <button type="submit" class="btn btn-danger">ใช่
                                                             </button>
                                                         </div>
                                                     </div>
@@ -66,26 +67,32 @@
                             </tbody>
                         </table>
                         {{ $questionnaires->links() }}
+                        <div class="text-center" >
+                            <a href="{{route('phase_questionnaire.index')}}" class="btn btn-primary">ต่อไป</a>
+                        </div>
                     </div>
                 </div>
                 <hr>
-                <div class="col-md-12">
+            <div class="content">
+                <div class="container-fluid">
                     <div class="card">
-                        <div class="card-header">Create Questionnaire</div>
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">สร้างแบบสอบถาม</h4>
+                        </div>
                         <div class="card-body">
                             <form action="{{ route('questionnaire.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Questionnaire Name" name="name"
+                                    <input type="text" class="form-control" placeholder="ชื่อแบบสอบถาม" name="name"
                                            value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Questionnaire Detail"
+                                    <input type="text" class="form-control" placeholder="รายละเอียดของแบบสอบถาม"
                                            name="detail" value="{{ old('detail') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <select name="category_id" class="form-control">
-                                        <option value="0">Select Category</option>
+                                        <option value="0">กรุณาเลือกกลุ่มของแบบสอบถาม</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -93,14 +100,14 @@
                                 </div>
                                 <div class="form-group">
                                     <select name="type" class="form-control">
-                                        <option value="0">Select Type</option>
+                                        <option value="0">กรุณาเลือกชนิดของแบบสอบถาม</option>
                                         <option value="S">วัดผลเฉพาะคะแนนรวม</option>
                                         <option value="P">วัดผลเฉพาะคะแนนแต่ละด้าน</option>
                                         <option value="SP">วัดผลคะแนนรวมและคะแนนแต่ละด้าน</option>
                                     </select>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button class="btn btn-primary">Create</button>
+                                    <button class="btn btn-primary">สร้างแบบสอบถาม</button>
                                 </div>
                             </form>
                         </div>

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Quiz extends Model
 {
-    protected $fillable = ['name', 'detail', 'category_id', 'type'];
+    protected $fillable = ['name', 'detail', 'category_id'];
 
     public function category()
     {
@@ -27,15 +27,6 @@ class Quiz extends Model
     public function matching_options()
     {
         return $this->hasMany(MatchingOption::class);
-    }
-
-    public function getTypeQuizAttribute()
-    {
-        if ($this->type === 'M')
-            return "Match";
-        if ($this->type === 'C')
-            return "Choice";
-        return "None";
     }
 
     public function rooms_quizzes()

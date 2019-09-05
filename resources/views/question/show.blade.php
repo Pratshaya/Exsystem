@@ -1,23 +1,25 @@
-@extends('layouts.app')
-
+@extends('layouts.app',['activePage' => 'question', 'titlePage' => __('ข้อสอบแบบตัวเลือก')])
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Question / {{ $quiz->name }} <span class="float-right">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการ
+                    <span class="float-right">
                             <a class="fas fa-plus" data-toggle="modal" data-target="#exampleModal"></a>
-                        </span></div>
+                        </span>
+                    </h4>
+                </div>
                     <div class="card-body">
                         @if($questions->isEmpty())
-                            <h3 class="text-center">No Questions</h3>
+                            <h3 class="text-center">ยังไม่มีคำถาม</h3>
                         @else
                             <table id="table-question" class="table table-bordered table-striped-column">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Question</th>
-                                    <th class="text-center">Option (score)</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center">คำถาม</th>
+                                    <th class="text-center">ตัวเลือก (คะแนน)</th>
+                                    <th class="text-center">การจัดการ</th>
                                 </tr>
                                 </thead>
                                 <tbody id="table-question-tbody">
@@ -26,7 +28,7 @@
                                         <th class="text-center">{{ $question->name }}</th>
                                         <th class="text-center">
                                             <button class="btn btn-primary" onclick="handleOption({{ $question->id }})">
-                                                Click
+                                                คลิ้กเพื่อดูตัวเลือกทั้งหมด
                                             </button>
                                             <div class="modal fade" id="showOption{{ $question->id }}" tabindex="-1"
                                                  role="dialog"
@@ -51,7 +53,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">OK
+                                                                    data-dismiss="modal">ตกลง
                                                             </button>
                                                         </div>
                                                     </div>
@@ -62,7 +64,9 @@
                                             <form action="{{route('question.destroy', $question->id)}}" method="POST"
                                                   style="display: inline;">
                                                 @csrf
-                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                                <button class="btn btn-danger btn-link" type="submit">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
                                             </form>
                                         </th>
                                     </tr>
@@ -83,7 +87,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Question</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">สร้างโจทย์</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -92,10 +96,10 @@
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Question">
+                                <input type="text" name="name" class="form-control" placeholder="คำถาม">
                             </div>
                             <div class="card">
-                                <div class="card-header">Options
+                                <div class="card-header">ตัวเลือก
                                     <span class="float-right">
                                          <a class="fas fa-plus" onclick="createOption()"></a>
                                     </span>
@@ -103,9 +107,9 @@
                                 <div class="card-body" id="card-options">
                                     <div class="form-group row justify-content-center">
                                         <input type="text" class="form-control col-5 mx-2" name="options[0][name]"
-                                               placeholder="Option">
+                                               placeholder="ตัวเลือก">
                                         <input type="text" class="form-control col-5 mx-2" name="options[0][score]"
-                                               placeholder="Score">
+                                               placeholder="คะแนน">
                                         <span class="float-right">
                                             <a class="fas fa-trash" onclick="deleteOption($(this))"></a>
                                         </span>
@@ -114,9 +118,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                             <button type="button" class="btn btn-primary" onclick="handleSubmit({{ $quiz->id }})">
-                                Create
+                                สร้าง
                             </button>
                         </div>
                     </form>
@@ -128,13 +132,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Alert</h5>
+                    <h5 class="modal-title">แจ้งเตือน</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Question & Option created success.</p>
+                    <p>สร้างโจทย์และตัวแล้วเสร็จแล้ว</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload()">OK</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload()">ตกลง</button>
                 </div>
             </div>
         </div>
@@ -142,10 +146,10 @@
 @endsection
 @section('script')
     <script>
-        let count = 2;
+        let count = 3;
 
         function createOption() {
-            if (count <= 4) {
+            if (count <= 7) {
                 let input = `<div class="form-group row justify-content-center" >
                             <input type="text" class="form-control col-5 mx-2"  name="options[${count}][name]" placeholder="ตัวเลือก">
                             <input type="text" class="form-control col-5 mx-2"  name="options[${count}][score]" placeholder="คะแนน">

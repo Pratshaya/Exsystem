@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('รายการข้อสอบที่มีภายในห้อง')])
 @section('css')
     {!! Charts::assets() !!}
 @endsection

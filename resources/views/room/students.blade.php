@@ -1,4 +1,4 @@
-@extends('layouts.app',['activePage' => 'room', 'titlePage' => __('room')])
+@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('room')])
 
 @section('content')
     <div class="content">
@@ -11,15 +11,18 @@
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th></th>
+                                <th class="text">ชื่อ</th>
+                                <th>การจัดการนักเรียน</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="text-center">{{ $user->name }}</td>
-
+                                    <td class="text">{{ $user->name }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href=" {{ route('result.result_show', $user->id)}} ">สถานะการสอบ</a>
+                                        <a class="btn btn-primary" href="{{ route('result.chart', $user->id) }}">ดูแผนภูมิ</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

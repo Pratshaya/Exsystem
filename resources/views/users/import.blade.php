@@ -15,7 +15,7 @@
                             <label for="role" class="">{{ __('Room') }}</label>
                             <select class="custom-select {{ $errors->has('room_id') ? 'is-invalid' : '' }}"
                                     id="input-role" name="room_id">
-                                <option selected value="0">Choose...</option>
+                                <option selected value="0">เลือกไฟล์นามสกุล xlsx...</option>
                                 @foreach($rooms as $room)
                                     <option value="{{$room->id}}">{{$room->name}}</option>
                                 @endforeach

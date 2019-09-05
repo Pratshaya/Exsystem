@@ -12,15 +12,10 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $quizzes = Quiz::where('type', 'C')->paginate(6);
+        $quizzes = Quiz::paginate(6);
         return view('question.index')->with('quizzes', $quizzes);
     }
 
-    public function index_match()
-    {
-        $quizzes = Quiz::where('type', 'M')->paginate(6);
-        return view('question_match.index')->with('quizzes', $quizzes);
-    }
 
     public function show(Quiz $quiz)
     {

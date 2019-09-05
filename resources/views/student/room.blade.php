@@ -1,14 +1,15 @@
-@extends('layouts.student')
+@extends('layouts.student' , ['activePage' => 'qq', 'titlePage' => __('Dashboard')])
 @section('content')
-    <main class="container">
-        <div class="section bg-gray">
-            <div class="row">
-                <div class="col-md-12 col-xl-12 card ">
-                    <div class="row">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">เกณฑ์การให้คะแนน</h4>
+                </div>
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <th class="text-center" style="width: 75%;">ข้อสอบ</th>
-                            <th class="text-center">Action</th>
+                            <th class="text-center">การจัดการข้อสอบ</th>
                             </thead>
                             @foreach ($room->room_quizzes as $quiz)
                                 <tr>

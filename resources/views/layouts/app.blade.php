@@ -20,7 +20,15 @@
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
+
     <style>
+        body {
+            font-family: 'Athiti', sans-serif;
+        }
+        h4 {
+            font-family: 'Athiti', sans-serif;
+        }
         .form-control {
             background: no-repeat center bottom, center calc(100% - 1px);
             background-size: 0 100%, 100% 100%;
@@ -149,7 +157,6 @@
 <!-- Library for adding dinamically elements -->
 <script src="{{ asset('material') }}/js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script>
 <!-- Chartist JS -->
 <script src="{{ asset('material') }}/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->

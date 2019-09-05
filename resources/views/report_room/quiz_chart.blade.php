@@ -1,4 +1,4 @@
-@extends('layouts.app',['activePage' => 'report_room', 'titlePage' => __('หน้าแสดงผลการสอบของข้อสอบแบบตัวเลือก')])
+@extends('layouts.app',['activePage' => 'report_room', 'titlePage' => __('ผลการทำแบบทดสอบ')])
 @section('css')
     {!! Charts::assets() !!}
 @endsection

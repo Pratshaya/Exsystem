@@ -26,7 +26,6 @@ class CreateQuizRequest extends FormRequest
         return [
             'name' => 'required',
             'detail' => 'required',
-            'type' => 'required|in:M,C',
             'category_id' => 'required|exists:categories,id'
         ];
     }

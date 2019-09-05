@@ -1,22 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'questionnaire_mng', 'titlePage' => __('แบบสอบถาม')])
 @section('css')
     <style>
         th {
-            background-color: rgb(1, 67, 128);
-            color: white;
+            background-color: #ffffff;
+            color: black;
         }
     </style>
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการ <span class="float-right">
+                        <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
+                        </span></h4>
+                </div>
                     <div class="card-header"><a
                                 href="{{route('phase_questionnaire.index')}}">{{$questionnaire->name }} </a> /
-                        create phase option & question <span class="float-right">
-                        <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
-                        </span>
+                        create phase option & question
                     </div>
 
                     <div class="card-body">
@@ -35,7 +37,7 @@
                                             @endif">
                                             {{ $phase_questionnaire->name }}
                                         </th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">การจัดการ</th>
                                     </tr>
                                     <tr>
                                         <td class="text-center"
@@ -46,15 +48,17 @@
                                             {{ 2 }}
                                             @endif">{{ $phase_questionnaire->detail }}</td>
                                         <td class="text-center" rowspan="2" style="width: 150px;">
-                                            <button class="btn btn-info" data-toggle="modal"
-                                                    data-target="#modal-edit{{$phase_questionnaire->id}}">Edit
+                                            <button class="btn btn-success btn-link" data-toggle="modal"
+                                                    data-target="#modal-edit{{$phase_questionnaire->id}}">
+                                                <i class="material-icons">edit</i>
                                             </button>
                                             <form action="{{route('phase_questionnaire.destroy', $phase_questionnaire->id)}}"
                                                   method="POST"
                                                   style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-info btn-delete">Delete
+                                                <button class="btn btn-danger btn-link">
+                                                    <i class="material-icons">delete</i>
                                                 </button>
                                             </form>
                                         </td>
@@ -95,6 +99,10 @@
                                     @endif
                                 </table>
                             @endforeach
+                                <div class="text-center" >
+                                    <a href="{{route('phase_questionnaire.index',$questionnaire)}}" class="btn btn-primary">กลับ</a>
+                                    <a href="{{route('measurement_phase_questionnaire.show',$questionnaire)}}" class="btn btn-primary">ต่อไป</a>
+                                </div>
                         @endif
                     </div>
                 </div>
@@ -112,7 +120,7 @@
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Create Questionnaire</h5>
+                        <h5 class="modal-title">สร้างแบบสอบถาม</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -123,7 +131,7 @@
                         <table class="table table-bordered" id="table-questionnaire">
                             <tr>
                                 <td class="text-center" colspan="2" id="table-header">
-                                    <input type="text" class="form-control text-center" placeholder="หัวตาราง"
+                                    <input type="text" class="form-control text-center" placeholder="หัวตารางหรือด้านที่ต้องการประเมิน"
                                            name="name" required>
                                 </td>
                             </tr>
@@ -146,10 +154,10 @@
                                 </td>
                             </tr>
                             <tr id="tr-option">
-                                <td id="question-first" class="text-center" style="width: 30%;">
+                                <td id="question-first" class="text-center" style="width: 20%;">
 
                                 </td>
-                                <td id="option-first" class="text-center">
+                                <td id="option-first" class="text-center" style="width: 10%;">
 
                                 </td>
                             </tr>
@@ -158,7 +166,7 @@
                     <div class="modal-footer ">
                         <div class="mx-auto">
                             <button type="submit" class="btn btn-info">
-                                OK
+                                บันทึก
                             </button>
                         </div>
                     </div>
@@ -176,7 +184,7 @@
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Create Questionnaire</h5>
+                            <h5 class="modal-title">แก้ไขแบบสอบถาม</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -255,7 +263,7 @@
                         <div class="modal-footer ">
                             <div class="mx-auto">
                                 <button type="button" class="btn btn-info">
-                                    Update
+                                    แก้ไข
                                 </button>
                             </div>
                         </div>
@@ -441,7 +449,7 @@
                     const table_detail = $('#table-detail');
                     const td_label_option = $('#td-label-option');
                     option_html = `
-                        <td class="text-center">
+                        <td class="text-center" style="width:10%;">
                             <div class="input-group">
                                 <input type="text" class="form-control option-create" name="options[${count_option}][name]" placeholder="Title" required>
                                  <input type="number" class="form-control score-create" name="options[${count_option}][score]" placeholder="Score" required>
@@ -486,7 +494,7 @@
 
         function deleteOption(id) {
             if (count_option > 1) {
-                id.parent().parent().parent().remove();
+                id.parent().parent().parent().parent().remove();
                 const table_header = $('#table-header');
                 const table_detail = $('#table-detail');
                 const td_label_option = $('#td-label-option');

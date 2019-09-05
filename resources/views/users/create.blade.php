@@ -39,7 +39,7 @@
                       @if ($errors->has('card'))
                         <span id="name-error" class="error text-danger" for="input-card">{{ $errors->first('card') }}</span>
                       @endif
-                    </div>U
+                    </div>
                   </div>
                 </div>
                 <div class="row">

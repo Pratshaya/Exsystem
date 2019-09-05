@@ -97,10 +97,10 @@ class CategoryController extends Controller
     {
         if ($category->quizzes->isEmpty()) {
             $category->delete();
-            session()->flash('success', 'Category deleted successfully.');
+            session()->flash('success', 'ลบกลุ่มวิชาแล้ว.');
 
         } else {
-            session()->flash('error', 'Category can not delete you must to delete all quiz.');
+            session()->flash('error', 'ไม่สามารถลบได้ กรุณาลบข้อสอบในกลุ่มวิชานี้ให้หมดก่อน');
         }
         return redirect()->route('category.index');
     }

@@ -1,11 +1,11 @@
-@extends('layouts.app')
-
+@extends('layouts.app',['activePage' => 'quiz', 'titlePage' => __('ข้อสอบแบบตัวเลือก')])
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Edit Quiz</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">แก้ไขชื่อและรายละเอียดของข้อสอบ</h4>
+                </div>
                     <div class="card-body">
                         <form action="{{ route('quiz.update',$quiz->id) }}" method="POST">
                             @method('PUT')
@@ -34,7 +34,7 @@
                                 </select>
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary">Update</button>
+                                <button class="btn btn-primary">บันทึก</button>
                             </div>
                         </form>
                     </div>

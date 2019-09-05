@@ -2,38 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8241c02-9fdd-4b77-a864-9694826ca555" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/app3.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/import.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/login2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth_student.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/page_templates/student_auth.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Exsystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Exsystem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImportStudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImportStudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Quiz/CreateQuizRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Quiz/CreateQuizRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Quiz.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/bootstrap/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_01_113841_add_type_quiz_fild_to_quiz_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/img/login.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/img/login.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/category/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/category_questionnaire/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category_questionnaire/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/category_questionnaire/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/category_questionnaire/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/student.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/student.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/measurement_questionnaire/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/measurement_questionnaire/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/phase_questionnaire/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/phase_questionnaire/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/phase_questionnaire/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/phase_questionnaire/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/phase_questionnaire/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/phase_questionnaire/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/publish_questionnaire/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/publish_questionnaire/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/question/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/question/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/question/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/question/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questionnaire/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questionnaire/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questionnaire/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questionnaire/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/quiz/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/quiz/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/quiz/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/quiz/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/report_room/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report_room/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/report_room/questionnaire_chart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report_room/questionnaire_chart.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/report_room/quiz_chart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report_room/quiz_chart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/report_room/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report_room/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/result/chart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/result/chart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/result/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/result/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/result/result_show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/result/result_show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/room/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/room/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/room/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/room/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/room/quiz_questionnaire_show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/room/quiz_questionnaire_show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/room/students.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/room/students.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/result_questionnaire.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/result_questionnaire.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/result_quiz.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/result_quiz.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/room.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/room.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/show_questionnaire.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/show_questionnaire.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/import.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/import.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,88 +78,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/result/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="138" column="13" selection-start-line="138" selection-start-column="13" selection-end-line="138" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state>
+              <caret column="86" selection-start-column="86" selection-end-column="86" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/result/result_show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
-              <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/create.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="63" selection-start-line="63" selection-end-line="79" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/import.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            <state relative-caret-position="306">
+              <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Imports/UsersImport.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/student/result_quiz.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/user/create.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="73" selection-start-line="73" selection-end-line="89" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImportStudentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-              <folding>
-                <element signature="e#40#68#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" column="60" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -137,34 +117,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fire</find>
-      <find>ca</find>
-      <find>create</find>
-      <find>modal-body</find>
-      <find>modal-content</find>
-      <find>modal-dialog</find>
-      <find>profile</find>
-      <find>creat</find>
-      <find>creative</find>
-      <find>include</find>
-      <find>logo</find>
-      <find>$activePage</find>
-      <find>x;</find>
-      <find>xl</find>
-      <find>modal-xl</find>
-      <find>modal-lg</find>
-      <find>first</find>
-      <find>createOption</find>
-      <find>option-first</find>
       <find>deleteOPtion</find>
       <find>boots</find>
       <find>15%</find>
-      <find>chart</find>
       <find>user</find>
       <find>Add</find>
       <find>room</find>
       <find>maatwebsite</find>
       <find>show</find>
+      <find>quiz_questionnaire</find>
+      <find>material-iconsmaterial-icons</find>
+      <find>chart</find>
+      <find>map</find>
+      <find>U</find>
+      <find>question</find>
+      <find>match</find>
+      <find>delete</find>
+      <find>option-first</find>
+      <find>Action</find>
+      <find>Revenue</find>
+      <find>material/img/sidebar-1.jpg</find>
+      <find>sidebar</find>
+      <find>orange</find>
+      <find>include</find>
+      <find>navbar-brand</find>
+      <find>col</find>
+      <find>nav-link</find>
+      <find>ต่อไป</find>
+      <find>result</find>
+      <find>roomcon</find>
+      <find>report_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,57 +155,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_16_123805_create_rooms_questionnaires.php" />
-        <option value="$PROJECT_DIR$/resources/views/department/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/department/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/DepartmentController.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_16_151132_add_departments_to_users_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_16_162234_create_faculties_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_16_150558_create_departments_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/FacultyController.php" />
-        <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Faculty.php" />
-        <option value="$PROJECT_DIR$/app/Department.php" />
-        <option value="$PROJECT_DIR$/database/seeds/RoomTableSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
-        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/LaratrustSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/views/question_phase_questionnaire/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/question_phase_questionnaire/show.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app3.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/room/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/category/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/category_questionnaire/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/step_questionnaire/create_step_first.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/step_questionnaire/create_step_four.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/step_questionnaire/create_step_three.blade.php" />
-        <option value="$PROJECT_DIR$/public/vendor/bootstrap/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/resources/sass/app.scss" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/step_questionnaire/create_step_two.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/room.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/page_templates/student_auth.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/room/quiz_questionnaire_show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/room/students.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/show_questionnaire.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/result_questionnaire.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/users/import.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth_student.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RoomController.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/student.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/room/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/users/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ReportRoomController.php" />
         <option value="$PROJECT_DIR$/resources/views/room/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/report_room/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/report_room/questionnaire_chart.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/category/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/category/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/quiz/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/quiz/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/question/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/question/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/category_questionnaire/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/category_questionnaire/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/questionnaire/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/questionnaire/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/phase_questionnaire/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/phase_questionnaire/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/phase_questionnaire/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/measurement_questionnaire/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/publish_questionnaire/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/report_room/quiz_chart.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/report_room/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/users/index.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/resources/views/users/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/users/import.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ImportStudentController.php" />
-        <option value="$PROJECT_DIR$/app/Imports/UsersImport.php" />
+        <option value="$PROJECT_DIR$/resources/views/report_room/questionnaire_chart.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/result/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/room/students.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/result/result_show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/result_quiz.blade.php" />
       </list>
     </option>
   </component>
@@ -322,13 +304,15 @@
       <path value="$PROJECT_DIR$/vendor/umpirsky/language-list" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/material-dashboard" />
-      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
-      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
-      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpexcel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/vendor/jeremeamia/superclosure" />
+      <path value="$PROJECT_DIR$/vendor/kylekatarnls/update-helper" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="30" />
     <option name="y" value="8" />
     <option name="width" value="1323" />
@@ -340,6 +324,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -368,49 +353,35 @@
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Imports" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="sass" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="category" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
@@ -439,7 +410,51 @@
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="report_room" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="navbars" type="462c0819:PsiDirectoryNode" />
+              <item name="navs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="measurement_phase_questionnaire" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="measurement_questionnaire" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="phase_questionnaire" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="publish_questionnaire" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="questionnaire" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="result" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
@@ -453,21 +468,7 @@
               <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="step_questionnaire" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Exsystem" type="b2602c69:ProjectViewProjectNode" />
@@ -478,32 +479,31 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/users" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\xampp\htdocs\Exsystem\resources\views\users" />
-      <recent name="D:\xampp\htdocs\Exsystem\app\Http\Requests" />
-      <recent name="D:\xampp\htdocs\Exsystem\resources\views" />
-      <recent name="D:\xampp\htdocs\Exsystem\app\Http\Controllers" />
-      <recent name="D:\xampp\htdocs\Exsystem\resources\views\layouts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\xampp\htdocs\Exsystem\resources\views\pages" />
       <recent name="D:\xampp\htdocs\Exsystem\resources" />
       <recent name="D:\xampp\htdocs\Exsystem\public\fonts\icomoon" />
       <recent name="D:\xampp\htdocs\Exsystem\public\fonts" />
       <recent name="D:\xampp\htdocs\Exsystem\resources\views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\Exsystem\public\assets\img" />
+      <recent name="D:\xampp\htdocs\Exsystem\public" />
+      <recent name="D:\xampp\htdocs\Exsystem\resources\views\layouts\navbars\navs" />
+      <recent name="D:\xampp\htdocs\Exsystem\resources\views\layouts\page_templates" />
+      <recent name="D:\xampp\htdocs\Exsystem\resources\views\measurement_quize" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -564,12 +564,19 @@
       <workItem from="1567410882319" duration="16238000" />
       <workItem from="1567500407284" duration="2415000" />
       <workItem from="1567503348323" duration="658000" />
-      <workItem from="1567504756055" duration="7764000" />
+      <workItem from="1567504756055" duration="8372000" />
+      <workItem from="1567513739623" duration="24838000" />
+      <workItem from="1567540412545" duration="2423000" />
+      <workItem from="1567569395087" duration="5110000" />
+      <workItem from="1567578776210" duration="4978000" />
+      <workItem from="1567615531461" duration="1003000" />
+      <workItem from="1567621987255" duration="1244000" />
+      <workItem from="1567673902226" duration="6216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122453000" />
+    <option name="totallyTimeSpent" value="168873000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -581,10 +588,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="30" y="8" width="1323" height="749" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22327791" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.295764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -599,7 +606,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3538961" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24637681" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32866043" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -614,371 +621,326 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/layouts/app.blade.php</url>
-          <line>51</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/QuestionController.php</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PhaseQuestionnaireController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/student/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+        <state>
+          <caret column="71" selection-start-column="71" selection-end-column="71" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/student/show_questionnaire.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="30" column="55" lean-forward="true" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/icons.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/users/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/import.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+        <state relative-caret-position="1394">
+          <caret line="82" column="92" selection-start-line="82" selection-start-column="92" selection-end-line="82" selection-end-column="92" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/typography.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/resultquestionnaire/result_show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="9" selection-end-column="12" />
+        <state relative-caret-position="374">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/resultquestionnaire/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/resultquestionnaire/chart.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReportRoomController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/room/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/report_room/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="52" selection-start-column="52" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/img/login2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/img/login.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/images/26102(1).jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/scss/material-dashboard/bootstrap/scss/mixins/_box-shadow.scss">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
+        <state relative-caret-position="34">
+          <caret line="2" column="119" selection-start-line="2" selection-start-column="119" selection-end-line="2" selection-end-column="119" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/dashboard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+        <state relative-caret-position="85">
+          <caret line="8" column="48" lean-forward="true" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footers/auth.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="50" column="72" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
+        <state relative-caret-position="238">
+          <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
+          <folding>
+            <element signature="e#165#186#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth_student.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/room/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="4" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/category/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="8" selection-end-column="26" />
+        <state>
+          <caret column="88" selection-start-column="71" selection-end-column="88" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/step_questionnaire/create_category.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Questionnaire/CreateQuestionnaireRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/CategoryQuestionnaire/CreateCategoryQuestionnaireRequest.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StepQuestionnaireController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/step_questionnaire/create_step_three.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/category/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="94" selection-start-column="94" selection-end-column="94" />
+          <caret column="88" selection-start-column="88" selection-end-column="88" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/step_questionnaire/create_step_four.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/quiz/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="94" selection-start-column="94" selection-end-column="94" />
+          <caret column="84" selection-start-column="84" selection-end-column="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app3.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/quiz/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+        <state>
+          <caret column="84" selection-start-column="84" selection-end-column="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/_variables.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
+    <entry file="file://$PROJECT_DIR$/resources/views/question/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1632" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/vendor/bootstrap/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-          <folding>
-            <element signature="e#56516#56716#2" expanded="true" />
-            <element signature="e#56853#57002#2" expanded="true" />
-            <element signature="e#57168#57314#2" expanded="true" />
-            <element signature="e#57826#57989#1" expanded="true" />
-            <element signature="e#68845#69088#2" expanded="true" />
-            <element signature="e#69935#70184#2" expanded="true" />
-            <element signature="e#99569#99756#2" expanded="true" />
-            <element signature="e#99811#100000#2" expanded="true" />
-          </folding>
+        <state>
+          <caret column="88" selection-start-column="88" selection-end-column="88" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scss/bootstrap/_modals.scss">
+    <entry file="file://$PROJECT_DIR$/resources/views/question/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scss/bootstrap.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        <state>
+          <caret column="88" selection-start-column="88" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/category_questionnaire/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-column="94" />
+          <caret selection-end-column="86" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/step_questionnaire/create_step_first.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
-          <caret column="51" selection-start-column="51" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/step_questionnaire/create_step_two.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
-          <folding>
-            <element signature="e#9696#9715#0#HTML" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/room/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/category_questionnaire/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="18" selection-end-line="1" />
+          <caret column="82" selection-start-column="73" selection-end-column="82" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/room/quiz_questionnaire_show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/room/students.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/RoomQuestionnaire.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-27">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomQuizController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/report_room/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/report_room/questionnaire_chart.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/room/edit.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/questionnaire/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="45" lean-forward="true" selection-end-line="1" />
+          <caret column="85" selection-start-column="85" selection-end-column="85" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/report_room/show.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/questionnaire/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="48" lean-forward="true" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+        <state>
+          <caret column="89" selection-start-column="89" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/publish_questionnaire/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="239" column="32" selection-start-line="239" selection-start-column="32" selection-end-line="239" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/measurement_phase_questionnaire/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2703">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/phase_questionnaire/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="89" selection-start-column="80" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/measurement_questionnaire/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/phase_questionnaire/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/phase_questionnaire/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="89" selection-start-column="89" selection-end-column="89" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/report_room/quiz_chart.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="85">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomQuestionnaireController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/report_room/questionnaire_chart.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1081">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        <state relative-caret-position="204">
+          <caret line="12" column="61" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/report_room/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
+        <state relative-caret-position="-816" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/room/quiz_questionnaire_show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="73" selection-start-line="73" selection-end-line="89" selection-end-column="34" />
+        <state relative-caret-position="-816" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="121" column="50" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/result/chart.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/room/students.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+          <caret column="47" selection-start-column="47" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/result/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        <state relative-caret-position="238">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/room/quiz_questionnaire.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-602">
-          <caret line="28" column="49" lean-forward="true" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        <state>
+          <caret column="86" selection-start-column="86" selection-end-column="86" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/result/result_show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="63" selection-start-line="63" selection-end-line="79" selection-end-column="22" />
+        <state relative-caret-position="306">
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/student/result_quiz.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="138" column="13" selection-start-line="138" selection-start-column="13" selection-end-line="138" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/import.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImportStudentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Imports/UsersImport.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="136">
+          <caret line="8" column="60" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="60" />
         </state>
       </provider>
     </entry>

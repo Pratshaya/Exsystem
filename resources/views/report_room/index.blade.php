@@ -1,4 +1,4 @@
-@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('ผลการทดสอบ')])
+@extends('layouts.app',['activePage' => 'report_room', 'titlePage' => __('ผลการทดสอบ')])
 
 @section('content')
     <div class="content">
@@ -14,8 +14,8 @@
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">ชื่อ</th>
+                                <th class="text-center">จัดการ</th>
                             </tr>
                             </thead>
                             <tbody>

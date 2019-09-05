@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'questionnaire_mng', 'titlePage' => __('แบบสอบถาม')])
 
 @section('content')
     <div class="container">

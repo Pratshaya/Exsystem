@@ -1,18 +1,18 @@
-@extends('layouts.app',['activePage' => 'category_q', 'titlePage' => __('กลุ่มของแบบสอบถาม')])
+@extends('layouts.app',['activePage' => 'category_q', 'titlePage' => __('แบบสอบถาม')])
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">รายการ</h4>
+                    <h4 class="card-title">กลุ่มของแบบสอบถามที่มี</h4>
                 </div>
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">ชื่อกลุ่มแบบสอบถาม</th>
+                                <th class="text-center">จัดการแบบสอบถาม</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -20,9 +20,11 @@
                                 <tr>
                                     <th class="text-center">{{ $category->name }}</th>
                                     <th class="text-center">
-                                        <a class="btn btn-secondary" href="{{ route('category_questionnaire.edit',$category->id) }}">Edit</a>
-                                        <button class="btn btn-danger" onClick="handleDelete({{ $category->id }})">
-                                            Delete
+                                        <a class="btn btn-success btn-link" href="{{ route('category_questionnaire.edit',$category->id) }}">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <button class="btn btn-danger btn-link" onClick="handleDelete({{ $category->id }})">
+                                            <i class="material-icons">delete</i>
                                         </button>
                                         <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1"
                                              role="dialog"
@@ -34,8 +36,7 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel">Delete
-                                                                Category</h5>
+                                                            <h5 class="modal-title" id="deleteModalLabel">ลบกลุ่มแบบสอบถาม</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -43,14 +44,14 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p class="text-cetner">
-                                                                Are you sure you want to delete {{ $category->name }}
+                                                                คุณต้องการลบ {{ $category->name }} ใช่หรือไม่
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">No, Go back
+                                                                    data-dismiss="modal">ไม่ลบ
                                                             </button>
-                                                            <button type="submit" class="btn btn-danger">Yes, Delete
+                                                            <button type="submit" class="btn btn-danger">ใช่ ต้องการลบ
                                                             </button>
                                                         </div>
                                                     </div>
@@ -63,6 +64,9 @@
                             </tbody>
                         </table>
                         {{ $categories->links() }}
+                        <div class="text-center" >
+                            <a href="{{route('questionnaire.index')}}" class="btn btn-primary">ต่อไป</a>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -70,16 +74,16 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">สร้างแบบสอบถาม</h4>
+                            <h4 class="card-title">สร้างกลุ่มแบบสอบถาม</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('category_questionnaire.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Category name" name="name" value="{{ old('name') }}" required>
+                                    <input type="text" class="form-control" placeholder="ชื่อกลุ่มแบบสอบถาม" name="name" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button class="btn btn-primary">Create</button>
+                                    <button class="btn btn-primary">สร้าง</button>
                                 </div>
                             </form>
                         </div>

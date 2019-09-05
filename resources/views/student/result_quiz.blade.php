@@ -2,11 +2,12 @@
 @section('header')
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"> <h3 class="text-center">{{ $quiz->name }}</h3></div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">{{ $quiz->name }}</h4>
+                </div>
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="col-md-10">

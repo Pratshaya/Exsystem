@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Expr\Empty_;
 
 class ImportStudentController extends Controller
 {
@@ -38,6 +39,9 @@ class ImportStudentController extends Controller
             $error_message = array();
             $i = 1;
             foreach ($data as $user) {
+                if(empty($user['name'])){
+                    break;
+                }
                 foreach ($users_old as $user_old) {
                     if ($user_old['std_card'] == $user['std_card']) {
                         $error_message[$i][] = 'รหัสนักเรียนซ้ำ';
@@ -64,6 +68,9 @@ class ImportStudentController extends Controller
                 $error = false;
                 $i = 1;
                 foreach ($data as $user) {
+                    if(empty($user['name'])){
+                        break;
+                    }
                     $validator = Validator::make($user, [
                         'email' => 'required|unique:users|email',
                         'name' => 'required',
@@ -83,7 +90,10 @@ class ImportStudentController extends Controller
 
             if (!$error) {
                 foreach ($data as $user) {
-                    User::create([
+                    if(empty($user['name'])){
+                        break;
+                    }
+                    $user = User::create([
                         'name' => $user['name'],
                         'email' => $user['email'],
                         'card' => $user['card'],
@@ -91,6 +101,8 @@ class ImportStudentController extends Controller
                         'std_id' => $user['std_card'],
                         'room_id' => $request->room_id
                     ]);
+                    $user->attachRole('user');
+
                 }
                 session()->flash('success', 'Import User success.');
                 return redirect()->route('user.index');

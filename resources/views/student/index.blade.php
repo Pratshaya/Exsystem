@@ -1,4 +1,4 @@
-@extends('layouts.student')
+@extends('layouts.student', ['activePage' => 'qq', 'titlePage' => __('S')])
 @section('header')
     @if(empty($category))
         <div class="container">
@@ -143,7 +143,6 @@
                     </div>
                 </div>
 
-                @include('partials.sidebar')
             </div>
         </div>
     </main>

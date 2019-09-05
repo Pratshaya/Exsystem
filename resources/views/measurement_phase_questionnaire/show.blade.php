@@ -1,13 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'questionnaire_mng', 'titlePage' => __('แบบสอบถาม')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">เกณฑ์การให้คะแนน</h4>
+                </div>
                     <div class="card-header"><a
                                 href="{{route('phase_questionnaire.index')}}">{{$questionnaire->name }} </a> /
-                        create measurement <span class="float-right"></div>
+                        เกณฑ์การให้คะแนน
+                    </div>
                     <div class="card-body">
 
                         @if($questionnaire->phase_questionnaires->isEmpty())
@@ -31,10 +34,10 @@
                                         <th colspan="4" class="text-center">คะแนนรวม</th>
                                     </tr>
                                     <tr>
-                                        <th class="text-center">Score Min</th>
-                                        <th class="text-center">Score Max</th>
-                                        <th class="text-center">WHAT</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">คะแนนน้อยสุดในช่วง</th>
+                                        <th class="text-center">คะแนนมากสุดในช่วง</th>
+                                        <th class="text-center">เกณฑ์ที่ได้รับ</th>
+                                        <th class="text-center">จัดการเกณฑ์</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -44,22 +47,24 @@
                                             <td class="text-center">{{ $measurement->score_max }}</td>
                                             <td class="text-center">{{ $measurement->result }}</td>
                                             <td class="text-center" style="width: 150px;">
-                                                <a class="btn btn-info"
-                                                   href="{{route('measurement_questionnaire.edit',$measurement->id)}}">Edit
+                                                <a class="btn btn-success btn-link"
+                                                   href="{{route('measurement_questionnaire.edit',$measurement->id)}}">
+                                                    <i class="material-icons">edit</i>
                                                 </a>
                                                 <form action="{{route('measurement_questionnaire.destroy', $measurement->id)}}"
                                                       method="POST"
                                                       style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-info btn-delete">Delete
+                                                    <button class="btn btn-danger btn-link">
+                                                        <i class="material-icons">delete</i>
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">Not Found</td>
+                                            <td colspan="4" class="text-center">ไม่พบเกณฑ์</td>
                                         </tr>
                                     @endforelse
                                     </tbody>
@@ -74,10 +79,10 @@
                                             <th colspan="4" class="text-center">{{$phase_questionnaires->name}}</th>
                                         </tr>
                                         <tr>
-                                            <th class="text-center">Score Min</th>
-                                            <th class="text-center">Score Max</th>
-                                            <th class="text-center">WHAT</th>
-                                            <th class="text-center">Action</th>
+                                            <th class="text-center">คะแนนน้อยสุดในช่วง</th>
+                                            <th class="text-center">คะแนนมากสุดในช่วง</th>
+                                            <th class="text-center">เกณฑ์ที่ได้รับ</th>
+                                            <th class="text-center">จัดการเกณฑ์</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -88,37 +93,44 @@
                                                 <td class="text-center">{{ $measurement->score_max }}</td>
                                                 <td class="text-center">{{ $measurement->result }}</td>
                                                 <td class="text-center" style="width: 150px;">
-                                                    <a class="btn btn-info"
-                                                       href="{{route('measurement_phase_questionnaire.edit',$measurement->id)}}">Edit
+                                                    <a class="btn btn-success btn-link"
+                                                       href="{{route('measurement_phase_questionnaire.edit',$measurement->id)}}">
+                                                        <i class="material-icons">edit</i>
                                                     </a>
                                                     <form action="{{route('measurement_phase_questionnaire.destroy', $measurement->id)}}"
                                                           method="POST"
                                                           style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-info btn-delete">Delete
+                                                        <button class="btn btn-info btn-link"><i class="material-icons">delete</i>
                                                         </button>
                                                     </form>
                                                 </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center">Not Found</td>
+                                                <td colspan="4" class="text-center">ไม่พบเกณฑ์</td>
                                             </tr>
                                         @endforelse
                                         </tbody>
-
                                     </table>
                                 @endforeach
                             @endif
+                                <div class="text-center" >
+                                    <a href="{{route('phase_questionnaire.show',$questionnaire)}}" class="btn btn-primary">กลับ</a>
+                                        <a href="{{route('publish_questionnaire.show',$questionnaire)}}" class="btn btn-primary">ต่อไป</a>
+                                </div>
                         @endif
                     </div>
                 </div>
                 <hr>
                 @if(!$questionnaire->phase_questionnaires->isEmpty())
-                    <div class="col-md-12">
+                <div class="content">
+                    <div class="container-fluid">
                         <div class="card">
-                            <div class="card-header">Create Measurement</div>
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">เกณฑ์การให้คะแนน</h4>
+                            </div>
                             <div class="card-body">
                                 <form action="{{ route('measurement_phase_questionnaire.store',$questionnaire->id) }}"
                                       method="POST">
@@ -126,7 +138,7 @@
                                     <div class="input-group">
                                         @if($questionnaire->type=='P')
                                             <select name="phase_questionnaire_id" class="form-control">
-                                                <option value="0">Select Category</option>
+                                                <option value="0">กรุณาเลือกด้านของแบบสอบถามที่ต้องการประเมิน</option>
                                                 @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
                                                     <option value="{{ $phase_questionnaires->id }}">{{ $phase_questionnaires->name }}</option>
                                                 @endforeach
@@ -134,27 +146,27 @@
                                         @endif
                                         @if($questionnaire->type=='SP')
                                             <select name="phase_questionnaire_id" class="form-control">
-                                                <option value="-1">Select Category</option>
+                                                <option value="-1">กรุณาเลือกด้านของแบบสอบถามที่ต้องการประเมิน</option>
                                                 <option value="0">ผลรวม</option>
                                                 @foreach($questionnaire->phase_questionnaires as $phase_questionnaires)
                                                     <option value="{{ $phase_questionnaires->id }}">{{ $phase_questionnaires->name }}</option>
                                                 @endforeach
                                             </select>
                                         @endif
-                                        <input type="number" class="form-control text-center" placeholder="Score Min"
+                                        <input type="number" class="form-control text-center" placeholder="ระบุคะแนนที่น้อยที่สุดในช่วง"
                                                name="score_min"
                                                value="{{ old('score_min') }}" required>
-                                        <input type="number" class="form-control text-center" placeholder="Score Max"
+                                        <input type="number" class="form-control text-center" placeholder="ระบุคะแนนที่มากที่สุดในช่วง"
                                                name="score_max"
                                                value="{{ old('score_max') }}" required>
                                         <label for="">&nbsp;&nbsp; = &nbsp;&nbsp;</label>
-                                        <input type="text" class="form-control text-center" placeholder="What ?"
+                                        <input type="text" class="form-control text-center" placeholder="ระบุเกณฑ์ที่ได้ในช่วงคะแนนนี้"
                                                name="result"
                                                value="{{ old('result') }}" required>
                                     </div>
                                     <br>
                                     <div class="form-group text-center">
-                                        <button class="btn btn-primary">Create</button>
+                                        <button class="btn btn-primary">สร้างเกณฑ์</button>
                                     </div>
                                 </form>
                             </div>
@@ -162,6 +174,7 @@
                     </div>
                 @endif
             </div>
+
         </div>
     </div>
 @endsection

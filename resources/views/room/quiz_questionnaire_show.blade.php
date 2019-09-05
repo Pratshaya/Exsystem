@@ -7,87 +7,88 @@
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">รายการข้อสอบในห้อง {{ $room->detail }}</h4>
                 </div>
+                <div class="card-body">
+                    <table id="example" class="table table-bordered table-striped-column">
+                        <thead>
+                        <tr>
+                            <th colspan="2" class="text-center">แบบสอบถาม</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center" style="width: 80%;">ชื่อแบบสอบถาม</th>
+                            <th class="text-center">การจัดการข้อสอบ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($room->room_questionnaires as $questionnaire)
+                            <tr>
+                                <td class="text-center">{{ $questionnaire->questionnaire->name }}</td>
+                                <td class="text-center"><a class="btn btn-danger">นำออก</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <table id="example" class="table table-bordered table-striped-column">
+                        <thead>
+                        <tr>
+                            <th colspan="2" class="text-center">ข้อสอบ</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center" style="width: 80%;">ชื่อของข้อสอบ</th>
+                            <th class="text-center">การจัดการข้อสอบ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($room->room_quizzes as $quiz)
+                            <tr>
+                                <td class="text-center">{{ $quiz->quiz->name }}</td>
+                                <td class="text-center"><a class="btn btn-danger">นำออก</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">เพิ่มข้อสอบแบบ/สอบถาม</div>
                     <div class="card-body">
-                        <table id="example" class="table table-bordered table-striped-column">
-                            <thead>
-                            <tr>
-                                <th colspan="2" class="text-center">แบบสอบถาม</th>
-                            </tr>
-                            <tr>
-                                <th class="text-center" style="width: 80%;">ชื่อชุดข้อสอบ</th>
-                                <th class="text-center"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($room->room_questionnaires as $questionnaire)
-                                <tr>
-                                    <td class="text-center">{{ $questionnaire->questionnaire->name }}</td>
-                                    <td class="text-center"><a class="btn btn-danger">นำออก</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <table id="example" class="table table-bordered table-striped-column">
-                            <thead>
-                            <tr>
-                                <th colspan="2" class="text-center">คำถาม</th>
-                            </tr>
-                            <tr>
-                                <th class="text-center" style="width: 80%;">Name</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($room->room_quizzes as $quiz)
-                                <tr>
-                                    <td class="text-center">{{ $quiz->quiz->name }}</td>
-                                    <td class="text-center"><a class="btn btn-danger">นำออก</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        <form action="{{ route('quiz_questionnaire.store',$room->id) }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="questionnaires">Quiz</label>
+                                <select name="quizzes[]" id="quizzes" class="form-control" multiple>
+                                    @foreach ($quizzes as $quiz)
+                                        @if(!$quiz->hasRoom($room))
+                                            <option value="{{ $quiz->id }}">{{ $quiz->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="questionnaires">Questionnaire</label>
+                                <select name="questionnaires[]" id="questionnaires" class="form-control" multiple>
+                                    @foreach ($questionnaires as $questionnaire)
+                                        @if(!$questionnaire->hasRoom($room))
+                                            <option value="{{ $questionnaire->id }}">{{ $questionnaire->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary">เพิ่ม</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">เพิ่มข้อสอบแบบ/สอบถาม</div>
-                <div class="card-body">
-                    <form action="{{ route('quiz_questionnaire.store',$room->id) }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="questionnaires">Quiz</label>
-                            <select name="quizzes[]" id="quizzes" class="form-control" multiple>
-                                @foreach ($quizzes as $quiz)
-                                    @if(!$quiz->hasRoom($room))
-                                        <option value="{{ $quiz->id }}">{{ $quiz->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="questionnaires">Questionnaire</label>
-                            <select name="questionnaires[]" id="questionnaires" class="form-control" multiple>
-                                @foreach ($questionnaires as $questionnaire)
-                                    @if(!$questionnaire->hasRoom($room))
-                                        <option value="{{ $questionnaire->id }}">{{ $questionnaire->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-
-                        </div>
-                        <div class="form-group text-center">
-                            <button class="btn btn-primary">เพิ่ม</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
+
+
 @endsection
 @section('script')
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

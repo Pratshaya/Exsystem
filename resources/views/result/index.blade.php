@@ -1,16 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('ผลสอบของนักเรียน')])
+
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-item-center">
-                            Result
-                            <div class="ml-auto">
-                            </div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">{{ __('คะแนนสอบของนักเรียน') }}</h4>
                         </div>
-                    </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped border text-center">
                             <thead>

@@ -22,7 +22,6 @@ class QuizController extends Controller
         Quiz::create([
             'name' => $request->name,
             'detail' => $request->detail,
-            'type' => $request->type,
             'category_id' => $request->category_id
         ]);
         session()->flash('success', 'Created Quiz success.');

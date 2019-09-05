@@ -11,11 +11,12 @@
     </style>
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"> <h3 class="text-center">{{ $quiz->name }}</h3></div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">{{ $quiz->name }}</h4>
+                </div>
                     <form action="{{ route('student.store', $quiz->id) }}" method="POST" id="form-submit">
                         @csrf
                         <input type="hidden" id="numberTime" value="{{$quiz->count}}">

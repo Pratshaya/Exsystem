@@ -1,10 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('ผลสอบนักเรียน')])
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Result</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการการสอบของ {{ $user->name }}</h4>
+                </div>
                     <div class="card-body">
 
                         @forelse($results as $result)
@@ -12,10 +13,10 @@
 
                             <table class="table table-bordered table-sm text-center">
                                 <tr>
-                                    <th>Number</th>
-                                    <th>Name Quiz</th>
-                                    <th>Score</th>
-                                    <th>Date</th>
+                                    <th>ครั้งที่</th>
+                                    <th>ชื่อข้อสอบ</th>
+                                    <th>คะแนน</th>
+                                    <th>วันที่สอบ</th>
                                 </tr>
                                 @foreach($result as $res)
                                     <tr>

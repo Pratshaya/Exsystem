@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('User Management')])
+@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('ผู้ใช้งาน')])
 
 @section('content')
     <div class="content">
@@ -13,8 +13,8 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">{{ __('Users') }}</h4>
-                            <p class="card-category"> {{ __('Here you can manage users') }}</p>
+                            <h4 class="card-title ">{{ __('รายการผู้ใช้งาน') }}</h4>
+                            <p class="card-category"> {{ __('ผู้ใช้ที่มีอยู่ในระบบทั้งหมด') }}</p>
                         </div>
                         <div class="card-body">
                             @if (session('status'))
@@ -32,25 +32,25 @@
                             <div class="row">
                                 <div class="col-12 text-right">
                                     <a href="{{ route('user.create') }}"
-                                       class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                                       class="btn btn-sm btn-primary">{{ __('เพิ่มผู้ใช้') }}</a>
                                     <a href="{{ route('user.import') }}"
-                                       class="btn btn-sm btn-primary">{{ __('Import') }}</a>
+                                       class="btn btn-sm btn-primary">{{ __('นำเข้า') }}</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <th>
-                                        {{ __('Name') }}
+                                        {{ __('ชื่อ') }}
                                     </th>
                                     <th>
-                                        {{ __('Email') }}
+                                        {{ __('อีเมลล์') }}
                                     </th>
                                     <th>
-                                        {{ __('Creation date') }}
+                                        {{ __('วันที่สร้าง') }}
                                     </th>
                                     <th class="text-right">
-                                        {{ __('Actions') }}
+                                        {{ __('จัดการผู้ใช้') }}
                                     </th>
                                     </thead>
                                     <tbody>
@@ -79,8 +79,8 @@
                                                         </a>
                                                         <button type="button" class="btn btn-danger btn-link"
                                                                 data-original-title="" title=""
-                                                                onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                            <i class="material-icons">close</i>
+                                                                onclick="confirm('{{ __("คุณต้องการลบผู้ใช้นี้?") }}') ? this.parentElement.submit() : ''">
+                                                            <i class="material-icons">delete</i>
                                                             <div class="ripple-container"></div>
                                                         </button>
                                                     </form>
