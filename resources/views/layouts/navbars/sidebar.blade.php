@@ -5,7 +5,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="#" class="simple-text logo-normal">
+    <a  class="simple-text logo-normal">
       {{ __('Exsystem') }}
     </a>
   </div>
@@ -14,7 +14,7 @@
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
-            <p>{{ __('Dashboard') }}</p>
+            <p>{{ __('คู่มือการใช้งานเว็บไซต์') }}</p>
         </a>
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
@@ -48,7 +48,7 @@
         </a>
       </li>--}}
       <li class="nav-item {{ ($activePage == 'category') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
+        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
           <i class="material-icons">assignment</i>
           <p>{{ __('ข้อสอบแบบตัวเลือก') }}
             <b class="caret"></b>
@@ -78,7 +78,7 @@
         </div>
       </li>
       <li class="nav-item {{ ($activePage == 'category_q') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample2" aria-expanded="true">
+        <a class="nav-link" data-toggle="collapse" href="#laravelExample2" aria-expanded="false">
           <i class="material-icons">content_paste</i>
           <p>{{ __('แบบสอบถาม') }}
             <b class="caret"></b>
@@ -113,6 +113,18 @@
             <p>{{ __('แบบสอบถาม') }}</p>
         </a>
       </li>--}}
+      <li class="nav-item{{ $activePage == 'faculty' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('faculty.index') }}">
+          <i class="material-icons">featured_video</i>
+          <p>{{ __('การจัดการคณะ') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'department' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('department.index') }}">
+          <i class="material-icons">featured_video</i>
+          <p>{{ __('การจัดการภาควิชา') }}</p>
+        </a>
+      </li>
       <li class="nav-item{{ $activePage == 'room' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('room.index') }}">
           <i class="material-icons">featured_video</i>

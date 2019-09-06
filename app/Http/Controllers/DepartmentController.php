@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Faculty;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -14,8 +15,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        $faculties = Faculty::all();
         $departments = Department::paginate(10);
-        return view('department.index')->with('departments', $departments);
+        return view('department.index')->with('departments', $departments)->with('faculties', $faculties);
     }
 
     /**
@@ -37,7 +39,8 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         Department::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'faculty_id' => $request->faculty_id
         ]);
 
         session()->flash('success', 'Department created successfully');
@@ -93,7 +96,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        if ($department->users->isEmpty()) {
+        if ($department->rooms->isEmpty()) {
             $department->delete();
             session()->flash('success', 'Department deleted successfully.');
 

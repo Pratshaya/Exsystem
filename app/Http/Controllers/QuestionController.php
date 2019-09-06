@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Question\CreateQuestionRequest;
+use App\Objective;
 use App\Question;
 use App\Quiz;
 use Illuminate\Http\Request;
@@ -19,8 +20,11 @@ class QuestionController extends Controller
 
     public function show(Quiz $quiz)
     {
+        $objectives = $quiz->objectives;
         $questions = $quiz->questions;
-        return view('question.show')->with('questions', $questions)->with('quiz', $quiz);
+        if ($quiz->type == 'N')
+            return view('question.show')->with('questions', $questions)->with('quiz', $quiz)->with('objectives', $objectives);
+        return view('question.show_objective')->with('quiz', $quiz)->with('objectives', $objectives);
     }
 
     public function show_match(Quiz $quiz)
@@ -31,9 +35,19 @@ class QuestionController extends Controller
 
     public function store(CreateQuestionRequest $request, Quiz $quiz)
     {
-        $question = $quiz->questions()->create([
-            'name' => $request->name,
-        ]);
+        if ($quiz->type == 'N') {
+            $objectives = Objective::where('quiz_id', $quiz->id)->first();
+            $question = $quiz->questions()->create([
+                'name' => $request->name,
+                'objective_id' => $objectives->id,
+            ]);
+        } else {
+            $question = $quiz->questions()->create([
+                'name' => $request->name,
+                'objective_id' => $request->objective_id,
+            ]);
+        }
+
 
         $question->options()->createMany($request->options);
 

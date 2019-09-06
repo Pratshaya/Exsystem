@@ -17,7 +17,6 @@ class CreateQuestionnairesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('detail');
-            $table->integer('count');
             $table->integer('category_questionnaire_id');
             $table->timestamps();
         });

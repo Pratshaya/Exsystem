@@ -11,72 +11,75 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    @if($questions->isEmpty())
-                        <h4 class="text-center">ยังไม่มีคำถาม</h4>
-                    @else
-                        <table id="table-question" class="table table-bordered table-striped-column">
-                            <thead>
-                            <tr>
-                                <th class="text-center">คำถาม</th>
-                                <th class="text-center">ตัวเลือก (คะแนน)</th>
-                                <th class="text-center">การจัดการ</th>
-                            </tr>
-                            </thead>
-                            <tbody id="table-question-tbody">
-                            @foreach($questions as $question)
+                    @foreach($quiz->objectives as $objective)
+                        <h3 class="text-center">{{ $objective->name }}</h3>
+                        @if($objective->questions->isEmpty())
+                            <h4 class="text-center">ยังไม่มีคำถาม</h4>
+                        @else
+                            <table id="table-question" class="table table-bordered table-striped-column">
+                                <thead>
                                 <tr>
-                                    <th class="text-center">{{ $question->name }}</th>
-                                    <th class="text-center">
-                                        <button class="btn btn-primary" onclick="handleOption({{ $question->id }})">
-                                            คลิ้กเพื่อดูตัวเลือกทั้งหมด
-                                        </button>
-                                        <div class="modal fade" id="showOption{{ $question->id }}" tabindex="-1"
-                                             role="dialog"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">Options</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
+                                    <th class="text-center" width="60%;">คำถาม</th>
+                                    <th class="text-center" width="30%;">ตัวเลือก (คะแนน)</th>
+                                    <th class="text-center" width="10%;">การจัดการ</th>
+                                </tr>
+                                </thead>
+                                <tbody id="table-question-tbody">
+                                @foreach($objective->questions as $question)
+                                    <tr>
+                                        <th class="text-center">{{ $question->name }}</th>
+                                        <th class="text-center">
+                                            <button class="btn btn-primary" onclick="handleOption({{ $question->id }})">
+                                                คลิ้กเพื่อดูตัวเลือกทั้งหมด
+                                            </button>
+                                            <div class="modal fade" id="showOption{{ $question->id }}" tabindex="-1"
+                                                 role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Options</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
                                                                 <span aria-hidden="true">
                                                                     <a class="fas fa-close" data-toggle="modal"
                                                                        data-target="#modal-close"></a>
                                                                 </span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        @foreach($question->options as $option)
-                                                            <h5 class="text-cetner">
-                                                                {{$loop->iteration}}) {{$option->name}}
-                                                                มีคะแนนคือ {{$option->score}}
-                                                            </h5>
-                                                        @endforeach
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @foreach($question->options as $option)
+                                                                <h5 class="text-cetner">
+                                                                    {{$loop->iteration}}) {{$option->name}}
+                                                                    มีคะแนนคือ {{$option->score}}
+                                                                </h5>
+                                                            @endforeach
 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">ตกลง
-                                                        </button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">ตกลง
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th>
-                                    <th class="text-center">
-                                        <form action="{{route('question.destroy', $question->id)}}" method="POST"
-                                              style="display: inline;">
-                                            @csrf
-                                            <button class="btn btn-danger btn-link" type="submit">
-                                                <i class="material-icons">delete</i>
-                                            </button>
-                                        </form>
-                                    </th>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+                                        </th>
+                                        <th class="text-center">
+                                            <form action="{{route('question.destroy', $question->id)}}" method="POST"
+                                                  style="display: inline;">
+                                                @csrf
+                                                <button class="btn btn-danger btn-link" type="submit">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </form>
+                                        </th>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <hr>

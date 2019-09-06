@@ -9,6 +9,11 @@ class Room extends Model
 {
     protected $fillable = ['name', 'detail'];
 
+    public function departments()
+    {
+        return $this->belongsTo(Departmentแ::class);
+    }
+
     public function room_quizzes()
     {
         return $this->hasMany(RoomQuiz::class);

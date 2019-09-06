@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('quiz_id');
+            $table->integer('objective_id');
             $table->timestamps();
         });
     }

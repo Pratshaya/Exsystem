@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','faculty_id'];
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
+    public function rooms(){
+        return $this->hasMany(Room::class);
     }
     public function faculties(){
         return $this->belongsTo(Faculty::class);

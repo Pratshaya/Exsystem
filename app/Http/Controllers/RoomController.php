@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Department;
 use App\Questionnaire;
 use App\Quiz;
 use App\Room;
@@ -20,8 +21,9 @@ class RoomController extends Controller
      */
     public function index()
     {
+        $departments = Department::all();
         $rooms = Room::paginate(10);
-        return view('room.index')->with('rooms', $rooms);
+        return view('room.index')->with('rooms', $rooms)->with('departments',$departments);
     }
 
     /**

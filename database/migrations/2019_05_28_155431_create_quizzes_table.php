@@ -18,6 +18,7 @@ class CreateQuizzesTable extends Migration
             $table->string('name');
             $table->string('detail');
             $table->integer('count');
+            $table->enum('type', ['O', 'N']);
             $table->integer('category_id');
             $table->timestamps();
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\Quiz\CreateQuizRequest;
 use App\Http\Requests\Quiz\UpdateQuizRequest;
+use App\Objective;
 use App\Quiz;
 use Illuminate\Http\Request;
 
@@ -19,11 +20,18 @@ class QuizController extends Controller
 
     public function store(CreateQuizRequest $request)
     {
-        Quiz::create([
+        $quiz = Quiz::create([
             'name' => $request->name,
             'detail' => $request->detail,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'type' => $request->type.''
         ]);
+        if ($request->type == 'N') {
+            Objective::create([
+                'quiz_id' => $quiz->id,
+                'name' => 'ไม่มีวัตถุประสงค์'
+            ]);
+        }
         session()->flash('success', 'Created Quiz success.');
 
         return redirect()->route('quiz.index');

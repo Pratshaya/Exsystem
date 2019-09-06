@@ -7,11 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class Quiz extends Model
 {
-    protected $fillable = ['name', 'detail', 'category_id'];
+    protected $fillable = ['name', 'detail', 'category_id', 'type'];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function objectives()
+    {
+        return $this->hasMany(Objective::class);
     }
 
     public function questions()

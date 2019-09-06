@@ -28,6 +28,9 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 //Category
     Route::resource('category', 'CategoryController');
 
+//Faculty
+    Route::resource('faculty', 'FacultyController');
+
 //Department
     Route::resource('department', 'DepartmentController');
 
@@ -54,6 +57,12 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('quiz/{quiz}/edit', 'QuizController@edit')->name('quiz.edit');
     Route::put('quiz/{quiz}/update', 'QuizController@update')->name('quiz.update');
     Route::delete('quiz/{quiz}/destroy', 'QuizController@destroy')->name('quiz.destroy');
+
+    //Objective
+    Route::get('quiz/{quiz}/objective/create', 'ObjectiveController@create')->name('objective.create');
+    Route::get('quiz/objective/{objective}/edit', 'ObjectiveController@edit')->name('objective.edit');
+    Route::post('quiz/{quiz}/objective/store', 'ObjectiveController@store')->name('objective.store');
+    Route::delete('quiz/{quiz}/objective/destroy', 'ObjectiveController@destroy')->name('objective.destroy');
 
 //Question
     Route::get('question/index', 'QuestionController@index')->name('question.index');
@@ -206,4 +215,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
+
 

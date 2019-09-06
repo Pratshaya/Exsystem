@@ -4,7 +4,10 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">รายการวิชาที่มี</h4>
+                    <h4 class="card-title">รายการวิชาที่มี
+                        <span class="float-right">
+                        <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
+                        </span></h4>
                 </div>
                 <div class="card-body">
                     <table id="example" class="table table-bordered table-striped-column">
@@ -19,7 +22,8 @@
                             <tr>
                                 <th class="text-center">{{ $category->name }}</th>
                                 <th class="text-center">
-                                    <a class="btn btn-success btn-link" href="{{ route('category.edit',$category->id) }}">
+                                    <a class="btn btn-success btn-link"
+                                       href="{{ route('category.edit',$category->id) }}">
                                         <i class="material-icons">edit</i>
                                     </a>
                                     <button class="btn btn-danger btn-link" onClick="handleDelete({{ $category->id }})">
@@ -35,7 +39,8 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">หน้าต่างลบกลุ่มวิชา</h5>
+                                                        <h5 class="modal-title" id="deleteModalLabel">
+                                                            หน้าต่างลบกลุ่มวิชา</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -63,38 +68,45 @@
                         </tbody>
                     </table>
                     {{ $categories->links() }}
-                    <div class="text-center" >
+                    <div class="text-center">
                         <a href="{{route('quiz.index')}}" class="btn btn-primary">ต่อไป</a>
                     </div>
 
                 </div>
             </div>
             <hr>
-            <div class="card">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">สร้างกลุ่มวิชา</h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('category.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="สร้างกลุ่มข้อสอบ" name="name"
-                                   value="{{ old('name') }}" required>
+            <div class="modal" tabindex="-1" role="dialog" id="modal-create">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">สร้างกลุ่มวิชา <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
+                                        </button></h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ route('category.store') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="สร้างกลุ่มข้อสอบ"
+                                                   name="name"
+                                                   value="{{ old('name') }}" required>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button class="btn btn-primary th">สร้าง</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group text-center">
-                            <button class="btn btn-primary th">สร้าง</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div>
 
-@endsection
-@section('script')
-    <script>
-        function handleDelete(id) {
-            $('#deleteModal' + id).modal('show');
-        }
-    </script>
+                    @endsection
+                    @section('script')
+                        <script>
+                            function handleDelete(id) {
+                                $('#deleteModal' + id).modal('show');
+                            }
+                        </script>
 @endsection

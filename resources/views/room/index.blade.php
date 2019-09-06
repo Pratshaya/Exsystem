@@ -29,7 +29,10 @@
             @endif
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">รายการห้องสอบ</h4>
+                    <h4 class="card-title">รายการห้องสอบ
+                        <span class="float-right">
+                        <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
+                        </span></h4>
                 </div>
                 <div class="card-body">
                     <table id="example" class="table table-bordered table-striped-column">
@@ -93,12 +96,17 @@
                 </div>
             </div>
             <hr>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">สร้างห้อง</h4>
-                        </div>
+                <div class="modal" tabindex="-1" role="dialog" id="modal-create">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">สร้างห้อง
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
+                                            </button></h4>
+                                    </div>
                         <div class="card-body">
                             <form action="{{ route('room.store') }}" method="POST">
                                 @csrf
@@ -109,6 +117,14 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="รายละเอียดห้อง" name="detail"
                                            value="{{ old('detail') }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <select name="faculty_id" class="form-control">
+                                        <option value="0">กรุณาเลือกภาควิชา</option>
+                                        @foreach($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group text-center">
                                     <button class="btn btn-primary">สร้าง</button>

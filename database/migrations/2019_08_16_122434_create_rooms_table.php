@@ -17,6 +17,7 @@ class CreateRoomsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('detail');
+            $table->integer('department_id');
             $table->timestamps();
         });
     }

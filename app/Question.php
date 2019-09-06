@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','objective_id'];
 
     public function quiz()
     {
         return $this->belongsTo(Quiz::class);
+    }
+
+    public function objectives()
+    {
+        return $this->belongsTo(Objective::class);
     }
 
     public function options()
