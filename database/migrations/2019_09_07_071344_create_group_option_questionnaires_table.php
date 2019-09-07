@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionPhaseQuestionnairesTable extends Migration
+class CreateGroupOptionQuestionnairesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateQuestionPhaseQuestionnairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_phase_questionnaires', function (Blueprint $table) {
+        Schema::create('group_option_questionnaires', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('phase_questionnaire_id');
             $table->integer('group_questionnaire_id');
+            $table->integer('option_questionnaire_id');
+            $table->integer('score');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateQuestionPhaseQuestionnairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_phase_questionnaires');
+        Schema::dropIfExists('group_option_questionnaires');
     }
 }

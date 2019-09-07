@@ -20,42 +20,26 @@
                     <div class="card-body">
                         <div class="row justify-content-center">
                             <div class="col-md-10">
-                                @foreach($phase_questionnaires as $phase_questionnaire)
                                     <table class="table table-bordered" style="">
                                         <tr>
-                                            <th class="text-center" style=" border: 1px solid #0b0b0b;"
-                                                colspan="
-                                            @if($phase_questionnaire->option_phase_questionnaires->count() > 1)
-                                                {{$phase_questionnaire->option_phase_questionnaires->count() +1}}
-                                                @else
-                                                {{ 2 }}
-                                                @endif">{{ $phase_questionnaire->name }}</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"
-                                                colspan="
-                                            @if($phase_questionnaire->option_phase_questionnaires->count() > 1)
-                                                {{$phase_questionnaire->option_phase_questionnaires->count() +1}}
-                                                @else
-                                                {{ 2 }}
-                                                @endif">{{ $phase_questionnaire->detail }}</td>
-                                        </tr>
-                                        <tr>
                                             <td></td>
-                                            @forelse($phase_questionnaire->option_phase_questionnaires as $option)
-                                                <td class="text-center" style="width: 8%;">{{ $option->name }}</td>
+                                            @forelse($questionnaire->option_questionnaires as $option_questionnaires)
+                                                <td class="text-center" style="width: 8%;">{{ $option_questionnaires->option }}</td>
                                             @empty
                                                 <td class="text-center"> Not Options</td>
                                             @endforelse
                                         </tr>
+                                        @foreach($phase_questionnaires as $phase_questionnaire)
+
                                         @foreach($phase_questionnaire->question_phase_questionnaires as $question)
                                             <tr>
                                                 <td class="">
                                                     {{$loop->iteration}}. {{ $question->name }}
                                                 </td>
-                                                @forelse($phase_questionnaire->option_phase_questionnaires as $option)
-                                                    <td class="text-center"><input type="radio"
-                                                                                   name="answers[{{$phase_questionnaire->id}}][{{$question->id}}]"
+                                                @forelse($questionnaire->option_questionnaires as $option)
+                                                    <td class="text-center">
+                                                        <input type="radio"
+                                                            name="answers[{{$phase_questionnaire->id}}][{{$question->group_questionnaire_id}}][{{$question->id}}]"
                                                                                    value="{{ $option->id }}"
                                                                                    required/>
                                                     </td>
@@ -64,9 +48,8 @@
                                                 @endforelse
                                             </tr>
                                         @endforeach
+                                        @endforeach
                                     </table>
-                                    <hr>
-                                @endforeach
                             </div>
                         </div>
                     </div>

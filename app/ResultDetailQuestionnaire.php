@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ResultDetailQuestionnaire extends Model
 {
-    protected $fillable = ['result_phase_questionnaire_id', 'question_phase_questionnaire_id', 'option_phase_questionnaire_id'];
+    protected $fillable = ['result_phase_questionnaire_id', 'question_phase_questionnaire_id', 'option_questionnaire_id'];
 
     public function result_phase_questionnaire()
     {
@@ -18,8 +18,8 @@ class ResultDetailQuestionnaire extends Model
         return $this->belongsTo(QuestionPhaseQuestionnaire::class);
     }
 
-    public function option_phase_questionnaire()
+    public function option_questionnaire_id()
     {
-        return $this->belongsTo(OptionPhaseQuestionnaire::class);
+        return $this->belongsTo(OptionQuestionnaire::class);
     }
 }

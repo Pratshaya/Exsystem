@@ -23,21 +23,27 @@
                                             @endif</li>
                                     </ul>
                                     <div>
+                                            <a href="{{ route('option_questionnaire.show', $questionnaire->id) }}"
+                                                    class="btn btn-primary mt-1">ขั้นที่ 1 สร้างตัวเลือก</a>
+
+                                       <a href="{{ route('group_questionnaire.show', $questionnaire->id) }}"
+                                                    class="btn btn-primary mt-1">ขั้นที่ 2 สร้างกลุ่มและให้คะแนน</a>
+                                    
+                                                    <a href="{{ route('phase_questionnaire.create', $questionnaire->id) }}"
+                                                            class="btn btn-primary mt-1">ขั้นที่ 3 สร้างด้าน</a>
                                         <a href="{{ route('phase_questionnaire.show', $questionnaire->id) }}"
-                                           class="btn btn-primary mt-1">ขั้นที่ 1 สร้างคำถามและตัวเลือก</a>
+                                           class="btn btn-primary mt-1">ขั้นที่ 4 สร้างคำถาม</a>
                                         <a href="{{ route('measurement_phase_questionnaire.show', $questionnaire->id) }}"
-                                           class="btn btn-primary mt-1  @if($questionnaire->phase_questionnaires->isEmpty()) disabled @endif">ขั้นที่ 2 สร้างเกณฑ์การให้คะแนน</a>
+                                           class="btn btn-primary mt-1  @if($questionnaire->phase_questionnaires->isEmpty()) disabled @endif">ขั้นที่ 5 สร้างเกณฑ์การให้คะแนน</a>
                                         <a href="{{ route('publish_questionnaire.show', $questionnaire->id) }}"
-                                           class="btn btn-primary mt-1 @if($questionnaire->phase_questionnaires->isEmpty()) disabled @endif">ขั้นที่ 3 ตรวจสอบความถูกต้องและเผยแพร่</a>
+                                           class="btn btn-primary mt-1 @if($questionnaire->phase_questionnaires->isEmpty()) disabled @endif">ขั้นที่ 6 ตรวจสอบความถูกต้องและเผยแพร่</a>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     {{ $questionnaires->links() }}
-                <div class="text-center" >
-                    <a href="{{route('measurement_phase_questionnaire.show',$questionnaire)}}" class="btn btn-primary">กลับ</a>
-                </div>
+      
                 </div>
             </div>
         </div>

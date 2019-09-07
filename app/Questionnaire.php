@@ -81,4 +81,14 @@ class Questionnaire extends Model
         return $result;
     }
 
+    public function group_questionnaires(){
+        return $this->hasMany(GroupQuestionnaire::class);
+    }
+
+    public function option_questionnaires(){
+        return $this->hasMany(OptionQuestionnaire::class);
+
+    }
+
+
 }

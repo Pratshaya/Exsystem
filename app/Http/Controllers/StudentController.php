@@ -17,6 +17,7 @@ use App\ResultDetail;
 use App\ResultDetailQuestionnaire;
 use App\ResultPhaseQuestionnaire;
 use App\ResultQuestionnaire;
+use App\GroupOptionQuestionnaire;
 use App\Slider;
 use App\User;
 use http\Env\Response;
@@ -78,20 +79,29 @@ class StudentController extends Controller
             $request->answers = [];
         }
 
-        $count = ResultQuestionnaire::where('questionnaire_id', $questionnaire->id)->where('user_id', Auth::id())->count();
-
-
+        //$count = ResultQuestionnaire::where('questionnaire_id', $questionnaire->id)->where('user_id', Auth::id())->count();
+       
         $result = ResultQuestionnaire::create([
             'user_id' => Auth::id(),
             'questionnaire_id' => $questionnaire->id,
             'room_id' => Auth::user()->room_id
         ]);
+    
+
         $sum_result = 0;
-        foreach ($request->answers as $phase => $answers) {
+        foreach ($request->answers as $phase => $group) {
+            //get Phase
             $sum = 0;
-            foreach ($answers as $question => $option) {
-                $option = OptionPhaseQuestionnaire::find($option);
-                $sum += $option->score;
+            foreach ($group as $group => $options) {
+                foreach($options as $question=>$option){
+                    $group_option = GroupOptionQuestionnaire::where('option_questionnaire_id',$option)
+                    ->where('group_questionnaire_id',$group)->first();
+                    if(!empty($group_option)){
+                        $sum +=  $group_option->score;
+                    }else{
+                        $sum += 0;
+                    }
+                }
             }
 
             $result_phase = ResultPhaseQuestionnaire::create([
@@ -100,12 +110,16 @@ class StudentController extends Controller
                 'score' => $sum
             ]);
 
-            foreach ($answers as $question => $option) {
-                ResultDetailQuestionnaire::create([
-                    'result_phase_questionnaire_id' => $result_phase->id,
-                    'question_phase_questionnaire_id' => $question,
-                    'option_phase_questionnaire_id' => $option
-                ]);
+            foreach ($request->answers as $phase => $group) {
+                foreach ($group as $group => $options) {
+                    foreach($options as $question=>$option){
+                        ResultDetailQuestionnaire::create([
+                            'result_phase_questionnaire_id' => $result_phase->id,
+                            'question_phase_questionnaire_id' => $question,
+                            'option_questionnaire_id' => $option
+                        ]);
+                    }
+                }
             }
             $sum_result += $sum;
 
@@ -197,7 +211,8 @@ class StudentController extends Controller
             return redirect()->route('student.room');
         }
         return view('student.result_questionnaire')->with('result', $result_questionnaire)
-            ->with('phase_questionnaires', $result_questionnaire->result_phase_questionnaire);
+        ->with('phase_questionnaire', $result_questionnaire->result_phase_questionnaire)
+            ->with('questionnaire', $result_questionnaire->questionnaire);
 
     }
 

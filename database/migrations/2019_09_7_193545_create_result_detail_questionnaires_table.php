@@ -17,7 +17,7 @@ class CreateResultDetailQuestionnairesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('result_phase_questionnaire_id');
             $table->integer('question_phase_questionnaire_id');
-            $table->integer('option_phase_questionnaire_id');
+            $table->integer('option_questionnaire_id');
             $table->timestamps();
         });
     }

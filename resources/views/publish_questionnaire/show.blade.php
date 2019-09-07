@@ -16,7 +16,7 @@
                             <thead>
                             <tr>
                                 @if($questionnaire->count_public() > 0)
-                                    <th colspan="4" class="text-center"><a href=""
+                            <th colspan="4" class="text-center"><a href="{{route('student.show_questionnaire',$questionnaire->id)}}"
                                                                            target="_blank">{{ $questionnaire->name }} </a>
                                     </th>
                                 @else
@@ -46,10 +46,10 @@
                                         <tr>
                                             <td class="text-center">{{$phase->name}}</td>
                                             <td class="text-center">
-                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$questionnaire->measurements_questionnaire->isEmpty() )
+                                                @if($phase->question_phase_questionnaires->isEmpty() ||$questionnaire->measurements_questionnaire->isEmpty() )
                                                     <ul>
                                                         <li>Can't Public</li>
-                                                        @if($phase->option_phase_questionnaires->isEmpty())
+                                                        @if($questionnaire->option_questionnaires->isEmpty())
                                                             <li>Options Not Found</li>
                                                         @endif
                                                         @if($phase->question_phase_questionnaires->isEmpty())
@@ -77,7 +77,7 @@
                                                     No
                                                 @endif</td>
                                             <td class="text-center">
-                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
+                                                @if( $phase->question_phase_questionnaires->isEmpty())
                                                     <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
                                                        class="btn btn-info">Create Phase</a>
                                                 @elseif($questionnaire->measurements_questionnaire->isEmpty() )
@@ -108,7 +108,7 @@
                                         <tr>
                                             <td class="text-center">{{$phase->name}}</td>
                                             <td class="text-center">
-                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() )
+                                                @if( $phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() )
                                                     <ul>
                                                         <li>Can't Public</li>
                                                         @if($phase->option_phase_questionnaires->isEmpty())
@@ -139,7 +139,7 @@
                                                     No
                                                 @endif</td>
                                             <td class="text-center">
-                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
+                                                @if($phase->question_phase_questionnaires->isEmpty())
                                                     <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
                                                        class="btn btn-info">Create Phase</a>
                                                 @elseif($phase->measurements_phase_questionnaire->isEmpty() )
@@ -170,7 +170,7 @@
                                         <tr>
                                             <td class="text-center">{{$phase->name}}</td>
                                             <td class="text-center">
-                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() ||$questionnaire->measurements_questionnaire->isEmpty() )
+                                                @if($phase->question_phase_questionnaires->isEmpty() ||$phase->measurements_phase_questionnaire->isEmpty() ||$questionnaire->measurements_questionnaire->isEmpty() )
                                                     <ul>
                                                         <li>Can't Public</li>
                                                         @if($phase->option_phase_questionnaires->isEmpty())
@@ -201,7 +201,7 @@
                                                     No
                                                 @endif</td>
                                             <td class="text-center">
-                                                @if($phase->option_phase_questionnaires->isEmpty() || $phase->question_phase_questionnaires->isEmpty())
+                                                @if($phase->question_phase_questionnaires->isEmpty())
                                                     <a href="{{route('phase_questionnaire.show',$phase->questionnaire)}}"
                                                        class="btn btn-info">Create Phase</a>
                                                 @elseif($phase->measurements_phase_questionnaire->isEmpty() )

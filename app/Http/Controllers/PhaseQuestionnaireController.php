@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\PhaseQuestionnaire;
+use App\QuestionPhaseQuestionnaire;
 use App\Questionnaire;
 use Illuminate\Http\Request;
 
@@ -20,27 +21,34 @@ class PhaseQuestionnaireController extends Controller
         return view('phase_questionnaire.index')->with('questionnaires', $questionnaires);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Questionnaire $questionnaire)
     {
-        //
+        $phase_questionnaires = $questionnaire->phase_questionnaires;
+        return view('phase_questionnaire.create')->with('phase_questionnaires', $phase_questionnaires)->with('questionnaire', $questionnaire);
     }
 
+    public function store_phase(Request $request, Questionnaire $questionnaire){
+        PhaseQuestionnaire::create([
+            'name'=>$request->name,
+            'questionnaire_id'=> $questionnaire->id
+        ]);
+        return redirect()->route('phase_questionnaire.create', $questionnaire->id);
+ 
+    }
 
     public function store(Request $request, Questionnaire $questionnaire)
     {
         //dd($request->options);
-        $phase_questionnaire = $questionnaire->phase_questionnaires()->create([
-            'name' => $request->name,
-            'detail' => $request->detail
-        ]);
-        //dd($request->questions);
-        $phase_questionnaire->question_phase_questionnaires()->createMany($request->questions);
-        $phase_questionnaire->option_phase_questionnaires()->createMany($request->options);
+
+        foreach($request->questions as $question){
+            QuestionPhaseQuestionnaire::create([
+                'phase_questionnaire_id' => $request->phase_questionnaire_id,
+                'name' => $question['name'],
+                'group_questionnaire_id'=>$request->group_questionnaire_id
+            ]);
+        }
+        
+        //$phase_questionnaire->option_phase_questionnaires()->createMany($request->options);
 
         session()->flash('success', 'Create phase success.');
         return redirect()->route('phase_questionnaire.show', $questionnaire->id);
@@ -60,8 +68,12 @@ class PhaseQuestionnaireController extends Controller
      */
     public function show(Questionnaire $questionnaire)
     {
+        $options_question = $questionnaire->option_questionnaires;
         $phase_questionnaires = $questionnaire->phase_questionnaires;
-        return view('phase_questionnaire.show')->with('phase_questionnaires', $phase_questionnaires)->with('questionnaire', $questionnaire);
+        return view('phase_questionnaire.show')
+        ->with('phase_questionnaires', $phase_questionnaires)
+        ->with('questionnaire', $questionnaire)
+        ->with('options_question',$options_question);
     }
 
     /**

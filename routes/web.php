@@ -95,6 +95,9 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 
 //PhaseQuestionnaire
     Route::get('questionnaire/manament/index', 'PhaseQuestionnaireController@index')->name('phase_questionnaire.index');
+    Route::get('questionnaire/manament/{questionnaire}/create', 'PhaseQuestionnaireController@create')->name('phase_questionnaire.create');
+    Route::post('questionnaire/manament/{questionnaire}/store_phase', 'PhaseQuestionnaireController@store_phase')->name('phase_questionnaire.store_phase');
+
     Route::post('questionnaire/manament/questionnaire/{questionnaire}/store', 'PhaseQuestionnaireController@store')->name('phase_questionnaire.store');
     Route::post('questionnaire/manament/questionnaire/{phase_questionnaire}/option_store', 'PhaseQuestionnaireController@option_store')->name('phase_questionnaire.option_store');
     Route::get('questionnaire/manament/questionnaire/{questionnaire}/edit', 'PhaseQuestionnaireController@edit')->name('phase_questionnaire.edit');
@@ -160,7 +163,22 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('report_room/{room}/{quiz}/chart_quiz', 'ReportRoomController@chart_quiz')->name('report_room.chart_quiz');
     Route::get('report_room/{room}/{questionnaire}/chart_questionnaire', 'ReportRoomController@chart_questionnaire')->name('report_room.chart_questionnaire');
 
+//GroupQuestionnaire
+    Route::post('questionnaire/manament/questionnaire/{questionnaire}/group_questionnaire/store', 'GroupQuestionnaireController@store')->name('group_questionnaire.store');
+    Route::get('questionnaire/manament/questionnaire/{questionnaire}/group_questionnaire/edit', 'GroupQuestionnaireController@edit')->name('group_questionnaire.edit');
+    Route::get('questionnaire/manament/questionnaire/{questionnaire}/group_questionnaire/show', 'GroupQuestionnaireController@show')->name('group_questionnaire.show');
+    Route::put('questionnaire/manament/questionnaire/{questionnaire}/group_questionnaire/update', 'GroupQuestionnaireController@update')->name('group_questionnaire.update');
+    Route::delete('questionnaire/manament/questionnaire/group_questionnaire/{group_questionnaire}/destroy', 'GroupQuestionnaireController@destroy')->name('group_questionnaire.destroy');
 
+//GroupOptionQuestionnaire
+    Route::post('questionnaire/manament/questionnaire/{questionnaire}/group_option_questionnaire/store', 'GroupOptionQuestionnaireController@store')->name('group_option_questionnaire.store');
+
+
+//OptionQuestionnaire 
+    Route::get('questionnaire/manament/questionnaire/{questionnaire}/option_questionnaire/show', 'OptionQuestionnaireController@show')->name('option_questionnaire.show');
+    Route::post('questionnaire/manament/questionnaire/{questionnaire}/option_questionnaire/store', 'OptionQuestionnaireController@store')->name('option_questionnaire.store');
+
+    
 });
 
 
