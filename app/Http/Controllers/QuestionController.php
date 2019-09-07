@@ -42,6 +42,10 @@ class QuestionController extends Controller
                 'objective_id' => $objectives->id,
             ]);
         } else {
+             $validate = $request->validate([
+               'objective_id' => 'required|exists:objectives,id'
+            ]);
+
             $question = $quiz->questions()->create([
                 'name' => $request->name,
                 'objective_id' => $request->objective_id,

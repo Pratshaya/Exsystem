@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\MeasurementQuize;
-use App\Quize;
+use App\MeasurementQuiz;
+use App\Quiz;
 use Illuminate\Http\Request;
 
-class MeasurementQuizeController extends Controller
+class MeasurementQuizController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,30 +34,20 @@ class MeasurementQuizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Quize $quize)
+    public function store(Request $request, Quiz $quiz)
     {
         if ($request->score_min >= $request->score_max) {
             session()->flash('error', 'Score Min can not more Score Max.');
         } else {
-            if ($quize->type == 'T') {
-                MeasurementPhaseQuestionnaire::create([
-                    'result' => $request->result,
-                    'score_min' => $request->score_min,
-                    'score_max' => $request->score_max,
-                    'phase_questionnaire_id' => $request->phase_questionnaire_id
-                ]);
-            }
-            elseif ($quize->type == 'F') {
-                MeasurementQuestionnaire::create([
-                    'result' => $request->result,
-                    'score_min' => $request->score_min,
-                    'score_max' => $request->score_max,
-                    'quize_id' => $quize->id
-                ]);
-            }
-        session()->flash('success', 'Measurement Questionnaire Created success.');
+            MeasurementQuiz::create([
+                'result' => $request->result,
+                'score_min' => $request->score_min,
+                'score_max' => $request->score_max,
+                'quiz_id' => $quiz->id
+            ]);
+        session()->flash('success', 'Measurement Quiz Created success.');
         }
-        return redirect()->route('measurement_quize.show', $quize->id);
+        return redirect()->route('measurement_quiz.show', $quiz->id);
     }
 
     /**
@@ -66,9 +56,9 @@ class MeasurementQuizeController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function show(MeasurementQuize $measurementQuize)
+    public function show(Quiz $quiz)
     {
-        //
+        return view('measurement_quiz.show')->with('quiz', $quiz);
     }
 
     /**
@@ -77,7 +67,7 @@ class MeasurementQuizeController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function edit(MeasurementQuize $measurementQuize)
+    public function edit(MeasurementQuiz $measurementQuiz)
     {
         //
     }
@@ -89,7 +79,7 @@ class MeasurementQuizeController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MeasurementQuize $measurementQuize)
+    public function update(Request $request, MeasurementQuiz $measurementQuiz)
     {
         //
     }
@@ -100,7 +90,7 @@ class MeasurementQuizeController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MeasurementQuize $measurementQuize)
+    public function destroy(MeasurementQuiz $measurementQuiz)
     {
         //
     }

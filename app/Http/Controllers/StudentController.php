@@ -183,8 +183,8 @@ class StudentController extends Controller
 
     public function result_quiz(Result $result)
     {
-        if ($result->user->id != Auth::id()) {
-            return redirect()->route('student.result_all');
+        if (!Auth::user()->hasRole('administrator|superadministrator') && $result->user->id != Auth::id()) {
+            return redirect()->route('student.room');
         }
         return view('student.result_quiz')->with('quiz', $result->quiz)
             ->with('questions', $result->quiz->questions)
@@ -193,8 +193,8 @@ class StudentController extends Controller
 
     public function result_questionnaire(ResultQuestionnaire $result_questionnaire)
     {
-        if ($result_questionnaire->user->id != Auth::id()) {
-            return redirect()->route('student.result_all_questionnaire');
+        if (!Auth::user()->hasRole('administrator|superadministrator') && $result_questionnaire->user->id != Auth::id()) {
+            return redirect()->route('student.room');
         }
         return view('student.result_questionnaire')->with('result', $result_questionnaire)
             ->with('phase_questionnaires', $result_questionnaire->result_phase_questionnaire);

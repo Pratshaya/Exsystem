@@ -112,25 +112,32 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('questionnaire/phase/measurement/index', 'MeasurementController@index')->name('measurement_phase_questionnaire.index');
     Route::get('questionnaire/phase/measurement/{questionnaire}/show', 'MeasurementController@show')->name('measurement_phase_questionnaire.show');
     Route::post('questionnaire/phase/measurement/{questionnaire}/store', 'MeasurementController@store')->name('measurement_phase_questionnaire.store');
-    //For Questionnaire
+//For Questionnaire
     Route::delete('questionnaire/phase/measurement/{measurement}/destroy_questionnaire', 'MeasurementController@destroy_questionnaire')->name('measurement_questionnaire.destroy');
     Route::get('questionnaire/phase/measurement/{measurement}/edit_questionnaire', 'MeasurementController@edit_questionnaire')->name('measurement_questionnaire.edit');
     Route::put('questionnaire/phase/measurement/{measurement}/update_questionnaire', 'MeasurementController@update_questionnaire')->name('measurement_questionnaire.update');
 
-    //For Phase
+//For Phase
     Route::delete('questionnaire/phase/measurement/{measurement}/destroy', 'MeasurementController@destroy')->name('measurement_phase_questionnaire.destroy');
     Route::get('questionnaire/phase/measurement/{measurement}/edit', 'MeasurementController@edit')->name('measurement_phase_questionnaire.edit');
     Route::put('questionnaire/phase/measurement/{measurement}/update', 'MeasurementController@update')->name('measurement_phase_questionnaire.update');
 
-    //For Quize
-    Route::delete('quize/measurement/{measurement}/destroy_quize', 'MeasurementQuizeController@destroy_quize')->name('measurement_quize.destroy');
-    Route::get('quize/measurement/{measurement}/edit_quize', 'MeasurementQuizeController@edit_quize')->name('measurement_quize.edit');
-    Route::put('quize/measurement/{measurement}/update_quize', 'MeasurementQuizeController@update_quize')->name('measurement_quize.update');
+//For Quize
+    Route::get('quiz/measurement/index', 'MeasurementController@index')->name('measurement_quiz.index');
+    Route::get('quiz/measurement/{quiz}/show', 'MeasurementQuizController@show')->name('measurement_quiz.show');
+    Route::post('quiz/measurement/{quiz}/store', 'MeasurementQuizController@store')->name('measurement_quiz.store');
+
+    Route::delete('quiz/measurement/{measurement}/destroy_quiz', 'MeasurementQuizeController@destroy_quize')->name('measurement_quiz.destroy');
+    Route::get('quiz/measurement/{measurement}/edit_quiz', 'MeasurementQuizeController@edit_quize')->name('measurement_quiz.edit');
+    Route::put('quiz/measurement/{measurement}/update_quiz', 'MeasurementQuizeController@update_quize')->name('measurement_quiz.update');
 
 
 //Public
     Route::get('questionnaire/{questionnaire}/publish_questionnaire/show', 'PublishQuestionnaireController@show')->name('publish_questionnaire.show');
     Route::put('questionnaire/{phase}/publish_questionnaire/public', 'PublishQuestionnaireController@public')->name('publish_questionnaire.public');
+
+    Route::get('quiz/{quiz}/publish/show', 'PublishQuizController@show')->name('publish_quiz.show');
+    Route::put('quiz/{quiz}/publish/store', 'PublishQuizController@publish')->name('publish_quiz.publish');
 
 //Room
     Route::resource('room', 'RoomController');

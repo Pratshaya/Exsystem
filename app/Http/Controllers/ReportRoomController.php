@@ -36,8 +36,19 @@ class ReportRoomController extends Controller
         } else {
             $chart = '';
         }
+        $student_count['all'] = $room->users()->count();
+        $student_count['test'] = $results->count();
+        $student_count['not_test'] = $student_count['all'] - $student_count['test'];
+        $student_count['avg'] = 0;
+        $sum = 0;
+        foreach ($results as $result) {
+            $sum += $result->score;
+        }
+        if ($student_count['test'] != 0)
+            $student_count['avg'] = $sum / $student_count['test'];
         return view('report_room.quiz_chart')
-            ->with('chart', $chart);
+            ->with('chart', $chart)->with('results', $results)
+            ->with('student_count', $student_count);
     }
 
     public function chart_questionnaire(Room $room, Questionnaire $questionnaire)
@@ -71,8 +82,6 @@ class ReportRoomController extends Controller
                 }
             }
         }
-
-
 
 
         return view('report_room.questionnaire_chart')

@@ -24,6 +24,11 @@ class Quiz extends Model
         return $this->hasMany(Question::class);
     }
 
+    public function measurement_quizzes()
+    {
+        return $this->hasMany(MeasurementQuiz::class);
+    }
+
     public function result()
     {
         return $this->hasMany(Result::class);

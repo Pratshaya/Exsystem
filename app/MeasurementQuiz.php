@@ -8,7 +8,7 @@ class MeasurementQuiz extends Model
 {
     protected $fillable = ['result', 'score_min', 'score_max', 'quiz_id'];
 
-    public function quiz()
+    public function quizzes()
     {
         return $this->belongsTo(Quiz::class);
     }

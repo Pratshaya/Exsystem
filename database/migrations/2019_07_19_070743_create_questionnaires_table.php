@@ -18,6 +18,7 @@ class CreateQuestionnairesTable extends Migration
             $table->string('name');
             $table->string('detail');
             $table->integer('category_questionnaire_id');
+            $table->integer('department_id');
             $table->timestamps();
         });
     }

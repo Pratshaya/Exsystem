@@ -28,4 +28,18 @@ class Result extends Model
     {
         return $this->created_at->format('d F Y');
     }
+
+    public function result_measurement()
+    {
+        $result = 'ไม่ตรงผลประเมิน';
+        $score = $this->score;
+        $measurements = $this->quiz->measurement_quizzes;
+        if (empty($measurement))
+            return $result;
+        foreach ($measurements as $measurement) {
+            if ($measurement->score_min <= $score && $score <= $measurement->score_max)
+                $result .= $measurement->result . ',';
+        }
+        return $result;
+    }
 }

@@ -21,6 +21,8 @@
                                     <a href="{{ route('objective.create', $quiz->id) }}" class="btn btn-primary">เพิ่มวัตถุประสงค์</a>
                                 @endif
                                 <a href="{{ route('question.show', $quiz->id) }}" class="btn btn-primary">สร้างคำถาม</a>
+                                <a href="{{ route('measurement_quiz.show', $quiz->id) }}" class="btn btn-primary">สร้างเกณฑ์การให้คะแนน</a>
+                                <a href="{{ route('publish_quiz.show', $quiz->id) }}" class="btn btn-primary">การเผยแพร่</a>
                             </div>
                         </div>
                     @endforeach

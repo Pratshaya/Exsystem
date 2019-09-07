@@ -20,6 +20,8 @@ class CreateQuizzesTable extends Migration
             $table->integer('count');
             $table->enum('type', ['O', 'N']);
             $table->integer('category_id');
+            $table->integer('department_id');
+            $table->boolean('public')->default(false);
             $table->timestamps();
         });
     }

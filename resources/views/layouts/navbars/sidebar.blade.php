@@ -115,13 +115,13 @@
       </li>--}}
       <li class="nav-item{{ $activePage == 'faculty' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('faculty.index') }}">
-          <i class="material-icons">featured_video</i>
+          <i class="material-icons">aspect_ratio</i>
           <p>{{ __('การจัดการคณะ') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'department' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('department.index') }}">
-          <i class="material-icons">featured_video</i>
+          <i class="material-icons">apps</i>
           <p>{{ __('การจัดการภาควิชา') }}</p>
         </a>
       </li>
