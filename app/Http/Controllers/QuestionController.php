@@ -27,12 +27,6 @@ class QuestionController extends Controller
         return view('question.show_objective')->with('quiz', $quiz)->with('objectives', $objectives);
     }
 
-    public function show_match(Quiz $quiz)
-    {
-        $questions = $quiz->questions;
-        return view('question_match.show')->with('questions', $questions)->with('quiz', $quiz);
-    }
-
     public function store(CreateQuestionRequest $request, Quiz $quiz)
     {
         if ($quiz->type == 'N') {

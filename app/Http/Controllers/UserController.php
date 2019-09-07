@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Department;
 use App\Room;
 use App\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -17,7 +20,28 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+       // Auth::user()->hasRole('user', 'admindepartment', 'adminteacher')->where('department_id',Auth::);
+        if(Auth::user()->hasRole('administrator')){
+            $model = $model->orWhereRoleIs('administrator')->orWhereRoleIs('adminfaculty')
+                ->orWhereRoleIs('admindepartment')->orWhereRoleIs('adminteacher')->orWhereRoleIs('user');
+            $model = $model->where('department_id',Auth::user()->department_id);
+        }
+        if(Auth::user()->hasRole('adminfaculty')){
+            $model = $model->WhereRoleIs('adminfaculty')
+                ->orWhereRoleIs('admindepartment')->orWhereRoleIs('adminteacher')->orWhereRoleIs('user');
+            $model = $model->where('department_id',Auth::user()->department_id);
+        }
+        if(Auth::user()->hasRole('admindepartment')){
+            $model = $model->WhereRoleIs('admindepartment')
+                ->orWhereRoleIs('adminteacher')->orWhereRoleIs('user');
+            $model = $model->where('department_id',Auth::user()->department_id);
+        }
+        if(Auth::user()->hasRole('adminteacher')){
+            $model = $model->WhereRoleIs('adminteacher')->orWhereRoleIs('user');
+            $model = $model->where('department_id',Auth::user()->department_id);
+        }
+        $model = $model->where('department_id',Auth::user()->department_id);
+        return view('users.index', ['users' => $model->get()]);
     }
 
     /**
@@ -28,7 +52,8 @@ class UserController extends Controller
     public function create()
     {
         $rooms = Room::all();
-        return view('users.create')->with('rooms', $rooms);
+        $departments = Department::all();
+        return view('users.create')->with('rooms', $rooms)->with('departments', $departments);
     }
 
     /**

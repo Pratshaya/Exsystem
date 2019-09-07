@@ -64,11 +64,31 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row">
+                  <label for="role" class="col-sm-2 col-form-label">{{ __('Department') }}</label>
+                  <div class="col-md-6">
+                    <select class="custom-select {{ $errors->has('department_id') ? 'is-invalid' : '' }}"
+                            id="department_id" name="department_id">
+                      <option selected value="0">Choose...</option>
+                      @foreach($departments as $department)
+                        <option value="{{$department->id}}">{{$department->name}}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('department_id'))
+                      <div class="invalid-feedback">
+                        <strong>{{$errors->first('department_id')}}</strong>
+                      </div>
+                    @endif
+                  </div>
+                </div>
+
+
                 <div class="row">
                   <label for="role" class="col-sm-2 col-form-label">{{ __('Room') }}</label>
                   <div class="col-md-6">
                     <select class="custom-select {{ $errors->has('room_id') ? 'is-invalid' : '' }}"
-                            id="input-role" name="room_id">
+                            id="room_id" name="room_id">
                       <option selected value="0">Choose...</option>
                       @foreach($rooms as $room)
                         <option value="{{$room->id}}">{{$room->name}}</option>
@@ -81,6 +101,9 @@
                     @endif
                   </div>
                 </div>
+
+
+
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Add User') }}</button>
@@ -91,4 +114,27 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('script')
+
+  <script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('#department_id').on('change', function (e) {
+      const department_id = $(this).find('option:selected').val();
+      const room_selected = $('#room_id').empty();
+      $.get('department/' + department_id + '/rooms', function (data) {
+        $.each(data, function (i, item) {
+          room_selected.append($('<option>', {
+            value: item.id,
+            text: item.name
+          }));
+        });
+      });
+    });
+  </script>
 @endsection

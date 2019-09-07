@@ -16,6 +16,7 @@
                         <tr>
                             <th class="text-center">ชื่อข้อสอบ</th>
                             <th class="text-center">จัดการข้อสอบ</th>
+                            <th class="text-center">ภาค</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -64,6 +65,7 @@
                                         </form>
                                     </div>
                                 </th>
+                                <th class="text-center">{{ $quiz->department_id }}</th>
                             </tr>
                         @endforeach
                         </tbody>
@@ -81,9 +83,12 @@
                         <div class="modal-header">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">สร้างชื่อของข้อสอบ<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
-                                        </button></h4>
+                                    <h4 class="card-title">สร้างชื่อของข้อสอบ
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><a class="fas fa-close" data-toggle="modal"
+                                                                        data-target="#modal-close"></a></span>
+                                        </button>
+                                    </h4>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('quiz.store') }}" method="POST">
@@ -111,6 +116,17 @@
                                                 <option value="N">ไม่มีวัติถุประสงค์</option>
                                             </select>
                                         </div>
+
+                                        @if(Auth::user()->hasRole('administrator'))
+                                            <div class="form-group">
+                                                <select name="department_id" class="form-control">
+                                                    @foreach($departments as $department)
+                                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+
                                         <div class="form-group text-center">
                                             <button class="btn btn-primary">สร้าง</button>
                                         </div>

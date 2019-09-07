@@ -43,9 +43,11 @@
               {{ __('Account') }}
             </p>
           </a>
+          {{ __(Auth::user()->names) }}
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
             {{--<a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
             <a class="dropdown-item" href="#">{{ __('Settings') }}</a>--}}
+
 
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
           </div>

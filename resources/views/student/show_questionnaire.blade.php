@@ -29,12 +29,15 @@
                                                 <td class="text-center"> Not Options</td>
                                             @endforelse
                                         </tr>
+                                        @php
+                                            $i = 0;
+                                        @endphp
                                         @foreach($phase_questionnaires as $phase_questionnaire)
 
                                         @foreach($phase_questionnaire->question_phase_questionnaires as $question)
                                             <tr>
                                                 <td class="">
-                                                    {{$loop->iteration}}. {{ $question->name }}
+                                                    {{++$i}}. {{ $question->name }}
                                                 </td>
                                                 @forelse($questionnaire->option_questionnaires as $option)
                                                     <td class="text-center">

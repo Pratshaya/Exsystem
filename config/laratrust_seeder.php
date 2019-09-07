@@ -14,7 +14,11 @@ return [
         'user' => [
             'profile' => 'r,u'
         ],
+        'adminfaculty' =>[],
+        'admindepartment' =>[],
+        'adminteacher' =>[]
     ],
+
     'permission_structure' => [
         'cru_user' => [
             'profile' => 'c,r,u'

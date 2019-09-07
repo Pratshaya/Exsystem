@@ -14,6 +14,10 @@ class Questionnaire extends Model
         return $this->belongsTo(CategoryQuestionnaire::class, 'category_questionnaire_id');
     }
 
+    public function departments(){
+        return $this->belongsTo(Department::class);
+    }
+
     public function phase_questionnaires()
     {
         return $this->hasMany(PhaseQuestionnaire::class);

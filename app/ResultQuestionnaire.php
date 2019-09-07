@@ -32,7 +32,7 @@ class ResultQuestionnaire extends Model
     {
         if ($this->questionnaire->type == 'P')
             return '-';
-        $result = '';
+        $result = 'ไม่ตรงผลประเมิน';
         $score = $this->score;
         $measurements = $this->questionnaire->measurements_questionnaire;
         foreach ($measurements as $measurement) {

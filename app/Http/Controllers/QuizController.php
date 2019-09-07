@@ -3,29 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Department;
 use App\Http\Requests\Quiz\CreateQuizRequest;
 use App\Http\Requests\Quiz\UpdateQuizRequest;
 use App\Objective;
 use App\Quiz;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
     public function index()
     {
         $quizzes = Quiz::paginate(10);
+        $departments = Department::all();
+        $users = Auth::user();
         $categories = Category::all();
-        return view('quiz.index')->with('quizzes', $quizzes)->with('categories', $categories);
+        return view('quiz.index')->with('quizzes', $quizzes)->with('categories', $categories)
+            ->with('departments', $departments)
+            ->with('users', $users);
     }
 
-    public function store(CreateQuizRequest $request)
+    public function store(CreateQuizRequest $request, User $user)
     {
-        $quiz = Quiz::create([
-            'name' => $request->name,
-            'detail' => $request->detail,
-            'category_id' => $request->category_id,
-            'type' => $request->type.''
-        ]);
+        if ($user->hasRole('administrator')) {
+            $quiz = Quiz::create([
+                'name' => $request->name,
+                'detail' => $request->detail,
+                'category_id' => $request->category_id,
+                'department_id' => $request->department_id,
+                'type' => $request->type . ''
+            ]);
+        } else {
+            $quiz = Quiz::create([
+                'name' => $request->name,
+                'detail' => $request->detail,
+                'category_id' => $request->category_id,
+                'department_id' => $request->Auth::user()->department_id,
+                'type' => $request->type . ''
+            ]);
+        }
         if ($request->type == 'N') {
             Objective::create([
                 'quiz_id' => $quiz->id,

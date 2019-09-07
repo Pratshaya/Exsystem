@@ -16,7 +16,7 @@
                             @if(!empty($chart))
                                 {!! $chart->render() !!}
                             @else
-                                <h4 class="text-center">Not Test</h4>
+                                <h4 class="text-center">ยังไม่มีการทำข้อสอบ</h4>
                             @endif
                         </div>
                         <div class="text-right">

@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Room;
+use App\Department;
+use App\Faculty;
 
 class LaratrustSeeder extends Seeder
 {
@@ -20,9 +22,19 @@ class LaratrustSeeder extends Seeder
         $userPermission = config('laratrust_seeder.permission_structure');
         $mapPermission = collect(config('laratrust_seeder.permissions_map'));
 
+        $faculty =  Faculty::create([
+           'name' => 'ครุศาสตร์อุตสาหกรรม'
+        ]);
+
+        $department = Department::create([
+            'name' => 'คอมพิวเตอร์ศึกษา',
+            'faculty_id' => '1'
+        ]);
+
         $room = Room::create([
             'name' => 'ced58',
-            'detail' => 'computer education department'
+            'detail' => 'computer education department',
+            'department_id' => '1'
         ]);
 
         foreach ($config as $key => $modules) {
@@ -33,7 +45,7 @@ class LaratrustSeeder extends Seeder
                 'display_name' => ucwords(str_replace('_', ' ', $key)),
                 'description' => ucwords(str_replace('_', ' ', $key))
             ]);
-            $permissions = [];
+          /*  $permissions = [];
 
             $this->command->info('Creating Role '. strtoupper($key));
 
@@ -41,7 +53,6 @@ class LaratrustSeeder extends Seeder
             foreach ($modules as $module => $value) {
 
                 foreach (explode(',', $value) as $p => $perm) {
-
                     $permissionValue = $mapPermission->get($perm);
 
                     $permissions[] = \App\Permission::firstOrCreate([
@@ -56,6 +67,7 @@ class LaratrustSeeder extends Seeder
 
             // Attach all permissions to the role
             $role->permissions()->sync($permissions);
+                */
 
             $this->command->info("Creating '{$key}' user");
 
@@ -64,7 +76,8 @@ class LaratrustSeeder extends Seeder
                 'name' => ucwords(str_replace('_', ' ', $key)),
                 'email' => $key.'@app.com',
                 'password' => bcrypt('password'),
-                'room_id' => $room->id
+                'room_id' => $room->id,
+                'department_id' => $department->id
             ]);
 
             $user->attachRole($role);
@@ -83,7 +96,8 @@ class LaratrustSeeder extends Seeder
                         'email' => $key.'@app.com',
                         'password' => bcrypt('password'),
                         'remember_token' => str_random(10),
-                        'room_id' => $room->id
+                        'room_id' => $room->id,
+                        'department_id' => $department->id
                     ]);
                     $permissions = [];
 

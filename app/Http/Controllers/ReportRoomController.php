@@ -15,7 +15,8 @@ class ReportRoomController extends Controller
     public function index()
     {
         $rooms = Room::paginate(10);
-        return view('report_room.index')->with('rooms', $rooms);
+        $questionnaires = Questionnaire::all();
+        return view('report_room.index')->with('rooms', $rooms)->with('questionnaires', $questionnaires);
     }
 
     public function show(Room $room)
@@ -82,10 +83,32 @@ class ReportRoomController extends Controller
                 }
             }
         }
+        $ch = $results;
+        $array_report=array();
+        $title = array();
+        foreach ($results as $result){
+            foreach ($result->result_phase_questionnaire as $result_phase){
+                $array_report[$result->user_id]['user'] = $result->user->name;
+                $title[$result_phase->phase_questionnaire->id] = $result_phase->phase_questionnaire->name;
+                $array_report[$result->user_id][$result_phase->phase_questionnaire->id] = $result_phase->score;
+                $array_report[$result->user_id][$result_phase->phase_questionnaire->id.'(แปลผล)'] = $result_phase->result_measurement();
+            }
+
+        }
+       //dd($array_report);
+//        $result_report = ResultQuestionnaire::
+//        join ('result_phase_questionnaires', 'result_phase_questionnaires.result_questionnaire_id','result_questionnaires.id')->
+//        join ('phase_questionnaires', 'phase_questionnaires.id','result_phase_questionnaires.phase_questionnaire_id')->
+//        where('room_id', $room->id)
+//            ->where('result_questionnaires.questionnaire_id', $questionnaire->id);
 
 
         return view('report_room.questionnaire_chart')
-            ->with('chart', $chart);
+            ->with('chart', $chart)->with('results',$results)
+            ->with('questionnaire' , $questionnaire)
+            ->with('array_report', $array_report)
+            ->with('title', $title);
+
     }
 
     private function hashQuizUser($results)

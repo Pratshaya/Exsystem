@@ -11,12 +11,14 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
+
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
             <p>{{ __('คู่มือการใช้งานเว็บไซต์') }}</p>
         </a>
       </li>
+
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         {{--<a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -47,6 +49,8 @@
             <p>{{ __('ข้อสอบแบบตัวเลือก') }}</p>
         </a>
       </li>--}}
+      @if(Auth::user()->hasRole('administrator')||Auth::user()->hasRole('adminfaculty')||
+      Auth::user()->hasRole('admindepartment')||Auth::user()->hasRole('adminteacher'))
       <li class="nav-item {{ ($activePage == 'category') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
           <i class="material-icons">assignment</i>
@@ -77,6 +81,9 @@
           </ul>
         </div>
       </li>
+      @endif
+
+
       <li class="nav-item {{ ($activePage == 'category_q') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample2" aria-expanded="false">
           <i class="material-icons">content_paste</i>

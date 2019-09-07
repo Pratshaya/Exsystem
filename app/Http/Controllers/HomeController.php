@@ -23,7 +23,7 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {if(Auth::user()->hasRole(['administrator','superadministrator'])) {
+    {if(Auth::user()->hasRole(['administrator','superadministrator','adminfaculty','admindepartment','adminteacher'])) {
         return view('dashboard');
     }else{
         return redirect()->route('student.room');

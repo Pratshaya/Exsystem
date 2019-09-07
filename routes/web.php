@@ -177,8 +177,9 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 //OptionQuestionnaire 
     Route::get('questionnaire/manament/questionnaire/{questionnaire}/option_questionnaire/show', 'OptionQuestionnaireController@show')->name('option_questionnaire.show');
     Route::post('questionnaire/manament/questionnaire/{questionnaire}/option_questionnaire/store', 'OptionQuestionnaireController@store')->name('option_questionnaire.store');
+//Ajax
+    Route::get('user/department/{department}/rooms','DepartmentController@ajax_rooms')->name('department.ajax_rooms');
 
-    
 });
 
 

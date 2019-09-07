@@ -33,6 +33,8 @@ class ResultPhaseQuestionnaire extends Model
             if ($measurement->score_min <= $score && $score <= $measurement->score_max)
                 $result .= $measurement->result . ',';
         }
+        if(empty($result))
+            return 'ไม่ตรงเกณฑ์';
         return $result;
     }
 
