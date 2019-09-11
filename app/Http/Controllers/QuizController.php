@@ -40,7 +40,7 @@ class QuizController extends Controller
                 'name' => $request->name,
                 'detail' => $request->detail,
                 'category_id' => $request->category_id,
-                'department_id' => $request->Auth::user()->department_id,
+                'department_id' => Auth::user()->department_id,
                 'type' => $request->type . ''
             ]);
         }

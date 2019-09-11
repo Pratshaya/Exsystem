@@ -1,15 +1,13 @@
 @extends('layouts.app',['activePage' => 'questionnaire_mng', 'titlePage' => __('กลุ่มของแบบสอบถาม')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <ul id="progressbar">
-                    <li class="active">Category</li>
-                    <li class="active">Quiz</li>
-                    <li class="active">Question & Option</li>
-                    <li class="active">PUBLIC</li>
-                </ul>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการข้อสอบที่มี
+                    </h4>
+                </div>
                 <div class="card">
                     <div class="card-header"><a href="{{route('question.index')}}">Management</a> / Publish</div>
                     <div class="card-body">

@@ -102,7 +102,25 @@
                   </div>
                 </div>
 
-
+                <div class="row">
+                  <label for="role" class="col-md-2 col-form-label">{{ __('Role') }}</label>
+                  <div class="col-md-6">
+                    <select class="custom-select {{ $errors->has('role_id') ? 'is-invalid' : '' }}"
+                            id="input-role" name="role_id">
+                      <option selected value="0">Choose...</option>
+                      @foreach($roles as $role)
+                        @if($role->name != 'superadministrator')
+                          <option value="{{$role->id}}">{{$role->display_name}}</option>
+                        @endif
+                      @endforeach
+                    </select>
+                    @if ($errors->has('role_id'))
+                      <div class="invalid-feedback">
+                        <strong>{{$errors->first('role_id')}}</strong>
+                      </div>
+                    @endif
+                  </div>
+                </div>
 
               </div>
               <div class="card-footer ml-auto mr-auto">

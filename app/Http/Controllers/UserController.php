@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Department;
+use App\Role;
 use App\Room;
 use App\User;
 use App\Http\Requests\UserRequest;
@@ -53,7 +54,9 @@ class UserController extends Controller
     {
         $rooms = Room::all();
         $departments = Department::all();
-        return view('users.create')->with('rooms', $rooms)->with('departments', $departments);
+        $roles = Role::all();
+        return view('users.create')->with('rooms', $rooms)->with('departments', $departments)
+            ->with('roles', $roles);
     }
 
     /**
@@ -66,7 +69,13 @@ class UserController extends Controller
     public function store(UserRequest $request, User $model)
     {
         $model->create($request->merge(['password' => Hash::make($request->get('card'))])->all());
-
+        User::create([
+            'name' => $request->name,
+            'std_id' => $request->std_id,
+            'room_id' => $request->room_id,
+            'department_id' => $request->department_id,
+        ]);
+        $model->attachRole($request->role_id);
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
