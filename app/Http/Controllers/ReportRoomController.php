@@ -7,6 +7,7 @@ use App\Quiz;
 use App\Result;
 use App\ResultQuestionnaire;
 use App\Room;
+use App\User;
 use ConsoleTVs\Charts\Facades\Charts;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ class ReportRoomController extends Controller
 
     public function chart_quiz(Room $room, Quiz $quiz)
     {
+        $user = User::all();
         $results = Result::where('room_id', $room->id)->where('quiz_id', $quiz->id)->get();
         if (!$results->isEmpty()) {
             $hashs = $this->hashQuizUser($results);
@@ -49,7 +51,9 @@ class ReportRoomController extends Controller
             $student_count['avg'] = $sum / $student_count['test'];
         return view('report_room.quiz_chart')
             ->with('chart', $chart)->with('results', $results)
-            ->with('student_count', $student_count);
+            ->with('student_count', $student_count)
+            ->with('result_detail', $result->result_details)
+            ->with('user', $user);
     }
 
     public function chart_questionnaire(Room $room, Questionnaire $questionnaire)
@@ -103,11 +107,23 @@ class ReportRoomController extends Controller
 //            ->where('result_questionnaires.questionnaire_id', $questionnaire->id);
 
 
+        $student_count['all'] = $room->users()->count();
+        $student_count['test'] = $results->count();
+        $student_count['not_test'] = $student_count['all'] - $student_count['test'];
+        $student_count['avg'] = 0;
+        $sum = 0;
+        foreach ($results as $result) {
+            $sum += $result->score;
+        }
+        if ($student_count['test'] != 0)
+            $student_count['avg'] = $sum / $student_count['test'];
+
         return view('report_room.questionnaire_chart')
             ->with('chart', $chart)->with('results',$results)
             ->with('questionnaire' , $questionnaire)
             ->with('array_report', $array_report)
-            ->with('title', $title);
+            ->with('title', $title)
+            ->with('student_count',$student_count);
 
     }
 

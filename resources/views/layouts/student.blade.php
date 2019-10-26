@@ -30,6 +30,9 @@
         html {
             font-family: 'Athiti', sans-serif;
         }
+        h4,h6 {
+            font-family: 'Athiti', sans-serif;
+        }
         .form-control {
             background: no-repeat center bottom, center calc(100% - 1px);
             background-size: 0 100%, 100% 100%;

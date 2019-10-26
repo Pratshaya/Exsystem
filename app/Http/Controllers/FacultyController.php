@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Campus;
 use App\Faculty;
+use App\Http\Requests\Faculty\CreateFacultyRequest;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
@@ -14,8 +16,9 @@ class FacultyController extends Controller
      */
     public function index()
     {
+        $campuses = Campus::all();
         $faculties = Faculty::paginate(10);
-        return view('faculty.index')->with('faculties', $faculties);
+        return view('faculty.index')->with('faculties', $faculties)->with('campuses',$campuses);
     }
 
     /**
@@ -34,10 +37,11 @@ class FacultyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateFacultyRequest $request)
     {
         Faculty::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'campus_id' => $request->campus_id
         ]);
 
         session()->flash('success', 'Faculty created successfully');

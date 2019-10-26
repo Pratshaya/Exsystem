@@ -12,7 +12,7 @@ class Department extends Model
         return $this->hasMany(Room::class);
     }
     public function faculties(){
-        return $this->belongsTo(Faculty::class);
+        return $this->belongsTo(Faculty::class,'faculty_id');
     }
     public function quizzes(){
         return $this->hasMany(Quiz::class);
@@ -20,5 +20,13 @@ class Department extends Model
 
     public function questionnaires(){
         return $this->hasMany(Questionnaire::class);
+    }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+    public function branches()
+    {
+        return $this->hasMany(Branch::class);
     }
 }

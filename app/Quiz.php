@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Quiz extends Model
 {
-    protected $fillable = ['name', 'detail', 'category_id', 'type','department_id'];
+    protected $fillable = ['name', 'detail', 'category_id', 'type','department_id','public'];
 
     public function category()
     {

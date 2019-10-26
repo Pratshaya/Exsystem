@@ -3,22 +3,29 @@
     {!! Charts::assets() !!}
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-item-center">
-                            Test Score
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">{{ __('คะแนนสอบของนักเรียน') }}</h4>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        @if(!empty($chart))
+                        <div class="card-body">
+                            <div class="card-header">
+                                <div class="d-flex align-item-center">
+                                    ผลการสอบ
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                @if(!empty($chart))
 
-                            {!! $chart->render() !!}
-                        @else
-                            <h4 class="text-center">Not test score</h4>
-                        @endif
+                                    {!! $chart->render() !!}
+                                @else
+                                    <h4 class="text-center">ยังไม่มีคะแนนสอบ</h4>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

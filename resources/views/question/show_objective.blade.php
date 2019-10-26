@@ -3,6 +3,40 @@
     <div class="content">
         <div class="container-fluid">
             <div class="card">
+                <div class="prostep5">
+                    <ul>
+                        <li>
+                            <img src="{{ asset('images\icons\folder.png') }}" alt="ขั้นตอนแรก"><br>
+                            <i class="fa"></i>
+                            <p>กลุ่มวิชา</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\note.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างข้อสอบ</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\portfolio.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างวัตถุประสงค์</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\file.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างคำถาม</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\business-presentation.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างการแปลผล</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\origami.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>ตรวจสอบและเผยแพร่</p>
+                        </li>
+                    </ul>
+                </div>
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">รายการคำถาม
                         <span class="float-right">
@@ -80,6 +114,9 @@
                             </table>
                         @endif
                     @endforeach
+                        <div class="text-center">
+                            <a href="{{route('measurement_quiz.show',$quiz->id)}}" class="btn btn-primary">ต่อไป</a>
+                        </div>
                 </div>
             </div>
             <hr>

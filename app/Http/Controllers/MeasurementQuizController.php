@@ -67,9 +67,10 @@ class MeasurementQuizController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function edit(MeasurementQuiz $measurementQuiz)
+    public function edit(MeasurementQuiz $measurement)
     {
-        //
+        return view('measurement_quiz.edit')
+            ->with('measurement', $measurement);
     }
 
     /**
@@ -79,9 +80,11 @@ class MeasurementQuizController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MeasurementQuiz $measurementQuiz)
+    public function update(Request $request, MeasurementQuiz $measurement)
     {
-        //
+        $measurement->update($request->all());
+        session()->flash('success', 'Measurement Quiz  update successfully');
+        return redirect()->route('measurement_quiz.show', $measurement->quiz->id);
     }
 
     /**
@@ -90,8 +93,10 @@ class MeasurementQuizController extends Controller
      * @param  \App\MeasurementQuize  $measurementQuize
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MeasurementQuiz $measurementQuiz)
+    public function destroy(MeasurementQuiz $measurement)
     {
-        //
+        $measurement->delete();
+        session()->flash('success', 'การวัดผลของข้อสอบถูกลบเรียบร้อยแล้ว');
+        return redirect()->route('measurement_quiz.show',$measurement->quiz->id);
     }
 }

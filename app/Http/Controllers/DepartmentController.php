@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Department;
 use App\Faculty;
 use http\Env\Response;
+use App\Http\Requests\Department\CreateDepartmentRequest;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -37,7 +38,7 @@ class DepartmentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDepartmentRequest $request)
     {
         Department::create([
             'name' => $request->name,

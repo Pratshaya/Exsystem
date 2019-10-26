@@ -12,10 +12,25 @@
                     <form action="{{ route('user.import_file') }}" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
+                            <label for="role" class="">{{ __('Branch') }}</label>
+                            <select class="custom-select {{ $errors->has('branch_id') ? 'is-invalid' : '' }}"
+                                    id="input-role" name="branch_id">
+                                <option selected value="0">เลือกสาขาสำหรับนักเรียน</option>
+                                @foreach($rooms as $room)
+                                    <option value="{{$room->id}}">{{$room->name}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('room_id'))
+                                <div class="invalid-feedback">
+                                    <strong>{{$errors->first('room_id')}}</strong>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
                             <label for="role" class="">{{ __('Room') }}</label>
                             <select class="custom-select {{ $errors->has('room_id') ? 'is-invalid' : '' }}"
                                     id="input-role" name="room_id">
-                                <option selected value="0">เลือกไฟล์นามสกุล xlsx...</option>
+                                <option selected value="0">เลือกห้องสำหรับนักเรียน</option>
                                 @foreach($rooms as $room)
                                     <option value="{{$room->id}}">{{$room->name}}</option>
                                 @endforeach

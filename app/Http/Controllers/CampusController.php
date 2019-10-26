@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Faculty;
+use App\Campus;
 use Illuminate\Http\Request;
 
-class FacultyController extends Controller
+class CampusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $faculties = Faculty::paginate(10);
-        return view('faculty.index')->with('faculties', $faculties);
+        $campuses = Campus::paginate(10);
+        return view('campus.index')->with('campuses', $campuses);
     }
 
     /**
@@ -36,13 +36,13 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        Faculty::create([
+        Campus::create([
             'name' => $request->name
         ]);
 
-        session()->flash('success', 'Faculty created successfully');
+        session()->flash('success', 'Campus created successfully');
 
-        return redirect()->route('faculty.index');
+        return redirect()->route('campus.index');
     }
 
     /**
@@ -62,9 +62,9 @@ class FacultyController extends Controller
      * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faculty $faculty)
+    public function edit(Campus $campus)
     {
-        return view('faculty.edit')->with('faculty', $faculty);
+        return view('campus.edit')->with('campus', $campus);
     }
 
     /**
@@ -74,15 +74,15 @@ class FacultyController extends Controller
      * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, Campus $campus)
     {
-        $faculty->update([
+        $campus->update([
             'name' => $request->name,
         ]);
 
-        session()->flash('success', 'faculty update successfully');
+        session()->flash('success', 'campus update successfully');
 
-        return redirect()->route('faculty.index');
+        return redirect()->route('campus.index');
     }
 
     /**
@@ -91,15 +91,15 @@ class FacultyController extends Controller
      * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faculty $faculty)
+    public function destroy(Campus $campus)
     {
-        if ($faculty->departments->isEmpty()) {
-            $faculty->delete();
-            session()->flash('success', 'Faculty deleted successfully.');
+        if ($campus->departments->isEmpty()) {
+            $campus->delete();
+            session()->flash('success', 'Campus deleted successfully.');
 
         } else {
-            session()->flash('error', 'Faculty can not delete you must to delete all user.');
+            session()->flash('error', 'Campus can not delete you must to delete all user.');
         }
-        return redirect()->route('faculty.index');
+        return redirect()->route('campus.index');
     }
 }

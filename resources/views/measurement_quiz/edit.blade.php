@@ -1,13 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.app',['activePage' => 'question', 'titlePage' => __('เกณฑ์ข้อสอบแบบตัวเลือก')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Edit Quiz</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการเกณฑ์ของข้อสอบ</h4>
+                </div>
                     <div class="card-body">
-                        <form action="{{ route('measurement_questionnaire.update',$measurement->id) }}"
+                        <form action="{{ route('measurement_quiz.update',$measurement->id) }}"
                               method="POST">
                             @method('PUT')
                             @csrf
@@ -28,7 +29,7 @@
                             </div>
                             <br>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary">Update</button>
+                                <button class="btn btn-primary">บันทึก</button>
                             </div>
                         </form>
                     </div>

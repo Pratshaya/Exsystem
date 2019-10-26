@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Department;
+use App\Http\Requests\Room\CreateRoomRequest;
 use App\Questionnaire;
 use App\Quiz;
 use App\Room;
@@ -42,11 +43,12 @@ class RoomController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRoomRequest $request)
     {
         Room::create([
             'name' => $request->name,
-            'detail' => $request->detail
+            'detail' => $request->detail,
+            'department_id' => $request->department_id
         ]);
 
         session()->flash('success', 'Room created successfully');
@@ -88,6 +90,7 @@ class RoomController extends Controller
     {
         $room->update([
             'name' => $request->name,
+            'detail' => $request->detail,
         ]);
 
         session()->flash('success', 'Room update successfully');

@@ -1,4 +1,4 @@
-@extends('layouts.app',['activePage' => 'quiz_q', 'titlePage' => __('room')])
+@extends('layouts.app',['activePage' => 'room', 'titlePage' => __('room')])
 
 @section('content')
     <div class="content">
@@ -11,8 +11,13 @@
                         <table id="example" class="table table-bordered table-striped-column">
                             <thead>
                             <tr>
-                                <th class="text">ชื่อ</th>
-                                <th>การจัดการนักเรียน</th>
+                                <th class="text">ชื่อนักเรียน</th>
+                                <th>ข้อมูล</th>
+                                <th>{{ __('อีเมลล์') }}</th>
+                                <th>{{ __('วิทยาเขต') }}</th>
+                                <th>{{ __('คณะ') }}</th>
+                                <th>{{ __('ภาควิชา') }}</th>
+                                <th>{{ __('สาขาวิชา') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -20,9 +25,16 @@
                                 <tr>
                                     <td class="text">{{ $user->name }}</td>
                                     <td>
+                                        @if($user->hasRole('user'))
                                         <a class="btn btn-primary" href=" {{ route('result.result_show', $user->id)}} ">สถานะการสอบ</a>
                                         <a class="btn btn-primary" href="{{ route('result.chart', $user->id) }}">ดูแผนภูมิ</a>
+                                            @endif
                                     </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->departments->faculties->campuses->name }}</td>
+                                    <td>{{ $user->departments->faculties->name }}</td>
+                                    <td>{{ $user->departments->name  }}</td>
+                                    <td>{{ $user->branches->name  }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

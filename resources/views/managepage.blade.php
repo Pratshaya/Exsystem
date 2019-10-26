@@ -32,7 +32,7 @@
                 </div>
                 <div class="card col-lg-4 col-md-6 col-sm-8">
                     <div class="card-header card-header-warning">
-                        <a href="{{ route('department.index') }}">
+                        <a href="{{ route('branch.index') }}">
                             <h4 class="card-title">สาขาวิชา</h4>
                         </a>
                     </div>

@@ -65,9 +65,10 @@ class ObjectiveController extends Controller
      * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faculty $faculty)
+    public function edit(Objective $objective)
     {
-        return view('faculty.edit')->with('faculty', $faculty);
+        $quiz = Quiz::all();
+        return view('objective.edit')->with('objective', $objective)->with('quiz',$quiz);
     }
 
     /**
@@ -77,15 +78,15 @@ class ObjectiveController extends Controller
      * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, Objective $objective)
     {
-        $faculty->update([
+        $objective->update([
             'name' => $request->name,
         ]);
 
-        session()->flash('success', 'faculty update successfully');
+        session()->flash('success', 'objective update successfully');
 
-        return redirect()->route('faculty.index');
+        return redirect()->route('objective.index');
     }
 
     /**
@@ -94,15 +95,17 @@ class ObjectiveController extends Controller
      * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faculty $faculty)
+    public function destroy(Objective $objective)
     {
-        if ($faculty->departments->isEmpty()) {
-            $faculty->delete();
-            session()->flash('success', 'Faculty deleted successfully.');
+        /*$objective->delete();
+        session()->flash('success', 'Quiz deleted successfully.');*/
+        if ($objective->questions->isEmpty()) {
+            $objective->delete();
+            session()->flash('success', 'Objective deleted successfully.');
 
         } else {
-            session()->flash('error', 'Faculty can not delete you must to delete all user.');
+            session()->flash('error', 'Objective can not delete you must to delete all user.');
         }
-        return redirect()->route('faculty.index');
+        return redirect()->route('objective.create',$quiz->id);
     }
 }

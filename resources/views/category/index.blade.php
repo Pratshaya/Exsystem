@@ -3,12 +3,47 @@
     <div class="content">
         <div class="container-fluid">
             <div class="card">
+                <div class="prostep1">
+                    <ul>
+                        <li>
+                            <img src="{{ asset('images\icons\folder.png') }}" alt="ขั้นตอนแรก"><br>
+                            <i class="fa"></i>
+                            <p>กลุ่มวิชา</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\note.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างข้อสอบ</p>
+                        </li>
+                        {{--<li>
+                            <img src="{{ asset('images\icons\portfolio.png') }}" alt=""><br>
+                            <i class="fa fa-times"></i>
+                            <p>การจัดการ</p>
+                        </li>--}}
+                        <li>
+                            <img src="{{ asset('images\icons\file.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างคำถาม</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\business-presentation.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างการแปลผล</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\origami.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>ตรวจสอบและเผยแพร่</p>
+                        </li>
+                    </ul>
+                </div>
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">รายการวิชาที่มี
                         <span class="float-right">
                         <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
                         </span></h4>
                 </div>
+
                 <div class="card-body">
                     <table id="example" class="table table-bordered table-striped-column">
                         <thead>
@@ -81,9 +116,12 @@
                         <div class="modal-header">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">สร้างกลุ่มวิชา <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
-                                        </button></h4>
+                                    <h4 class="card-title">สร้างกลุ่มวิชา
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><a class="fas fa-close" data-toggle="modal"
+                                                                        data-target="#modal-close"></a></span>
+                                        </button>
+                                    </h4>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('category.store') }}" method="POST">

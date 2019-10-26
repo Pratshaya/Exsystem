@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class Room extends Model
 {
-    protected $fillable = ['name', 'detail'];
+    protected $fillable = ['name', 'detail','department_id'];
 
     public function departments()
     {
-        return $this->belongsTo(Departmentแ::class);
+        return $this->belongsTo(Department::class,'department_id');
     }
 
     public function room_quizzes()

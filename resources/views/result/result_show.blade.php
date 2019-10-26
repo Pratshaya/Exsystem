@@ -16,6 +16,7 @@
                                     <th>ครั้งที่</th>
                                     <th>ชื่อข้อสอบ</th>
                                     <th>คะแนน</th>
+                                    <th>การแปรผล</th>
                                     <th>วันที่สอบ</th>
                                 </tr>
                                 @foreach($result as $res)
@@ -23,6 +24,7 @@
                                         <th>{{ $loop->iteration }}</th>
                                         <th>{{ $res->quiz->name }}</th>
                                         <th>{{ $res->score }}</th>
+                                        <th>{{ $res->result_measurement()}}</th>
                                         <th>{{ $res->created_date }}</th>
                                     </tr>
                                 @endforeach

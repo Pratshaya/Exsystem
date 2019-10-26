@@ -35,11 +35,12 @@
                         </span></h4>
                 </div>
                 <div class="card-body">
-                    <table id="example" class="table table-bordered table-striped-column">
+                    <table id="example" class="table table-bordered table-striped-column display dataTable">
                         <thead>
                         <tr>
                             <th class="text-center">ชื่อห้อง</th>
                             <th class="text-center">รายละเอียด</th>
+                            <th class="text-center">ภาควิชา</th>
                             <th class="text-center">ตัวเลือก</th>
                         </tr>
                         </thead>
@@ -48,11 +49,19 @@
                             <tr>
                                 <th class="text-center">{{ $room->name }}</th>
                                 <th class="text-center">{{ $room->detail }}</th>
+                                <th class="text-center">{{ $room->departments->name}}</th>
                                 <th class="text-center">
-                                    <a class="btn btn-success btn-link" href="{{ route('room.edit',$room->id) }}">
+                                    <a class="btn btn-primary"
+                                       href="{{ route('room.student',$room->id) }}"> <i class="material-icons">assignment_ind</i></a>
+                                    <a class="btn btn-info"
+                                       href="{{ route('quiz_questionnaire.show',$room->id) }}"><i class="material-icons">library_add</i></a>
+                                    <a class="btn btn-warning"
+                                       href="{{ route('report_room.show',$room->id) }}"><i class="material-icons"> dvr</i></a>
+
+                                    <a class="btn btn-success" href="{{ route('room.edit',$room->id) }}">
                                         <i class="material-icons">edit</i>
                                     </a>
-                                    <button class="btn btn-danger btn-link" onClick="handleDelete({{ $room->id }})">
+                                    <button class="btn btn-danger" onClick="handleDelete({{ $room->id }})">
                                         <i class="material-icons">delete</i>
                                     </button>
                                     <div class="modal fade" id="deleteModal{{$room->id}}" tabindex="-1"
@@ -119,7 +128,7 @@
                                            value="{{ old('detail') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <select name="faculty_id" class="form-control">
+                                    <select name="department_id" class="form-control">
                                         <option value="0">กรุณาเลือกภาควิชา</option>
                                         @foreach($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -143,4 +152,11 @@
             $('#deleteModal' + id).modal('show');
         }
     </script>
+                    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+                    <script>
+
+                        $(document).ready(function() {
+                            $('.dataTable').DataTable();
+                        } );
+                    </script>
 @endsection

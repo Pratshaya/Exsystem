@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\DB;
 use App\Room;
 use App\Department;
 use App\Faculty;
+use App\Campus;
+use App\Branch;
+use App\Role;
+use App\User;
 
 class LaratrustSeeder extends Seeder
 {
@@ -22,8 +26,14 @@ class LaratrustSeeder extends Seeder
         $userPermission = config('laratrust_seeder.permission_structure');
         $mapPermission = collect(config('laratrust_seeder.permissions_map'));
 
+        $campus = Campus::create([
+            'name' => 'กรุงเทพฯ'
+        ]);
+
         $faculty =  Faculty::create([
-           'name' => 'ครุศาสตร์อุตสาหกรรม'
+           'name' => 'ครุศาสตร์อุตสาหกรรม',
+            'campus_id' => '1'
+
         ]);
 
         $department = Department::create([
@@ -31,21 +41,26 @@ class LaratrustSeeder extends Seeder
             'faculty_id' => '1'
         ]);
 
+        $branch = Branch::create([
+            'name' => 'เทคโนโลยีคอมพิวเตอร์',
+            'department_id' => '1'
+        ]);
+
         $room = Room::create([
             'name' => 'ced58',
-            'detail' => 'computer education department',
+            'detail' => 'computer education 2558',
             'department_id' => '1'
         ]);
 
         foreach ($config as $key => $modules) {
 
             // Create a new role
-            $role = \App\Role::create([
+            $role = Role::create([
                 'name' => $key,
                 'display_name' => ucwords(str_replace('_', ' ', $key)),
                 'description' => ucwords(str_replace('_', ' ', $key))
             ]);
-          /*  $permissions = [];
+            /* $permissions = [];
 
             $this->command->info('Creating Role '. strtoupper($key));
 
@@ -67,17 +82,18 @@ class LaratrustSeeder extends Seeder
 
             // Attach all permissions to the role
             $role->permissions()->sync($permissions);
-                */
+            */
 
             $this->command->info("Creating '{$key}' user");
 
             // Create default user for each role
-            $user = \App\User::create([
+            $user = User::create([
                 'name' => ucwords(str_replace('_', ' ', $key)),
                 'email' => $key.'@app.com',
                 'password' => bcrypt('password'),
                 'room_id' => $room->id,
-                'department_id' => $department->id
+                'department_id' => $department->id,
+                'branch_id' => $branch->id
             ]);
 
             $user->attachRole($role);
@@ -91,13 +107,14 @@ class LaratrustSeeder extends Seeder
                 foreach ($modules as $module => $value) {
 
                     // Create default user for each permission set
-                    $user = \App\User::create([
+                    $user = User::create([
                         'name' => ucwords(str_replace('_', ' ', $key)),
                         'email' => $key.'@app.com',
                         'password' => bcrypt('password'),
                         'remember_token' => str_random(10),
                         'room_id' => $room->id,
-                        'department_id' => $department->id
+                        'department_id' => $department->id,
+                        'branch_id' => $branch->id
                     ]);
                     $permissions = [];
 

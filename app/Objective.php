@@ -8,7 +8,7 @@ class Objective extends Model
 {
     protected $fillable = ['quiz_id','name'];
 
-    public function quizzes()
+    public function quiz()
     {
         return $this->belongsTo(Quiz::class);
     }

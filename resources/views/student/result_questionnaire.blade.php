@@ -29,8 +29,11 @@
                                                 @foreach($phase_questionnaire as $answer)
                                                 @foreach($answer->result_detail_questionnaires as $phase_questionnaire)
                                                 <tr>
-                                                        <td class="text-center">
-                                                                {{$loop->iteration}}
+{{--
+                                                    {{ dd($phase_questionnaire->question_phase_questionnaire->name )}}
+--}}
+                                                        <td class="text-left">
+                                                                {{$loop->iteration}}. {{ $phase_questionnaire->question_phase_questionnaire->name }}
                                                             </td>
                                                             @foreach($questionnaire->option_questionnaires as $option_questionnaires)
                                                             <td class="text-center" style="width: 8%;">
@@ -45,7 +48,7 @@
                                                              </td>
                                                              @endforeach
                                                 </tr>
-                                                @endforeach                                             
+                                                @endforeach
                                                    @endforeach
 
                                     </table>

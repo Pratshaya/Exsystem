@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
+use App\Department;
 use App\Imports\UsersImport;
 use App\Room;
 use App\User;
@@ -15,19 +17,22 @@ class ImportStudentController extends Controller
 {
     public function import()
     {
+        $departments = Department::auth();
+        $branches = Branch::all();
         $rooms = Room::all();
-        return view('users.import')->with('rooms', $rooms);
+        return view('users.import')->with('rooms', $rooms)->with('departments',$departments)
+            ->with('branches',$branches);
     }
 
     public function import_file(Request $request)
     {
         $validator1 = Validator::make(
             [
-                'file' => $request->file,
+              //  'file' => $request->file,
                 'room_id' => $request->room_id
             ],
             [
-                'file' => 'required|mimes:xlsx',
+             //   'file' => 'required|mimes:xlsx',
                 'room_id' => 'exists:rooms,id'
             ]
         );
@@ -43,7 +48,7 @@ class ImportStudentController extends Controller
                     break;
                 }
                 foreach ($users_old as $user_old) {
-                    if ($user_old['std_card'] == $user['std_card']) {
+                    if ($user_old['std_id'] == $user['std_id']) {
                         $error_message[$i][] = 'รหัสนักเรียนซ้ำ';
                         $error = true;
                     }
@@ -75,7 +80,7 @@ class ImportStudentController extends Controller
                         'email' => 'required|unique:users|email',
                         'name' => 'required',
                         'card' => 'required:number:digits_between:13,13',
-                        'std_card' => 'required:number:digits_between:13,13',
+                        'std_id' => 'required:number:digits_between:13,13',
                     ]);
                     if ($validator->fails()) {
                         $error_message[$i] = $validator->messages()->all();
@@ -93,12 +98,16 @@ class ImportStudentController extends Controller
                     if(empty($user['name'])){
                         break;
                     }
+                    $room = Room::find($request->room_id);
                     $user = User::create([
                         'name' => $user['name'],
                         'email' => $user['email'],
                         'card' => $user['card'],
                         'password' => Hash::make($user['card']),
-                        'std_id' => $user['std_card'],
+                        'std_id' => $user['std_id'],
+                        'department_id'=>$room->departments->id,
+                        'campus_id'=>$room->departments->faculties->campuses->id,
+                        'faculty_id'=>$room->departments->faculties->id,
                         'room_id' => $request->room_id
                     ]);
                     $user->attachRole('user');

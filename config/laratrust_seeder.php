@@ -7,13 +7,14 @@ return [
             'acl' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
-        'administrator' => [
+        /*'administrator' => [
             'users' => 'c,r,u,d',
             'profile' => 'r,u'
-        ],
+        ],*/
         'user' => [
             'profile' => 'r,u'
         ],
+        'admincampus' =>[],
         'adminfaculty' =>[],
         'admindepartment' =>[],
         'adminteacher' =>[]

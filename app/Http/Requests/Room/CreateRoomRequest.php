@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Http\Requests\Department;
+namespace App\Http\Requests\Room;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateDepartmentRequest extends FormRequest
+class CreateRoomRequest extends FormRequest
 {
     public function authorize()
     {
@@ -21,7 +21,8 @@ class CreateDepartmentRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'faculty_id' => 'required|exists:faculties,id'
+            'detail' => 'required',
+            'department_id' => 'required|exists:departments,id'
         ];
     }
 }

@@ -27,7 +27,7 @@ class QuizController extends Controller
 
     public function store(CreateQuizRequest $request, User $user)
     {
-        if ($user->hasRole('administrator')) {
+        if ($user->hasRole('superadministrator')) {
             $quiz = Quiz::create([
                 'name' => $request->name,
                 'detail' => $request->detail,

@@ -1,11 +1,12 @@
 @extends('layouts.app',['activePage' => 'category_q', 'titlePage' => __('แบบสอบถาม')])
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Edit Category</div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">แก้ไขชื่อวิชา</h4>
+                </div>
                     <div class="card-body">
                         <form action="{{ route('category_questionnaire.update',$category->id) }}" method="POST">
                             @method('PUT')
@@ -15,7 +16,7 @@
                                        value="{{ isset($category) ? $category->name : '' }}">
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary">Update</button>
+                                <button class="btn btn-primary">บันทึก</button>
                             </div>
                         </form>
                     </div>

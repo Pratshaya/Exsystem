@@ -20,11 +20,11 @@
                             @endif
                         </div>
 
-                        <div class="text-right">
-                            <p>นักเรียนทั้งหมด คน</p>
-                            <p>นักเรียนที่ทำข้อสอบแล้ว คน</p>
-                            <p>นักเรียนที่ยังไม่ได้ทำข้อสอบ คน</p>
-                            <p>ผลลัพธ์เฉลี่ย คน</p>
+                        <div class="text-right mr-3">
+                            <p>นักเรียนทั้งหมด {{ $student_count['all'] }} คน </p>
+                            <p>นักเรียนที่ทำข้อสอบแล้ว {{ $student_count['test'] }} คน</p>
+                            <p>นักเรียนที่ยังไม่ได้ทำข้อสอบ{{ $student_count['not_test'] }} คน</p>
+                            <p>ผลลัพธ์เฉลี่ย {{  $student_count['avg']  }} คะแนน</p>
                         </div>
                     </div>
                     <div class="content">
@@ -55,7 +55,7 @@
                                                 <td class="text-center">{{ $result->score}}</td>
                                                 <td class="text-center">{{ $result->result_measurement()}}</td>
                                                 <td class="text-center"><a
-                                                            href="">Click</a></td>
+                                                            href="{{ route('student.result_questionnaire',$result->id) }}">Click</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>

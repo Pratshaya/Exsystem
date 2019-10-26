@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">รายการ <span class="float-right">
+                    <h4 class="card-title">รายการด้านของแบบสอบถาม <span class="float-right">
                         <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
                         </span></h4>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MeasurementQuiz;
 use App\Result;
 use App\User;
 use ConsoleTVs\Charts\Builder\Chart;

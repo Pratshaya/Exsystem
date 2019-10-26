@@ -4,25 +4,77 @@
     <div class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">รายการข้อสอบที่มี</h4>
-                </div>
                 <div class="card-header"><a
                             href="{{route('phase_questionnaire.index')}}">{{$quiz->name }} </a> /
-                    create measurement <span class="float-right"> </span>
+                    สร้างเกณฑ์การให้คะแนนและการแปลผล <span class="float-right"> </span>
                 </div>
+                @if($quiz->type=='O')
+                <div class="prostep6">
+                    @else
+                        <div class="prostep5">
+                            @endif
+                    <ul>
+                        <li>
+                            <img src="{{ asset('images\icons\folder.png') }}" alt="ขั้นตอนแรก"><br>
+                            <i class="fa"></i>
+                            <p>กลุ่มวิชา</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\note.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างข้อสอบ</p>
+                        </li>
+
+                        @if($quiz->type=='O')
+                        <li>
+                            <img src="{{ asset('images\icons\portfolio.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>การจัดการ</p>
+                        </li>
+                        @endif
+                        <li>
+                            <img src="{{ asset('images\icons\file.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างคำถาม</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\business-presentation.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างการแปลผล</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\origami.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>ตรวจสอบและเผยแพร่</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">รายการเกณฑ์ของข้อสอบ {{ $quiz->name }}
+                        <span class="float-right">
+                        <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
+                        </span></h4>
+                </div>
+
                 <div class="card-body">
 
                     @if($quiz->questions->isEmpty())
                         <table id="example" class="table table-bordered table-striped-column">
                             <tr>
                                 <td colspan="4" class="text-center">
-                                    Not Found
+                                    ไม่พบข้อมูล
                                     <br>
-                                    You must to Create Phase & Option & Question
+                                    กรุณาสร้างด้าน คำถามและตัวเลือกของข้อสอบก่อน
                                     <hr>
+                                    @if($quiz->type=='N')
                                     <a class="buttons btn btn-info"
-                                       href="{{route('measurement_quiz.show',$quiz->id)}}">Create</a>
+                                       href="{{route('question.show',$quiz->id)}}">กลับไปสร้างคำถาม
+                                    </a>
+                                        @else
+                                        <a class="buttons btn btn-info"
+                                           href="{{route('question.show_objective',$quiz->id)}}">กลับไปสร้างวัตถุประสงค์
+                                        </a>
+                                        @endif
                                 </td>
                             </tr>
                         </table>
@@ -33,10 +85,10 @@
                                 <th colspan="4" class="text-center">คะแนนรวม</th>
                             </tr>
                             <tr>
-                                <th class="text-center">Score Min</th>
-                                <th class="text-center">Score Max</th>
-                                <th class="text-center">WHAT</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">คะแนนต่ำสุดในช่วง</th>
+                                <th class="text-center">คะแนนสูงสุดในช่วง</th>
+                                <th class="text-center">ผลแปรผล</th>
+                                <th class="text-center">การจัดการ</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -46,15 +98,18 @@
                                     <td class="text-center">{{ $measurement->score_max }}</td>
                                     <td class="text-center">{{ $measurement->result }}</td>
                                     <td class="text-center" style="width: 150px;">
-                                        <a class="btn btn-info"
-                                           href="{{route('measurement_questionnaire.edit',$measurement->id)}}">Edit
+                                        <a class="btn btn-success btn-link"
+                                           href="{{route('measurement_quiz.edit',$measurement->id)}}">
+                                            <i class="material-icons">edit</i>
                                         </a>
-                                        <form action="{{route('measurement_questionnaire.destroy', $measurement->id)}}"
+
+                                        <form action="{{route('measurement_quiz.destroy', $measurement->id)}}"
                                               method="POST"
                                               style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-info btn-delete">Delete
+                                            <button class="btn btn-danger btn-link">
+                                                <i class="material-icons">delete</i>
                                             </button>
                                         </form>
                                     </td>
@@ -64,15 +119,27 @@
                         </table>
                         <hr>
                     @endif
+
+                        <div class="text-center">
+                            @if(!$quiz->questions->isEmpty())
+                            <a href="{{route('publish_quiz.show',$quiz->id)}}" class="btn btn-primary">ต่อไป</a>
+                            @endif
+                        </div>
+
                 </div>
+
             </div>
             <hr>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">เกณฑ์การให้คะแนน</h4>
-                        </div>
+            <div class="modal" tabindex="-1" role="dialog" id="modal-create">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">สร้างกลุ่มวิชา <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
+                                        </button></h4>
+                                </div>
                         <div class="card-body">
                             <form action="{{ route('measurement_quiz.store',$quiz->id) }}"
                                   method="POST">
@@ -89,7 +156,7 @@
                                            value="{{ old('score_max') }}" required>
                                     <label for="">&nbsp;&nbsp; = &nbsp;&nbsp;</label>
                                     <input type="text" class="form-control text-center"
-                                           placeholder="ระบุเกณฑ์ที่ได้ในช่วงคะแนนนี้"
+                                           placeholder="ระบุการแปรผลของช่วงคะแนนดังกล่าว"
                                            name="result"
                                            value="{{ old('result') }}" required>
                                 </div>

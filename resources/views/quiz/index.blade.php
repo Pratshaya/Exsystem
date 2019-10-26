@@ -3,6 +3,40 @@
     <div class="content">
         <div class="container-fluid">
             <div class="card">
+                <div class="prostep2">
+                    <ul>
+                        <li>
+                            <img src="{{ asset('images\icons\folder.png') }}" alt="ขั้นตอนแรก"><br>
+                            <i class="fa"></i>
+                            <p>กลุ่มวิชา</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\note.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างข้อสอบ</p>
+                        </li>
+                        {{--<li>
+                            <img src="{{ asset('images\icons\portfolio.png') }}" alt=""><br>
+                            <i class="fa fa-times"></i>
+                            <p>การจัดการ</p>
+                        </li>--}}
+                        <li>
+                            <img src="{{ asset('images\icons\file.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างคำถาม</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\business-presentation.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>สร้างการแปลผล</p>
+                        </li>
+                        <li>
+                            <img src="{{ asset('images\icons\origami.png') }}" alt=""><br>
+                            <i class="fa"></i>
+                            <p>ตรวจสอบและเผยแพร่</p>
+                        </li>
+                    </ul>
+                </div>
                 <div class="card-header card-header-primary">
                     <h4 class="card-title">รายการข้อสอบที่มี
                         <span class="float-right">
@@ -10,20 +44,40 @@
                         </span>
                     </h4>
                 </div>
+
                 <div class="card-body">
-                    <table id="example" class="table table-bordered table-striped-column">
+                    <table id="example" class="table table-bordered table-striped-column display dataTable">
                         <thead>
                         <tr>
                             <th class="text-center">ชื่อข้อสอบ</th>
+                            <th class="text-center">ชื่อวิชา</th>
+                            <th class="text-center">รายละเอียดข้อสอบ</th>
+                            <th class="text-center">จำนวนข้อ</th>
                             <th class="text-center">จัดการข้อสอบ</th>
-                            <th class="text-center">ภาค</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($quizzes as $quiz)
                             <tr>
                                 <th class="text-center">{{ $quiz->name }}</th>
+                                <th class="text-center">{{ $quiz->category->name }}</th>
+                                <th class="text-center">{{ $quiz->detail }}</th>
+                                <th class="text-center"> {{ $quiz->questions()->count() }} ข้อ</th>
                                 <th class="text-center">
+                                    @if($quiz->type == 'O')
+                                        <a href="{{ route('objective.create', $quiz->id) }}" class="btn btn-primary">เพิ่มวัตถุประสงค์</a>
+                                    @endif
+                                    <a href="{{ route('question.show', $quiz->id) }}"
+                                       class="btn btn-primary">สร้างคำถาม</a>
+                                    @if($quiz->questions()->count()>=1)
+                                        <a href="{{ route('measurement_quiz.show', $quiz->id) }}"
+                                           class="btn btn-primary">สร้างเกณฑ์การให้คะแนน</a>
+                                        @if(!$quiz->measurement_quizzes->isEmpty())
+                                            <a href="{{ route('publish_quiz.show', $quiz->id) }}"
+                                               class="btn btn-primary">การเผยแพร่</a>
+                                        @endif
+                                    @endif
+
                                     <a class="btn btn-success btn-link" href="{{ route('quiz.edit',$quiz->id) }}">
                                         <i class="material-icons">edit</i>
                                     </a>
@@ -65,15 +119,12 @@
                                         </form>
                                     </div>
                                 </th>
-                                <th class="text-center">{{ $quiz->department_id }}</th>
+
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                     {{ $quizzes->links() }}
-                    <div class="text-center">
-                        <a href="{{route('question.index')}}" class="btn btn-primary">ต่อไป</a>
-                    </div>
                 </div>
             </div>
             <hr>
@@ -137,11 +188,20 @@
                     </div>
                 </div>
             </div>
-            @endsection
-            @section('script')
-                <script>
-                    function handleDelete(id) {
-                        $('#deleteModal' + id).modal('show');
-                    }
-                </script>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        function handleDelete(id) {
+            $('#deleteModal' + id).modal('show');
+        }
+    </script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.dataTable').DataTable();
+        });
+    </script>
 @endsection

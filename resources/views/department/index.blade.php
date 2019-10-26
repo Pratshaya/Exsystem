@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">รายการวิชาที่มี
+                    <h4 class="card-title">รายการภาควิชา
                         <span class="float-right">
                         <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
                         </span>
@@ -16,6 +16,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">ชื่อภาควิชา</th>
+                            <th class="text-center">ชื่อคณะ</th>
                             <th class="text-center">การจัดการ</th>
                         </tr>
                         </thead>
@@ -23,6 +24,7 @@
                         @foreach($departments as $department)
                             <tr>
                                 <th class="text-center">{{ $department->name }}</th>
+                                <th class="text-center">{{ $department->faculties->name }}</th>
                                 <th class="text-center">
                                     <a class="btn btn-success btn-link"
                                        href="{{ route('department.edit',$department->id) }}">

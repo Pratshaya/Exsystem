@@ -5,7 +5,10 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">เกณฑ์การให้คะแนน</h4>
+                    <h4 class="card-title">เกณฑ์การให้คะแนน
+                        <span class="float-right">
+                        <a class="fas fa-plus" data-toggle="modal" data-target="#modal-create"></a>
+                        </span></h4>
                 </div>
                     <div class="card-header"><a
                                 href="{{route('phase_questionnaire.index')}}">{{$questionnaire->name }} </a> /
@@ -125,12 +128,16 @@
                 </div>
                 <hr>
                 @if(!$questionnaire->phase_questionnaires->isEmpty())
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="card">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title">เกณฑ์การให้คะแนน</h4>
-                            </div>
+                <div class="modal" tabindex="-1" role="dialog" id="modal-create">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">สร้างกลุ่มวิชา <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
+                                            </button></h4>
+                                    </div>
                             <div class="card-body">
                                 <form action="{{ route('measurement_phase_questionnaire.store',$questionnaire->id) }}"
                                       method="POST">
@@ -160,7 +167,7 @@
                                                name="score_max"
                                                value="{{ old('score_max') }}" required>
                                         <label for="">&nbsp;&nbsp; = &nbsp;&nbsp;</label>
-                                        <input type="text" class="form-control text-center" placeholder="ระบุเกณฑ์ที่ได้ในช่วงคะแนนนี้"
+                                        <input type="text" class="form-control text-center" placeholder="ระบุเกณฑ์แปลผลของช่วงคะแนนดังกล่าว"
                                                name="result"
                                                value="{{ old('result') }}" required>
                                     </div>

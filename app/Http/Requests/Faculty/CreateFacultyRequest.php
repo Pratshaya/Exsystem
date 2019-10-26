@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Http\Requests\Department;
+namespace App\Http\Requests\Faculty;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateDepartmentRequest extends FormRequest
+class CreateFacultyRequest extends FormRequest
 {
     public function authorize()
     {
@@ -21,7 +21,7 @@ class CreateDepartmentRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'faculty_id' => 'required|exists:faculties,id'
+            'campus_id' => 'required|exists:campuses,id'
         ];
     }
 }

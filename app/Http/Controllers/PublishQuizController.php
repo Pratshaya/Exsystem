@@ -13,7 +13,7 @@ class PublishQuizController extends Controller
     }
     public function publish(Request $request, Quiz $quiz)
     {
-        $quiz->update(['publish' => !$quiz->publish]);
+        $quiz->update(['public' => !$quiz->public]);
         return redirect()->route('publish_quiz.show', $quiz->id);
     }
 }

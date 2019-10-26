@@ -17,6 +17,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">ชื่อคณะ</th>
+                            <th class="text-center">ชื่อวิทยาเขต</th>
                             <th class="text-center">การจัดการ</th>
                         </tr>
                         </thead>
@@ -24,6 +25,7 @@
                         @foreach($faculties as $faculty)
                             <tr>
                                 <th class="text-center">{{ $faculty->name }}</th>
+                                <th class="text-center">{{ $faculty->campuses->name }}</th>
                                 <th class="text-center">
                                     <a class="btn btn-success btn-link" href="{{ route('faculty.edit',$faculty->id) }}">
                                         <i class="material-icons">edit</i>
@@ -79,7 +81,7 @@
                         <div class="modal-header">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">สร้างภาควิชา
+                                    <h4 class="card-title">สร้างคณะ
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
                                         </button></h4>
@@ -92,9 +94,16 @@
                                                    name="name"
                                                    value="{{ old('name') }}" required>
                                         </div>
-
+                                        <div class="form-group">
+                                            <select name="campus_id" class="form-control">
+                                                <option value="0">กรุณาเลือกวิทยาเขต</option>
+                                                @foreach($campuses as $campus)
+                                                    <option value="{{ $campus->id }}">{{ $campus->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="form-group text-center">
-                                            <button class="btn btn-primary">Create</button>
+                                            <button class="btn btn-primary">สร้างคณะ</button>
                                         </div>
                                     </form>
                                 </div>

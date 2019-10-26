@@ -18,21 +18,32 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::view('/lay/index', 'index');
 
-Route::group(['middleware' => ['role:administrator|superadministrator']], function () {
+Route::group(['middleware' => ['role:superadministrator|admincampus|adminfaculty|admindepartment|adminteacher']], function () {
 
 //User
     Route::get('user/user_import', 'ImportStudentController@import')->name('user.import');
     Route::post('user/import_file', 'ImportStudentController@import_file')->name('user.import_file');
     Route::resource('/user', 'UserController');
 
+//Manage Page Campus Faculty Department and Branch
+    Route::get('manager', function () {
+        return view('managepage');
+    })->name('managepage');
+
 //Category
     Route::resource('category', 'CategoryController');
+
+//Campus
+    Route::resource('campus', 'CampusController');
 
 //Faculty
     Route::resource('faculty', 'FacultyController');
 
 //Department
     Route::resource('department', 'DepartmentController');
+
+    //Branch
+    Route::resource('branch', 'BranchController');
 
 //Category Questionnaire
 
@@ -75,7 +86,7 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 
 //Result
     Route::resource('result', 'ResultController');
-    Route::get('/result/{user}/chart', 'ResultController@chart')->name('result.chart');
+    Route::get('/questionnaire/manament/index/chart', 'ResultController@chart')->name('result.chart');
     Route::get('/result/{user}/result', 'ResultController@result_show')->name('result.result_show');
 
     Route::resource('resultquestionnaite', 'ResultController');
@@ -130,9 +141,9 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
     Route::get('quiz/measurement/{quiz}/show', 'MeasurementQuizController@show')->name('measurement_quiz.show');
     Route::post('quiz/measurement/{quiz}/store', 'MeasurementQuizController@store')->name('measurement_quiz.store');
 
-    Route::delete('quiz/measurement/{measurement}/destroy_quiz', 'MeasurementQuizeController@destroy_quize')->name('measurement_quiz.destroy');
-    Route::get('quiz/measurement/{measurement}/edit_quiz', 'MeasurementQuizeController@edit_quize')->name('measurement_quiz.edit');
-    Route::put('quiz/measurement/{measurement}/update_quiz', 'MeasurementQuizeController@update_quize')->name('measurement_quiz.update');
+    Route::delete('quiz/measurement/{measurement}/destroy_quiz', 'MeasurementQuizController@destroy')->name('measurement_quiz.destroy');
+    Route::get('quiz/measurement/{measurement}/edit_quiz', 'MeasurementQuizController@edit')->name('measurement_quiz.edit');
+    Route::put('quiz/measurement/{measurement}/update_quiz', 'MeasurementQuizController@update')->name('measurement_quiz.update');
 
 
 //Public
@@ -144,6 +155,7 @@ Route::group(['middleware' => ['role:administrator|superadministrator']], functi
 
 //Room
     Route::resource('room', 'RoomController');
+
 
 //Room Quiz & Questionnaire
     Route::get('room/quiz_questionnaire/index', 'RoomController@quiz_questionnaire')->name('quiz_questionnaire.index');

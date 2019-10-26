@@ -43,7 +43,8 @@
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title">สร้างตัวเลือก<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span  aria-hidden="true"><a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
+                                            <span  aria-hidden="true">
+                                                <a class="fas fa-close" data-toggle="modal" data-target="#modal-close"></a></span>
                                         </button></h4>
                                 </div>
                                 <div class="card-body">

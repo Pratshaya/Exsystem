@@ -24,19 +24,26 @@
                                     </ul>
                                     <div>
                                             <a href="{{ route('option_questionnaire.show', $questionnaire->id) }}"
-                                                    class="btn btn-primary mt-1">ขั้นที่ 1 สร้างตัวเลือก</a>
+                                                    class="btn btn-primary mt-1">สร้างตัวเลือก</a>
 
                                        <a href="{{ route('group_questionnaire.show', $questionnaire->id) }}"
-                                                    class="btn btn-primary mt-1">ขั้นที่ 2 สร้างกลุ่มและให้คะแนน</a>
-                                    
-                                                    <a href="{{ route('phase_questionnaire.create', $questionnaire->id) }}"
-                                                            class="btn btn-primary mt-1">ขั้นที่ 3 สร้างด้าน</a>
-                                        <a href="{{ route('phase_questionnaire.show', $questionnaire->id) }}"
-                                           class="btn btn-primary mt-1">ขั้นที่ 4 สร้างคำถาม</a>
-                                        <a href="{{ route('measurement_phase_questionnaire.show', $questionnaire->id) }}"
-                                           class="btn btn-primary mt-1  @if($questionnaire->phase_questionnaires->isEmpty()) disabled @endif">ขั้นที่ 5 สร้างเกณฑ์การให้คะแนน</a>
-                                        <a href="{{ route('publish_questionnaire.show', $questionnaire->id) }}"
-                                           class="btn btn-primary mt-1 @if($questionnaire->phase_questionnaires->isEmpty()) disabled @endif">ขั้นที่ 6 ตรวจสอบความถูกต้องและเผยแพร่</a>
+                                                    class="btn btn-primary mt-1 @if($questionnaire->option_questionnaires->isEmpty())
+                                                            disabled @endif ">สร้างกลุ่มและให้คะแนน</a>
+
+                                       <a href="{{ route('phase_questionnaire.create', $questionnaire->id) }}"
+                                                    class="btn btn-primary mt-1 @if($questionnaire->group_questionnaires->isEmpty())
+                                                            disabled @endif ">สร้างด้าน</a>
+
+                                       <a href="{{ route('phase_questionnaire.show', $questionnaire->id) }}"
+                                           class="btn btn-primary mt-1 @if($questionnaire->phase_questionnaires->isEmpty())
+                                                   disabled @endif ">สร้างคำถาม</a>
+
+                                       <a href="{{ route('measurement_phase_questionnaire.show', $questionnaire->id) }}"
+                                           class="btn btn-primary mt-1  @if($questionnaire->phase_questionnaires->isEmpty())
+                                                   disabled @endif">สร้างเกณฑ์การให้คะแนน</a>
+                                       <a href="{{ route('publish_questionnaire.show', $questionnaire->id) }}"
+                                           class="btn btn-primary mt-1 @if($questionnaire->phase_questionnaires->isEmpty())
+                                                   disabled @endif">ตรวจสอบความถูกต้องและเผยแพร่</a>
                                     </div>
                                 </div>
                             </div>

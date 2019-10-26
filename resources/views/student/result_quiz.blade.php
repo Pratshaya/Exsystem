@@ -24,7 +24,7 @@
                                                                    value="{{ $option->id }}"
                                                                    class="custom-control-input"
                                                                    @if($option->id == $result->option->id)
-                                                                        checked
+                                                                   checked
                                                                    @endif
                                                                    disabled>
                                                             <label class="custom-control-label"

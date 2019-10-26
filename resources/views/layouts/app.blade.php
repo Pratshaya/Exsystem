@@ -22,6 +22,10 @@
 
     <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 
+    <!-- data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.js" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Athiti', sans-serif;
@@ -39,6 +43,162 @@
             padding-right: 0;
             border-radius: 0;
             font-size: 14px;
+        }
+        .prostep1,.prostep2,.prostep3,.prostep4,.prostep5,.prostep6 {
+            margin: 20px auto;
+        }
+        .prostep1 img,
+        .prostep2 img,
+        .prostep3 img,
+        .prostep4 img,
+        .prostep5 img,
+        .prostep6 img,
+        .prostep7 img
+        {
+             width: 60px;
+             margin-bottom: 20px;
+         }
+        .prostep1 ul,
+        .prostep2 ul,
+        .prostep3 ul,
+        .prostep4 ul,
+        .prostep5 ul,
+        .prostep6 ul,
+        .prostep7 ul
+        {
+            text-align: center;
+        }
+        .prostep1 li,
+        .prostep2 li,
+        .prostep3 li,
+        .prostep4 li,
+        .prostep5 li,
+        .prostep6 li,
+        .prostep7 li{
+            display: inline-block;
+            width: 150px;
+            position: relative;
+        }
+        .prostep1 li .fa,
+        .prostep2 li .fa,
+        .prostep3 li .fa,
+        .prostep4 li .fa,
+        .prostep5 li .fa,
+        .prostep6 li .fa,
+        .prostep7 li .fa
+        {
+            background: #CCC;
+            width: 20px;
+            height: 20px;
+            color: #fff;
+            border-radius: 50%;
+            padding: 5px;
+        }
+        .prostep1 li .fa::after,
+        .prostep2 li .fa::after,
+        .prostep3 li .fa::after,
+        .prostep4 li .fa::after,
+        .prostep5 li .fa::after,
+        .prostep6 li .fa::after,
+        .prostep7 li .fa::after
+        {
+            content: '';
+            background: #ccc;
+            height: 5px;
+            width: 155px;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 85px;
+        }
+        .prostep1 li:nth-child(1) .fa,
+        .prostep2 li:nth-child(2) .fa,
+        .prostep3 li:nth-child(3) .fa,
+        .prostep4 li:nth-child(3) .fa,
+        .prostep5 li:nth-child(4) .fa,
+        .prostep6 li:nth-child(5) .fa,
+        .prostep7 li:nth-child(6) .fa
+        {
+            background: #148e14;
+        }
+        .prostep1 li:nth-child(1) .fa::after,
+        .prostep2 li:nth-child(2) .fa::after,
+        .prostep3 li:nth-child(3) .fa::after,
+        .prostep4 li:nth-child(3) .fa::after,
+        .prostep5 li:nth-child(4) .fa::after,
+        .prostep6 li:nth-child(5) .fa::after,
+        .prostep7 li:nth-child(6) .fa::after
+        {
+            background: #148e14;
+        }
+        .prostep1 li:first-child .fa::after,
+        .prostep2 li:first-child .fa::after,
+        .prostep3 li:first-child .fa::after,
+        .prostep4 li:first-child .fa::after,
+        .prostep5 li:first-child .fa::after,
+        .prostep6 li:first-child .fa::after,
+        .prostep7 li:first-child .fa::after{
+            width: 85px;
+            left: 80px;
+        }
+        .prostep1 li:last-child .fa::after,
+        .prostep2 li:last-child .fa::after,
+        .prostep3 li:last-child .fa::after,
+        .prostep4 li:last-child .fa::after,
+        .prostep5 li:last-child .fa::after,
+        .prostep6 li:last-child .fa::after,
+        .prostep7 li:last-child .fa::after{
+            width: 80px;
+        }
+        .prostep2 li:nth-child(1) .fa,
+
+        .prostep3 li:nth-child(1) .fa,
+        .prostep3 li:nth-child(2) .fa,
+
+        .prostep4 li:nth-child(1) .fa,
+        .prostep4 li:nth-child(2) .fa,
+
+        .prostep5 li:nth-child(1) .fa,
+        .prostep5 li:nth-child(2) .fa,
+        .prostep5 li:nth-child(3) .fa,
+
+        .prostep6 li:nth-child(1) .fa,
+        .prostep6 li:nth-child(2) .fa,
+        .prostep6 li:nth-child(3) .fa,
+        .prostep6 li:nth-child(4) .fa,
+
+        .prostep7 li:nth-child(1) .fa,
+        .prostep7 li:nth-child(2) .fa,
+        .prostep7 li:nth-child(3) .fa,
+        .prostep7 li:nth-child(4) .fa,
+        .prostep7 li:nth-child(5) .fa
+        {
+            background: #60aa97;
+        }
+        .prostep2 li:nth-child(1) .fa::after,
+
+        .prostep3 li:nth-child(1) .fa::after,
+        .prostep3 li:nth-child(2) .fa::after,
+
+        .prostep4 li:nth-child(1) .fa::after,
+        .prostep4 li:nth-child(2) .fa::after,
+
+        .prostep5 li:nth-child(1) .fa::after,
+        .prostep5 li:nth-child(2) .fa::after,
+        .prostep5 li:nth-child(3) .fa::after,
+
+        .prostep6 li:nth-child(1) .fa::after,
+        .prostep6 li:nth-child(2) .fa::after,
+        .prostep6 li:nth-child(3) .fa::after,
+        .prostep6 li:nth-child(4) .fa::after,
+
+        .prostep7 li:nth-child(1) .fa::after,
+        .prostep7 li:nth-child(2) .fa::after,
+        .prostep7 li:nth-child(3) .fa::after,
+        .prostep7 li:nth-child(4) .fa::after,
+        .prostep7 li:nth-child(5) .fa::after
+        {
+            background: #60aa97;
         }
     </style>
     @yield('css')

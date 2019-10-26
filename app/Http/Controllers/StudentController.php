@@ -219,7 +219,7 @@ class StudentController extends Controller
     public function room()
     {
 
-        $room = Auth::user()->room;
+        $room = Auth::user()->rooms;
         return view('student.room')->with('room', $room);
     }
 }

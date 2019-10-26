@@ -19,11 +19,11 @@
                                 <h4 class="text-center">ยังไม่มีการทำข้อสอบ</h4>
                             @endif
                         </div>
-                        <div class="text-right">
-                            <p>นักเรียนทั้งหมด {{ $student_count['all'] }}</p>
-                            <p>นักเรียนที่ทำข้อสอบแล้ว {{ $student_count['test'] }}</p>
-                            <p>นักเรียนที่ยังไม่ได้ทำข้อสอบ{{ $student_count['not_test'] }}</p>
-                            <p>ผลลัพธ์เฉลี่ย {{  $student_count['avg']  }}</p>
+                        <div class="text-right mr-3">
+                            <p>นักเรียนทั้งหมด {{ $student_count['all'] }} คน</p>
+                            <p>นักเรียนที่ทำข้อสอบแล้ว {{ $student_count['test'] }} คน</p>
+                            <p>นักเรียนที่ยังไม่ได้ทำข้อสอบ{{ $student_count['not_test'] }} คน</p>
+                            <p>ผลลัพธ์เฉลี่ย {{  $student_count['avg']  }} คะแนน</p>
                         </div>
 
 
@@ -53,8 +53,26 @@
                                             <td class="text-center">{{ $result->user->name }}</td>
                                             <td class="text-center">{{ $result->score}}</td>
                                             <td class="text-center">{{ $result->result_measurement()}}</td>
-                                            <td class="text-center"><a
-                                                        href="{{route('student.result_quiz',$result)}}">Click</a></td>
+                                            <td class="text-center">
+                                                <span>
+                        <a data-toggle="modal" data-target="#modal-answer">
+                            <button class="btn btn-info btn-link">
+                                <i class="material-icons">search</i>
+                                คลิ้กเพื่อดู
+                            </button>
+                        </a>
+                        </span>
+                                            </td>
+                                            <td class="text-center">
+                        <span>
+                        <a data-toggle="modal" data-target="#modal-profile">
+                            <button class="btn btn-info btn-link">
+                                <i class="material-icons">accessibility</i>
+                                คลิ้กเพื่อดู
+                            </button>
+                        </a>
+                        </span>
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -65,7 +83,77 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal" tabindex="-1" role="dialog" id="modal-answer">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                @foreach($result_detail as $key => $result)
+                                    <div class="card mt-2">
+                                        <div class="card-body">
+                                            <h6>{{ $key+1 }}. {{$result->question->name}}</h6>
+                                            <hr>
+                                            <ul>
+                                                @foreach($result->question->options as $option)
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="{{ $option->id }}"
+                                                               name="ch[{{$result->question->id}}]"
+                                                               value="{{ $option->id }}"
+                                                               class="custom-control-input"
+                                                               @if($option->id == $result->option->id)
+                                                               checked
+                                                               @endif
+                                                               disabled>
+                                                        <label class="custom-control-label"
+                                                               for="{{$option->id}}">{{ $option->name }}</label>
+                                                    </div>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" tabindex="-1" role="dialog" id="modal-profile">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
 
+                                <table id="example" class="table table-bordered table-striped-column">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">ข้อมูลส่วนตัว</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td class="text-left">ชื่อ</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left"> อีเมลล์</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left"> เลขบัตรประจำตัวประชาชน</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left"> รหัสนักศึกษา</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            <a class="btn btn-primary">Result</a>
+                                            <a class="btn btn-primary">Chart</a>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

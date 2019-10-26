@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Department;
+use App\Faculty;
+use App\Branch;
 use App\Role;
 use App\Room;
 use App\User;
@@ -17,32 +19,12 @@ class UserController extends Controller
      * Display a listing of the users
      *
      * @param \App\User $model
-     * @return \Illuminate\View\View
+     * @return \Illuminat\View\View
      */
-    public function index(User $model)
+    public function index()
     {
-       // Auth::user()->hasRole('user', 'admindepartment', 'adminteacher')->where('department_id',Auth::);
-        if(Auth::user()->hasRole('administrator')){
-            $model = $model->orWhereRoleIs('administrator')->orWhereRoleIs('adminfaculty')
-                ->orWhereRoleIs('admindepartment')->orWhereRoleIs('adminteacher')->orWhereRoleIs('user');
-            $model = $model->where('department_id',Auth::user()->department_id);
-        }
-        if(Auth::user()->hasRole('adminfaculty')){
-            $model = $model->WhereRoleIs('adminfaculty')
-                ->orWhereRoleIs('admindepartment')->orWhereRoleIs('adminteacher')->orWhereRoleIs('user');
-            $model = $model->where('department_id',Auth::user()->department_id);
-        }
-        if(Auth::user()->hasRole('admindepartment')){
-            $model = $model->WhereRoleIs('admindepartment')
-                ->orWhereRoleIs('adminteacher')->orWhereRoleIs('user');
-            $model = $model->where('department_id',Auth::user()->department_id);
-        }
-        if(Auth::user()->hasRole('adminteacher')){
-            $model = $model->WhereRoleIs('adminteacher')->orWhereRoleIs('user');
-            $model = $model->where('department_id',Auth::user()->department_id);
-        }
-        $model = $model->where('department_id',Auth::user()->department_id);
-        return view('users.index', ['users' => $model->get()]);
+        $users= User::whereRole();
+        return view('users.index', ['users' => $users])->with(Auth::user()->department_id);
     }
 
     /**
@@ -54,8 +36,12 @@ class UserController extends Controller
     {
         $rooms = Room::all();
         $departments = Department::all();
+        $branches = Branch::all();
         $roles = Role::all();
-        return view('users.create')->with('rooms', $rooms)->with('departments', $departments)
+        return view('users.create')
+            ->with('rooms', $rooms)
+            ->with('departments', $departments)
+            ->with('branches', $branches)
             ->with('roles', $roles);
     }
 
@@ -68,14 +54,25 @@ class UserController extends Controller
      */
     public function store(UserRequest $request, User $model)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('card'))])->all());
-        User::create([
+       // $model->create($request->merge(['password' => Hash::make($request->get('card'))])->all());
+        $user = User::create([
+            'email'=> $request->email,
             'name' => $request->name,
+            'card' => $request->card,
             'std_id' => $request->std_id,
             'room_id' => $request->room_id,
             'department_id' => $request->department_id,
+            'branch_id' => $request->branch_id,
+            'password' => Hash::make($request->get('card')),
+            'faculty_id' => $request->faculty_id,
+            'campus_id' => $request->campus_id
         ]);
-        $model->attachRole($request->role_id);
+        if(!empty($request->role_id)) {
+            $user->attachRole($request->role_id);
+        }else{
+            $user->attachRole(2);
+        }
+
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
