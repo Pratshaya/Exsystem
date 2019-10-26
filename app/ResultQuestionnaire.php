@@ -36,10 +36,11 @@ class ResultQuestionnaire extends Model
         $score = $this->score;
         $measurements = $this->questionnaire->measurements_questionnaire;
         foreach ($measurements as $measurement) {
-            if ($measurement->score_min <= $score && $score <= $measurement->score_max)
-                $result .= $measurement->result . ',';
+            if ($measurement->score_min <= $score && $score <= $measurement->score_max){
+                return $measurement->result ;
+            }
         }
-
+      
         return $result;
     }
 }
