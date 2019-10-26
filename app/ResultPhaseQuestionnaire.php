@@ -31,7 +31,11 @@ class ResultPhaseQuestionnaire extends Model
         //dd($measurements);
         foreach ($measurements as $measurement) {
             if ($measurement->score_min <= $score && $score <= $measurement->score_max)
-                $result .= $measurement->result . ',';
+                if($key==0){
+                    $result = $measurement->result ;
+                }else{
+                    $result =$result .' , '. $measurement->result ;
+                }
         }
         if(empty($result))
             return 'ไม่ตรงเกณฑ์';

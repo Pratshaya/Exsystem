@@ -32,15 +32,21 @@ class ResultQuestionnaire extends Model
     {
         if ($this->questionnaire->type == 'P')
             return '-';
-        $result = 'ไม่ตรงผลประเมิน';
+        $result = '';
         $score = $this->score;
         $measurements = $this->questionnaire->measurements_questionnaire;
-        foreach ($measurements as $measurement) {
+        foreach ($measurements as $key => $measurement) {
             if ($measurement->score_min <= $score && $score <= $measurement->score_max){
-                return $measurement->result ;
+                if($key==0){
+                    $result = $measurement->result ;
+                }else{
+                    $result =$result .' , '. $measurement->result ;
+                }
+                
             }
         }
-      
+        if(empty($result))
+             return 'ไม่ตรงเกณฑ์';
         return $result;
     }
 }
