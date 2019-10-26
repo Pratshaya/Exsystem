@@ -160,15 +160,9 @@
                                                 @endforeach
                                             </select>
                                         @endif
-                                        @if($questionnaire->measurements_questionnaire->isEmpty())
                                             <input type="number" class="form-control text-center" placeholder="ระบุคะแนนที่น้อยที่สุดในช่วง"
                                                 name="score_min"
                                                 value="{{ old('score_min') }}" required>
-                                        @else
-                                            <input type="number" class="form-control text-center" placeholder="ระบุคะแนนที่น้อยที่สุดในช่วง"
-                                            name="score_min"
-                                            value="{{ $questionnaire->measurements_questionnaire_score_max() + 1}}" readonly required>
-                                        @endif
                                         <input type="number" class="form-control text-center" placeholder="ระบุคะแนนที่มากที่สุดในช่วง"
                                                name="score_max"
                                                value="{{ old('score_max') }}" required>

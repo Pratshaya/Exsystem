@@ -110,18 +110,18 @@ class MeasurementController extends Controller
      */
     public function update(Request $request, MeasurementPhaseQuestionnaire $measurement)
     {
-        $measurement_next= MeasurementQuestionnaire::where('questionnaire_id',$measurement->questionnaire->id)->where('score_min',$measurement->score_max+1)->first();
-        if(!empty($measurement_next)){
-            if($request->score_max >= $measurement_next->score_max){
-                session()->flash('error', 'Measurement Questionnaire score max must less socre min in next.');
-                $phase = PhaseQuestionnaire::find($request->phase_questionnaire_id);
-                return redirect()->route('measurement_phase_questionnaire.show', $phase->questionnaire->id);
-            }
-            $measurement_next->update([
-                'score_min' => $request->score_max+1
-            ]);
-        }
-        $measurement->update(['score_max'=>$request->score_max]);
+        // $measurement_next= MeasurementQuestionnaire::where('questionnaire_id',$measurement->questionnaire->id)->where('score_min',$measurement->score_max+1)->first();
+        // if(!empty($measurement_next)){
+        //     if($request->score_max >= $measurement_next->score_max){
+        //         session()->flash('error', 'Measurement Questionnaire score max must less socre min in next.');
+        //         $phase = PhaseQuestionnaire::find($request->phase_questionnaire_id);
+        //         return redirect()->route('measurement_phase_questionnaire.show', $phase->questionnaire->id);
+        //     }
+        //     $measurement_next->update([
+        //         'score_min' => $request->score_max+1
+        //     ]);
+        // }
+        $measurement->update($request->all());
         session()->flash('success', 'MeasurementPhaseQuestionnaire  update successfully');
         $phase = PhaseQuestionnaire::find($request->phase_questionnaire_id);
         return redirect()->route('measurement_phase_questionnaire.show', $phase->questionnaire->id);
@@ -148,19 +148,13 @@ class MeasurementController extends Controller
     }
     public function update_questionnaire(Request $request, MeasurementQuestionnaire $measurement)
     {
-        $measurement_next= MeasurementQuestionnaire::where('questionnaire_id',$measurement->questionnaire->id)->where('score_min',$measurement->score_max+1)->first();
-        if(!empty($measurement_next)){
-            if($request->score_max >= $measurement_next->score_max){
-                session()->flash('error', 'Measurement Questionnaire score max must less socre min in next.');
-                return redirect()->route('measurement_phase_questionnaire.show', $measurement->questionnaire);
-            }
-            $measurement_next->update([
-                'score_min' => $request->score_max+1
-            ]);
-        }
-        $measurement->update([
-            'score_max'=>$request->score_max
-        ]);
+        // $measurement_next= MeasurementQuestionnaire::where('questionnaire_id',$measurement->questionnaire->id)->where('score_min',$measurement->score_max+1)->first();
+        // if(!empty($measurement_next)){
+        //     $measurement_next->update([
+        //         'score_min' => $request->score_max+1
+        //     ]);
+        // }
+        $measurement->update($request->all());
 
         session()->flash('success', 'Measurement Questionnaire  update successfully');
         return redirect()->route('measurement_phase_questionnaire.show', $measurement->questionnaire);
