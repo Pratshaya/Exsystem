@@ -18,7 +18,7 @@
                                 <input type=" number" class="form-control text-center"
                                        placeholder="Score Min"
                                        name="score_min"
-                                       value="{{ isset($measurement->score_min) ? $measurement->score_min : '' }}" required>
+                                       value="{{ isset($measurement->score_min) ? $measurement->score_min : '' }}" readonly required>
                                 <input type="number" class="form-control text-center" placeholder="Score Max"
                                        name="score_max"
                                        value="{{ isset($measurement->score_max) ? $measurement->score_max : '' }}" required>

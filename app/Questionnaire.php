@@ -42,7 +42,9 @@ class Questionnaire extends Model
     {
         return $this->hasMany(MeasurementQuestionnaire::class);
     }
-
+    public function measurements_questionnaire_score_max(){
+        return $this->measurements_questionnaire->max('score_max');
+    }
     public function room_questionnaires()
     {
         return $this->hasMany(RoomQuestionnaire::class);
