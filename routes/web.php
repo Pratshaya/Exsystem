@@ -88,10 +88,7 @@ Route::group(['middleware' => ['role:superadministrator|admincampus|adminfaculty
     Route::resource('result', 'ResultController');
     Route::get('/questionnaire/manament/index/chart', 'ResultController@chart')->name('result.chart');
     Route::get('/result/{user}/result', 'ResultController@result_show')->name('result.result_show');
-
-    Route::resource('resultquestionnaite', 'ResultController');
-    Route::get('/resultquestionnaite/{user}/chart', 'ResultController@chart')->name('resultquestionnaite.chart');
-    Route::get('/resultquestionnaite/{user}/result', 'ResultController@result_show')->name('resultquestionnaite.result_show');
+    Route::get('/result/{user}/result_questionnaire_show', 'ResultController@result_questionnaire_show')->name('result.result_questionnaire_show');
 
     Route::resource('slider', 'SliderController');
     Route::resource('post', 'PostController');
